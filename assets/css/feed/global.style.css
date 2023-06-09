@@ -1,0 +1,21 @@
+    /*CSS Geral, página inteira /'universe select' ou seletor universal. */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Nexa, 'Segoe UI', Arial;
+        font-size: 12.5px;
+
+    }
+
+    html {
+        scroll-behavior: smooth;
+        height: 100%;
+    }
+
+    /* <body>, corpo do site. */
+    body {
+        overflow-x: hidden;
+        height: 100%;
+
+    }

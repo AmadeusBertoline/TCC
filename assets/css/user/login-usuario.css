@@ -1,0 +1,729 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Nexa, 'Segoe UI', Arial;
+    
+}
+
+#container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid black; */
+    width: 40%;
+    height: 40%;
+    padding: 4%;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding-top: 0;
+
+
+}
+
+.submit {
+    margin-top: 5%;
+}
+
+
+.side-right {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    /* border: 1px solid red; */
+}
+
+.image{
+    width: 75%;
+    height: 75%;
+    background: url('../../img/user/SVG\ -\ Familiar.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* border: 1px solid blue; */
+
+}
+
+.side-left {
+    width: 100%;
+    height: 100%;
+    /*box-shadow: direita, baixo, raio do desfoque, sprat(expansão ou diminuição da sombra), cor;*/
+    box-shadow: 3px 3px 6px #dddddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/*Botão switch*/
+
+.checkbox-familiar {
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+}
+
+.checkbox-familiar+label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+}
+
+
+.checkbox-familiar--shadow+label {
+    padding: 2px;
+    width: 60px;
+    height: 20px;
+    background-color: #dddddd;
+    border-radius: 60px;
+    margin-top: 3%;
+}
+
+.checkbox-familiar--shadow+label:before,
+.checkbox-familiar--shadow+label:after {
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    bottom: 1px;
+    content: '';
+}
+
+.checkbox-familiar--shadow+label:before {
+    right: 1px;
+    background-color: #f1f1f1;
+    border-radius: 30px;
+    transition: all 0.4s;
+}
+
+.checkbox-familiar--shadow+label:after {
+    width: 20px;
+    background-color: #fff;
+    border-radius: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s;
+}
+
+.checkbox-familiar--shadow:checked+label:before {
+    background-image: linear-gradient(to right, #38BDF8, #2b96c4);
+}
+
+.checkbox-familiar--shadow:checked+label:after {
+    transform: translateX(39px);
+}
+
+/*Fim botão switch*/
+
+
+.form-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+    margin-top: 3%;
+    width: 100%;
+}
+
+.form-bottom p{
+    cursor: pointer;
+}
+
+.input-text {
+    margin-top: 6%;
+    font-size: 1.1rem;
+    padding: 1%;
+    border: none;
+    border-bottom: 1px solid rgb(190, 190, 190);
+    transition: 0.5s;
+    width: 100%;
+
+}
+
+.input-text:hover {
+    border-color: #38BDF8;
+    transition: 0.5s;
+}
+
+.input-text:focus {
+    box-shadow: none;
+    outline: 0;
+    transition: 0.5s;
+}
+
+.input-text-password{
+    font-size: 1.1rem;
+    padding: 1%;
+    border: none;
+    transition: 0.5s;
+    width: 100%;
+
+}
+.input-text-password:focus{
+    box-shadow: none;
+    outline: 0;
+    transition: 0.5s;
+}
+
+form h1 {
+    color: #38BDF8;
+    margin-bottom: 2%;
+    font-size: 1.5rem;
+}
+
+
+/*Removendo setinhas do 'input:number'*/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/*Fim removendo setinhas do 'input:number'*/
+
+
+.submit {
+    border: none;
+    border-radius: 15px;
+    height: 50%;
+    background-image: linear-gradient(to right, #38BDF8, #2b96c4);
+    font-weight: bold;
+    font-size: 1rem;
+    color: #ffff;
+    margin-top: 10%;
+    cursor: pointer;
+    width: 100%;
+}
+
+.cadastre-se {
+    margin-top: 4%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1.1%;
+}
+
+p {
+    color: #2b96c4;
+}
+
+label {
+    color: #2b96c4;
+
+}
+
+.cadastre-se-button {
+    border: 1px solid #0e688f;
+    height: 35px;
+    width: 108%;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #0f6286;
+    background-color: white;
+    padding: 1%;
+    cursor: pointer;
+    transition: 0.5s;
+    text-align: center;
+
+}
+
+.cadastre-se-button:hover {
+    background-color: #0e688f;
+    color: white;
+    transition: 0.5s;
+}
+
+.checkboxes{
+    display: flex;
+    align-items: center;
+    margin: 3%;
+    margin-top: 5%;
+    justify-content: space-between;
+    width: 55%;
+    margin-left: 2px;
+}
+
+.logotipo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-right: 2%;
+    height: 10%;
+}
+
+.logotipo h1{
+    /* margin-top: 4%; */
+    font-size: 1.4rem;
+}
+.logotipo img{
+    width: 8%;
+}
+
+#eyeSvg{
+    cursor: pointer;
+}
+
+.eye-div{
+    width: 100%;
+}
+
+.password-div{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    font-size: 1.1rem;
+    border: none;
+    border-bottom: 1px solid rgb(190, 190, 190);
+    transition: 0.5s;
+    width: 100%;
+    margin-top: 6%;
+}
+
+.password-div:hover{
+    border-color: #38BDF8;
+    transition: 0.5s;
+}
+
+.password-div img{
+    width: 10%;
+    height: 80%;
+}
+
+/*Início style modal de erro*/
+#fade{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 5;
+}
+
+#modal{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    z-index: 10;
+    width: 500px;
+    max-width: 90%;
+    padding: 1.2rem;
+    border-radius: .5rem;
+    color: black;
+}
+
+
+.modal-body{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+
+#close-modal{
+    width: 30%;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right, #38BDF8, #2b96c4);
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+}
+
+#fade, #modal{
+    transition: .5s;
+    opacity: 1;
+    pointer-events: all;
+}
+
+#modal.hide,
+#fade.hide{
+    opacity: 0;
+    pointer-events: none;
+}
+
+#modal.hide{
+    top: 0;
+}
+
+#modal a{
+    text-decoration: none;
+
+}
+
+/*Fim style do modal de erro*/
+
+
+/*Responsividade pro computador do Amadeus (eu)*/
+
+@media screen and (max-width: 1536px){
+
+    form{
+        width: 45%;
+        height: 55%;
+    }
+
+    h1{
+        margin-bottom: 5%;
+    }
+
+    .submit{
+        height: 14%;
+    }
+
+    .logotipo{
+        display: flex;
+        align-items: center;
+    }
+
+    .logotipo h1{
+        margin-top: 4%;
+    }
+}
+
+@media screen and (max-width: 1496px){
+    
+    .image{
+        height: 85%;
+    }
+}
+
+@media screen and (max-width: 1431px){
+
+    form{
+        height: 60%;
+        width: 55%;
+    }
+
+}
+
+@media screen and (max-width: 1359px){
+    .image{
+        width: 75%;
+        height: 75%;
+        background-size: contain
+
+    }
+}
+
+@media screen and (max-width: 1220px){
+    .image{
+        width: 75%;
+        height: 75%;
+        background-size: contain
+
+    }
+}
+
+@media screen and (max-width: 1202px){
+    .image{
+        width: 75%;
+        height: 75%;
+        background-size: contain
+    }
+}
+
+@media screen and (max-width: 1126px){
+    form{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 1018px){
+    form{
+        width: 65%;
+    }
+
+    .image{
+        margin-top: 20%;
+        width: 90%;
+        height: 90%;
+    }
+
+    #container{
+        overflow-y: hidden;
+    }
+}
+
+@media screen and (max-width: 927px){
+    form{
+        width: 70%;
+    }
+
+}
+
+@media screen and (max-width: 853px){
+    form{
+        width: 80%;
+    }
+
+    .image{
+        margin-top: 28%;
+        width: 90%;
+        height: 90%;
+    }
+
+}
+
+@media screen and (max-width: 736px){
+    form{
+        width: 90%;
+    }
+
+    .image{
+        width: 90%;
+        height: 90%;
+        margin-top: 40%;
+    }
+    .logotipo img{
+        width: 13%;
+    }
+}
+
+@media screen and (max-width: 645px){
+    form{
+        width: 95%;
+    }
+
+    .image{
+        margin-top: 70%;
+        width: 95%;
+        height: 95%;
+    }
+}
+
+@media screen and (max-width: 608px){
+
+    form{
+        width: 98%;
+    }
+
+    .image{
+        width: 100%;
+        height: 100%;
+        margin-top: 90%;
+    }
+
+    .logotipo img{
+        width: 13%;
+    }
+}
+
+@media screen and (max-width: 573px){
+
+    .side-right{
+        display: none;
+    }
+
+    form{
+        width: 60%;
+    }
+
+    .logotipo img{
+        width: 8%;
+    }
+}
+
+@media screen and (max-width: 508px){
+    form {
+        width: 65%;
+    }
+}
+
+@media screen and (max-width: 463px){
+    form {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 427px){
+    form {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 367px){
+    form {
+        width: 90%;
+    }
+
+    .logotipo img{
+        width: 14%;
+    }
+}
+
+@media screen and (max-width: 323px){
+    form {
+        width: 99%;
+    }
+
+    .logotipo img{
+        width: 14%;
+    }
+}
+
+@media screen and (max-width: 291px){
+    form {
+        width: 100%;
+    }
+
+    .logotipo img{
+        width: 14%;
+    }
+
+    .checkboxes{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 291px){
+   .cadastre-se{
+    display: flex;
+    flex-direction: column;
+   }
+
+   .cadastre-se input{
+    margin-top: 5%;
+   }
+}
+
+@media screen and (max-width: 264px){
+    .checkboxes{
+        width: 75%;
+    }
+
+    .cadastre-se input{
+        width: 60%;
+    }
+
+    
+}
+
+@media screen and (max-width: 211px){
+    .checkboxes{
+        width: 90%;
+    }
+
+    form{
+        height: 55%;
+    }
+
+    .logotipo img{
+        width: 16%;
+    }
+}
+
+@media screen and (max-width: 189px){
+    .logotipo{
+        width: 99%;
+        
+    }
+
+    .logotipo h1{
+        
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 182px){
+    .cadastre-se label{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 177px){
+    .logotipo h1{
+        
+        font-size: 1.1rem;
+    }
+
+    .checkboxes{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 172px){
+    form h1{
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 159px){
+    .form-bottom p{
+        font-size: 0.8rem;
+    }
+
+    .checkboxes{
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 151px){
+    .logotipo h1{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 149px){
+    .checkboxes{
+        font-size: 0.7rem;
+    }
+}
+
+@media screen and (max-width: 149px){
+    .cadastre-se label{
+        font-size: 0.5rem;
+    }
+    form h1{
+        font-size: 1rem;
+    }
+}
+
+
+@media screen and (max-width: 129px){
+    .checkboxes{
+        font-size: 0.5rem;
+    }
+
+    .form-bottom p{
+        font-size: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 116px){
+    
+    form h1{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 112px){
+    
+    .checkboxes{
+        font-size: 0.4rem;
+    }
+
+    .logotipo h1{
+        font-size: 0.5rem;
+    }
+}
+

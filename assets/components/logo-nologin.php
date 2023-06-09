@@ -1,0 +1,1 @@
+<img src="../../assets/img/feed/UserCommon-logo.svg" alt="img_authority-logo">

@@ -1,0 +1,77 @@
+.form-wrapper{
+    display: flex;
+    justify-content: center;
+    margin: 0px 250px;
+    border: 2px solid rgba(17, 17, 17, 0.158);
+}
+
+.input-row{
+    margin: 20px 0 0 0;
+}
+
+.input{
+    height: 25px;
+    padding: 0 0 0 5px;
+    margin: 0 0 0 20px;
+}
+
+label{
+    margin: 0 0 0 20px;
+    font-weight: bold;
+}
+.button-wrapper{
+    margin: 30px 0 10px 0;
+    height: 40px;
+    justify-content: space-evenly;
+}
+
+#txt-name{
+    width: 600px;
+}
+
+#txt-email{
+    width: 500px;
+}
+
+#txt-phone{
+    width: 220px;
+}
+
+#txt-cep{
+    width: 200px;
+}
+
+#txt-street{
+    width: 500px;
+}
+
+#txt-neighborhood{
+    width: 320px;
+}
+
+#txt-city{
+    width: 330px;
+}
+
+.button{
+    width: 150px;
+    font-size: 15px;
+    color: #fff;
+    border: 1px solid rgba(17, 17, 17, 0.158);
+}
+
+.reset-button{
+    background: linear-gradient(#df1b1b, #960000);
+}
+
+.reset-button:hover{
+    background: linear-gradient(#a81515, #630000);
+}
+
+.submit-button{
+    background: linear-gradient(#1bbd36, #187900);
+}
+
+.submit-button:hover{
+    background: linear-gradient(#158828, #115500);
+}

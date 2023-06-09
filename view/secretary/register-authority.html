@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secretaria Pública | Firelook </title>
+    <link rel="stylesheet" href="../../assets/css/secretary/register-authority.style.css">
+    <link rel="stylesheet" href="../../assets/css/secretary/global.style.css">
+    <link rel="shortcut icon" href="../../assets/img/secretary/logo-firelook.png" type="image/x-png">
+    <script src="https://kit.fontawesome.com/b62fa57115.js" crossorigin="anonymous" defer></script>
+    <script src="../../assets/js/secretary/register-authority.script.js" defer></script>
+    <script src="../../assets/js/secretary/global.script.js" defer></script>
+
+</head>
+<body>
+
+
+
+    <!-- Header -->
+    <header class="row">
+        <div class="logo-container">
+            <!-- Linkar ao banco a imagem da secretária e o nome -->
+            <img src="../../assets/img/secretary/logo-sspsp.png" alt="logo" class="image-logo">
+        </div>
+        <div class="title-container">
+            <h1>Secretária de Segurança Pública de São Paulo</h1>
+        </div>
+        <div class="config-container row">
+            <a href="#" class="link-icon">
+                <i class="fa-sharp fa-solid fa-message fa-xl icon-header"></i>
+            </a>
+            <a href="#" class="link-icon">
+                <i class="fa-sharp fa-solid fa-gear fa-xl icon-header"></i>
+            </a>
+        </div>
+    </header>
+
+
+
+    <!-- Side--Bar -->
+    <aside class="side-bar">
+        <nav>
+            <div class="dashboard-container">
+                <div class="dashboard-background" id="dashboard-background">
+                    <a href="#">Dashboard</a>
+                </div>
+            </div>
+
+                <ul class="option-wrapper col">
+                    <div class="option-background" id="user-background">
+                        <li class="option-container">
+                            <a href="#" class="option-links row" id="user-link">
+                                <i class="fa-solid fa-caret-up icon-arrow" id="user-iconArrow" alt="icon-arrow"></i>
+                                Usuário
+                            </a>
+                        </li>
+                    </div>
+                        <ul class="links-wrapper" id="user-option">
+                            <li class="option-list"><a href="./register-user.html">Cadastro</a></li>
+                            <li class="option-list"><a href="./listing-user.html">Listagem</a></li>
+                        </ul>
+
+                <div class="option-background" id="departament-background">
+                    <li class="option-container">
+                        <a href="#" class="option-links row" id="departament-link">
+                            <i class="fa-solid fa-caret-up icon-arrow" id="departament-iconArrow" alt="icon-arrow"></i>
+                            Departamento
+                        </a>
+                    </li>
+                </div>
+                    <ul class="links-wrapper" id="departament-option">
+                        <li class="option-list"><a href="./register-departament.html">Cadastro</a></li>
+                        <li class="option-list"><a href="./listing-departament.html">Listagem</a></li>
+                    </ul>
+
+                <div class="option-background" id="authority-background">
+                    <li class="option-container">
+                        <a href="#" class="option-links row" id="authority-link">
+                            <i class="fa-solid fa-caret-up icon-arrow" id="authority-iconArrow" alt="icon-arrow"></i>
+                            Autoridade
+                        </a>
+                    </li>
+                </div>  
+                    <ul class="links-wrapper" id="authority-option">
+                        <li class="option-list"><a href="#">Cadastro</a></li>
+                        <li class="option-list"><a href="./listing-authority.html">Listagem</a></li>
+                    </ul>
+                <div class="option-background" id="incident-background">
+                    <li class="option-container">
+                        <a href="#" class="option-links row" id="incident-link">
+                            <i class="fa-solid fa-caret-up icon-arrow" id="incident-iconArrow" alt="icon-arrow"></i>
+                            Ocorrência
+                        </a>
+                    </li>
+                </div>
+                    <ul class="links-wrapper" id="incident-option">
+                        <div class="sub-option option-background" id="family-background">
+                            <li class="option-container">
+                                <a href="#" class="option-links row" id="family-link">
+                                    <i class="fa-solid fa-caret-up icon-arrow" id="family-iconArrow" alt="icon-arrow"></i>
+                                    Familia
+                                </a>
+                            </li>
+                        </div>
+                            <ul class="links-wrapper" id="family-option">
+                                <li class="option-list"><a href="./register-family.html">Cadastro</a></li>
+                                <li class="option-list"><a href="./listing-family.html">Listagem</a></li>
+                            </ul>
+                        <div class="sub-option option-background" id="missing-background">
+                            <li class="option-container">
+                                <a href="#" class="option-links row" id="missing-link">
+                                    <i class="fa-solid fa-caret-up icon-arrow" id="missing-iconArrow" alt="icon-arrow"></i>
+                                    Desaparecido
+                                </a>
+                            </li>
+                        </div>
+                            <ul class="links-wrapper" id="missing-option">
+                                <li class="option-list"><a href="./register-missing.html">Cadastro</a></li>
+                                <li class="option-list"><a href="./listing-missing.html">Listagem</a></li>
+                            </ul>
+                    </ul>
+            </ul>
+        </nav>
+    </aside>
+
+
+
+    <main>
+        <section class="main-wrapper">
+            <article>
+                <h1 class="title-page">
+                    Cadastro Autoridade
+                </h1>
+            </article>
+            <article class="form-wrapper">
+                <form class="register" id="register-authority" action="#" method="post">
+                    <div class="input-wrapper col">
+                        <div class="photo-row row">
+                            <div class="col">
+                                <div class="image-wrapper col">
+                                    <div class="photo-preview"></div>
+                                    <input 
+                                        type="file" 
+                                        name="input-photo" 
+                                        id="input-photo"
+                                        class="photo"
+                                        title="Escolha uma Imagem"
+                                        onchange="changePhoto()"
+                                        accept="image/*"
+                                    />
+                                    <label for="input-photo" class="label-photo">Escolha uma imagem:</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-row row">
+                            <div class="col">
+                                <label for="txt-name">Nome Complemento:</label>
+                                <input 
+                                    type="text" 
+                                    name="txt-name" 
+                                    id="txt-name" 
+                                    class="input"
+                                    maxlength="100"
+                                    required
+                                />
+                            </div>
+                            <div class="col">
+                                <label for="txt-cpf">CPF:</label>
+                                <input 
+                                    type="text" 
+                                    name="txt-cpf" 
+                                    id="txt-cpf" 
+                                    class="input"
+                                    maxlength="15"
+                                    required 
+                                />
+                            </div>
+                        </div>
+                        <div class="input-row row">
+                            <div class="col">
+                                <label for="txt-dateBirth">Data de Nascimento:</label>
+                                <input 
+                                    type="date" 
+                                    name="txt-dateBirth" 
+                                    id="txt-dateBirth" 
+                                    class="input"
+                                    required
+                                />
+                            </div>
+                            <div class="col">
+                                <label for="txt-email">Email:</label>
+                                <input 
+                                    type="email" 
+                                    name="txt-email" 
+                                    id="txt-email" 
+                                    class="input"
+                                    require
+                                />
+                            </div>
+                            <div class="col">
+                                <label for="txt-phone">Telefone:</label>
+                                <input 
+                                    type="tel" 
+                                    name="txt-phone" 
+                                    id="txt-phone" 
+                                    class="input"
+                                    maxlength="19"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div class="input-row row">
+                            <div class="col">
+                                <label for="txt-cep">CEP:</label>
+                                <input 
+                                    type="text" 
+                                    name="txt-cep" 
+                                    id="txt-cep" 
+                                    class="input"
+                                    maxlength="9"
+                                    required
+                                />  
+                            </div>
+                            <div class="col">
+                                <label for="txt-street">Logradouro:</label>
+                                <input 
+                                    type="text" 
+                                    name="txt-street" 
+                                    id="txt-street" 
+                                    class="input"
+                                    maxlength="150"
+                                    required
+                                />
+                            </div>
+                            <div class="col">
+                                <label for="txt-numberSt">Nº Logradouro:</label>
+                                <input 
+                                    type="number" 
+                                    name="txt-numberSt" 
+                                    id="txt-numberSt" 
+                                    class="input"
+                                    maxlength="5"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div class="input-row row">
+                            <div class="col">
+                                <label for="txt-neighborhood">Bairro:</label>
+                                <input 
+                                    type="text" 
+                                    name="txt-neighborhood" 
+                                    id="txt-neighborhood" 
+                                    class="input"
+                                    maxlength="150"
+                                    required
+                                />
+                            </div>
+                            <div class="col">
+                                <label for="txt-city">Cidade:</label>
+                                <input 
+                                    type="text" 
+                                    name="txt-city" 
+                                    id="txt-city" 
+                                    class="input"
+                                    maxlength="80"
+                                    required
+                                />
+                            </div>
+                            <div class="col">
+                                <label for="txt-state">Estado:</label>
+                                <select
+                                    class="select"
+                                    name="txt-state"
+                                    id="txt-state" 
+                                    required
+                                >
+                                    <option selected id="uf" disabled></option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-row row">
+                            <div class="col">
+                                <label for="txt-addInfo">Complemento:</label>
+                                <input 
+                                    type="text" 
+                                    name="txt-addInfo" 
+                                    id="txt-addInfo" 
+                                    class="input"
+                                    maxlength="80"
+                                />
+                            </div>
+                            <div class="col">
+                                <label for="txt-departament">Departamento:</label>
+                                <select 
+                                    name="txt-departament" 
+                                    id="txt-departament" 
+                                    class="select"
+                                    required
+                                >
+                                    <option selected disable id="departament-option"></option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row button-wrapper">
+                        <button type="reset" class="button reset-button">Limpar</button>
+                        <button type="submit" class="button submit-button">Cadastrar</button>
+                    </div>
+                </form>
+            </article>
+        </section>
+    </main>
+
+</body>
+</html>

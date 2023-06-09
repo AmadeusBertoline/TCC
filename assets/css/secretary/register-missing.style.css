@@ -1,0 +1,186 @@
+
+.form-wrapper{
+    display: flex;
+    justify-content: center;
+    margin: 0px 200px;
+    border: 2px solid rgba(17, 17, 17, 0.158);
+}
+
+.input-row{
+    margin: 10px 0 0 0;
+}
+
+.photo-row{
+    display: flex;
+    justify-content: start;
+    padding: 0 0 0 20px;
+    margin: 0 0 20px 0;
+}
+
+.image-wrapper{
+    border: 2px solid rgba(17, 17, 17, 0.158);
+    margin: 50px 0 0 0;
+    height: 300px;
+    width: 300px;
+    justify-content: end;
+}
+
+.input{
+    height: 25px;
+    padding: 0 0 0 5px;
+    margin: 0 0 0 20px;
+}
+
+label{
+    margin: 0 0 0 20px;
+    font-weight: bold;
+}
+
+.select{
+    height: 29px;
+    margin: 0 0 0 20px;
+}
+
+#txt-name{
+    width: 600px;
+}
+
+#txt-cpf{
+    width: 300px;
+}
+
+#txt-birth{
+    width: 150px;
+}
+
+#txt-email{
+    width: 500px;
+}
+
+#txt-phone{
+    width: 220px;
+}
+
+#txt-cep{
+    width: 200px;
+}
+
+#txt-street{
+    width: 500px;
+}
+
+#txt-neighborhood{
+    width: 320px;
+}
+
+#txt-city{
+    width: 330px;
+}
+
+#txt-state{
+    width: 227px;
+}
+
+#txt-reference{
+    width: 250px;
+}
+
+#txt-family{
+    width: 300px;
+}
+
+#input-photo{
+    display: none;
+}
+
+#txt-typeFeature{
+    width: 250px;
+}
+
+#txt-typeClothe{
+    width: 250px;
+}
+
+#txt-typeReason{
+    width: 250px;
+}
+
+#txt-feature{
+    width: 250px;
+}
+
+#txt-clothe{
+    width: 250px;
+}
+
+#txt-reason{
+    width: 250px;
+}
+
+.label-photo{
+    margin: 0;
+    background-color: #dbd9d9;
+    padding: 5px 0 0 10px;
+    width: cont(100% - 10px);
+    transition: all .5s ease;
+}
+
+.label-photo:hover{
+    background-color: #c5c5c5;
+    cursor: pointer;
+}
+
+.title-row{
+    color: #272727;
+    font-size: 12px;
+    margin: 10px 0 0 20px;
+    font-weight: bold;
+}
+
+.button-wrapper{
+    margin: 30px 0 10px 0;
+    height: 40px;
+    justify-content: space-evenly;
+}
+
+.button-container{
+    margin: 10px 0 0 20px;
+    height: 30px;
+    gap: 20px;
+    justify-content: start;
+}
+
+.button{
+    width: 150px;
+    font-size: 15px;
+    color: #fff;
+    border: 1px solid rgba(17, 17, 17, 0.158);
+}
+
+.red-button{
+    background: linear-gradient(#df1b1b, #960000);
+}
+
+.red-button:hover{
+    background: linear-gradient(#a81515, #630000);
+    cursor: pointer;
+}
+
+.black-button{
+    background: linear-gradient(#727272, #020202);
+}
+
+.black-button:hover{
+    background: linear-gradient(#555555, #000000);
+    cursor: pointer;
+}
+
+
+.green-button{
+    background: linear-gradient(#1bbd36, #187900);
+}
+
+.green-button:hover{
+    background: linear-gradient(#158828, #115500);
+    cursor: pointer;
+}

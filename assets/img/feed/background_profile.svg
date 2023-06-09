@@ -1,0 +1,13 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 552 138" width="552" height="138">
+	<title>background_profile-svg</title>
+	<style>
+		.s0 { fill: none } 
+		.s1 { opacity: 0;fill: #ffffff } 
+		.s2 { opacity: .4;fill: #65aaea } 
+		.s3 { fill: #00b7ea } 
+	</style>
+	<path id="Layer" class="s0" d="m0 0h552v138h-552z"/>
+	<path id="Layer" class="s1" d="m0 0h552v138h-552z"/>
+	<path id="Layer" class="s2" d="m380 0h172v138h-172z"/>
+	<path id="Layer" class="s3" d="m333.2 0h-333.2v138h333.2c3.9-11.1 6.9-22.4 8.8-34 2-11.6 3-23.3 3-35 0-11.7-1-23.4-3-35-1.9-11.6-4.9-22.9-8.8-34z"/>
+</svg>
