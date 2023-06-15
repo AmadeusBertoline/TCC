@@ -90,6 +90,9 @@ function loadClass($nameClasse)
     if (file_exists('../model/missed/' . $nameClasse . '.php')) {
         require_once '../model/missed/' .$nameClasse . '.php';
     }
+    if(file_exists('../dao/pista/'.$nameClasse.'.php')){
+        require_once '../dao/pista/'.$nameClasse.'.php';
+    }
 
     //---------------- two back ---------------
     if (file_exists('../../dao/' . $nameClasse . '.php')) {
@@ -132,6 +135,9 @@ function loadClass($nameClasse)
     }
     if (file_exists('../../model/missed/' . $nameClasse . '.php')) {
         require_once '../../model/missed/' .$nameClasse . '.php';
+    }
+    if(file_exists('../../dao/pista/'.$nameClasse.'.php')){
+        require_once '../../dao/pista/'.$nameClasse.'.php';
     }
     
     

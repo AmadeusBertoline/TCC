@@ -451,7 +451,3 @@ button{
 .neutral-button:hover{
     background: linear-gradient(#555555, #000000);
 }
-
-.custom-file{
-    margin-top: 5%;
-}

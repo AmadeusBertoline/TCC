@@ -14,6 +14,16 @@ class Person {
     protected $state;
     protected $email;
     protected $password;
+    protected $idMissed;
+
+
+    public function setIdMissed($idMissed){
+        $this->idMissed = $idMissed;
+    }
+
+    public function getIdMissed(){
+        return $this->idMissed;
+    }
 
     // Métodos GET
     public function getId() {

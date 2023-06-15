@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07-Jun-2023 às 07:24
+-- Tempo de geração: 12-Jun-2023 às 04:47
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -137,6 +137,38 @@ INSERT INTO `tbmissed` (`idMissed`, `nameMissed`, `cpfMissed`, `phoneMissed`, `d
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `tbpista`
+--
+
+CREATE TABLE `tbpista` (
+  `idPista` int(11) NOT NULL,
+  `descricaoPista` varchar(200) NOT NULL,
+  `codUsuarioComum` int(11) NOT NULL,
+  `idMissed` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `tbpista`
+--
+
+INSERT INTO `tbpista` (`idPista`, `descricaoPista`, `codUsuarioComum`, `idMissed`) VALUES
+(2, 'teste', 1, 4),
+(3, 'teste', 1, 4),
+(4, 'teste', 1, 4),
+(5, 'teste', 1, 4),
+(6, 'teste', 1, 4),
+(7, 'teste', 1, 4),
+(8, 'teste', 1, 4),
+(9, 'teste', 1, 4),
+(10, 'Pistinha milgrau', 1, 4),
+(11, 'Essa é a nova pista', 1, 5),
+(12, 'Mais uma', 1, 5),
+(13, 'Guilherme', 1, 4),
+(14, 'Daruan', 1, 5);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `tbreason`
 --
 
@@ -215,6 +247,14 @@ ALTER TABLE `tbmissed`
   ADD PRIMARY KEY (`idMissed`);
 
 --
+-- Índices para tabela `tbpista`
+--
+ALTER TABLE `tbpista`
+  ADD PRIMARY KEY (`idPista`),
+  ADD KEY `fk_tbPista_tbMissed` (`idMissed`),
+  ADD KEY `fk_tbPista_tbUsuarioComum` (`codUsuarioComum`);
+
+--
 -- Índices para tabela `tbreason`
 --
 ALTER TABLE `tbreason`
@@ -256,6 +296,12 @@ ALTER TABLE `tbmissed`
   MODIFY `idMissed` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT de tabela `tbpista`
+--
+ALTER TABLE `tbpista`
+  MODIFY `idPista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT de tabela `tbreason`
 --
 ALTER TABLE `tbreason`
@@ -277,6 +323,13 @@ ALTER TABLE `tbusuariocomum`
 ALTER TABLE `tbfeaturemissed`
   ADD CONSTRAINT `fk_feature_featuremissed'` FOREIGN KEY (`idFeature`) REFERENCES `tbfeature` (`idFeature`),
   ADD CONSTRAINT `fk_missed_featuremissed` FOREIGN KEY (`idMissed`) REFERENCES `tbmissed` (`idMissed`);
+
+--
+-- Limitadores para a tabela `tbpista`
+--
+ALTER TABLE `tbpista`
+  ADD CONSTRAINT `fk_tbPista_tbMissed` FOREIGN KEY (`idMissed`) REFERENCES `tbmissed` (`idMissed`),
+  ADD CONSTRAINT `fk_tbPista_tbUsuarioComum` FOREIGN KEY (`codUsuarioComum`) REFERENCES `tbusuariocomum` (`codUsuarioComum`);
 
 --
 -- Limitadores para a tabela `tbreason`

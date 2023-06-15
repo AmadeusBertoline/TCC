@@ -1,58 +1,127 @@
-const statesAndCities = [{
-    AC: ['Rio Branco', 'Cruzeiro do Sul', 'Sena Madureira', 'Tarauacá', 'Feijó', 'Brasiléia', 'Plácido de Castro', 'Xapuri', 'Marechal Thaumaturgo', 'Porto Walter'],
-    AL: ['Maceió', 'Arapiraca', 'Rio Largo', 'Palmeira dos Índios', 'Marechal Deodoro', 'Santana do Ipanema', 'Coruripe', 'Penedo', 'Delmiro Gouveia', 'Campo Alegre'],
-    AP: ['Macapá', 'Santana', 'Laranjal do Jari', 'Oiapoque', 'Porto Grande', 'Mazagão', 'Tartarugalzinho', 'Pedra Branca do Amapari', 'Amapá', 'Serra do Navio'],
-    AM: ['Manaus', 'Parintins', 'Itacoatiara', 'Manacapuru', 'Coari', 'Tefé', 'Tabatinga', 'São Gabriel da Cachoeira', 'Maués', 'Humaitá'],
-    BA: ['Salvador', 'Feira de Santana', 'Vitória da Conquista', 'Camaçari', 'Juazeiro', 'Itabuna', 'Lauro de Freitas', 'Ilhéus', 'Jequié', 'Alagoinhas'],
-    CE: ['Fortaleza', 'Caucaia', 'Juazeiro do Norte', 'Maracanaú', 'Sobral', 'Crato', 'Itapipoca', 'Maranguape', 'Iguatu', 'Quixadá'],
-    DF: ['Brasília', 'Ceilândia', 'Taguatinga', 'Samambaia', 'Paranoá', 'Planaltina', 'Gama', 'Santa Maria', 'São Sebastião', 'Recanto das Emas'],
-    ES: ['Vitória', 'Serra', 'Vila Velha', 'Cariacica', 'Cachoeiro de Itapemirim', 'Linhares', 'São Mateus', 'Guarapari', 'Colatina', 'Aracruz'],
-    GO: ['Goiânia', 'Aparecida de Goiânia', 'Anápolis', 'Rio Verde', 'Águas Lindas de Goiás', 'Luziânia', 'Valparaíso de Goiás', 'Trindade', 'Formosa', 'Novo Gama'],
-    MA: ['São Luís', 'Imperatriz', 'Timon', 'Caxias', 'Codó', 'Paço do Lumiar', 'Açailândia', 'Bacabal', 'Balsas', 'Barra do Corda'],
-    MT: ['Cuiabá', 'Várzea Grande', 'Rondonópolis', 'Sinop', 'Tangará da Serra', 'Cáceres', 'Sorriso', 'Barra do Garças', 'Primavera do Leste', 'Alta Floresta'],
-    MS: ['Campo Grande', 'Dourados', 'Três Lagoas', 'Corumbá', 'Ponta Porã', 'Naviraí', 'Aquidauana', 'Nova Andradina', 'Sidrolândia', 'Paranaíba'],
-    MG: ['Belo Horizonte', 'Uberlândia', 'Contagem', 'Juiz de Fora', 'Betim', 'Montes Claros', 'Ribeirão das Neves', 'Uberaba', 'Governador Valadares', 'Ipatinga'],
-    PA: ['Belém', 'Ananindeua', 'Santarém', 'Marabá', 'Parauapebas', 'Castanhal', 'Abaiara', 'Cametá', 'Paragominas', 'Tucuruí'],
-    PB: ['João Pessoa', 'Campina Grande', 'Santa Rita', 'Patos', 'Bayeux', 'Sousa', 'Cajazeiras', 'Cabedelo', 'Guarabira', 'Mamanguape'],
-    PR: ['Curitiba', 'Londrina', 'Maringá', 'Ponta Grossa', 'Cascavel', 'São José dos Pinhais', 'Foz do Iguaçu', 'Colombo', 'Guarapuava', 'Paranaguá'],
-    PE: ['Recife', 'Jaboatão dos Guararapes', 'Olinda', 'Caruaru', 'Petrolina', 'Paulista', 'Cabo de Santo Agostinho', 'Camaragibe', 'Garanhuns', 'Vitória de Santo Antão'],
-    PI: ['Teresina', 'Parnaíba', 'Picos', 'Piripiri', 'Floriano', 'Barras', 'Campo Maior', 'José de Freitas', 'Pedro II', 'Miguel Alves'],
-    RJ: ['Rio de Janeiro', 'São Gonçalo', 'Duque de Caxias', 'Nova Iguaçu', 'Niterói', 'Belford Roxo', 'Campos dos Goytacazes', 'São João de Meriti', 'Petrópolis', 'Volta Redonda'],
-    RN: ['Natal', 'Mossoró', 'Parnamirim', 'São Gonçalo do Amarante', 'Ceará-Mirim', 'Macau', 'Caicó', 'Açu', 'Currais Novos', 'Santa Cruz'],
-    RS: ['Porto Alegre', 'Caxias do Sul', 'Canoas', 'Pelotas', 'Santa Maria', 'Gravataí', 'Viamão', 'Novo Hamburgo', 'São Leopoldo', 'Rio Grande'],
-    RO: ['Porto Velho', 'Ji-Paraná', 'Ariquemes', 'Vilhena', 'Cacoal', 'Jaru', 'Guajará-Mirim', 'Rolim de Moura', 'Pimenta Bueno', 'Ouro Preto do Oeste'],
-    RR: ['Boa Vista', 'Rorainópolis', 'Alto Alegre', 'Caracaraí', 'Mucajaí', 'São Luiz', 'Pacaraima', 'Bonfim', 'São João da Baliza', 'Iracema'],
-    SC: ['Florianópolis', 'Joinville', 'Blumenau', 'São José', 'Chapecó', 'Criciúma', 'Itajaí', 'Jaraguá do Sul', 'Palhoça', 'Lages'],
-    SE: ['Aracaju', 'Nossa Senhora do Socorro', 'Lagarto', 'Itabaiana', 'São Cristóvão', 'Estância', 'Tobias Barreto', 'Simão Dias', 'Propriá', 'Capela'],
-    SP: ['São Paulo', 'Guarulhos', 'Campinas', 'São Bernardo do Campo', 'Osasco', 'Santo André', 'São José dos Campos', 'Ribeirão Preto', 'Sorocaba', 'Santos'],
-    TO: ['Palmas', 'Araguaína', 'Gurupi', 'Porto Nacional', 'Paraíso do Tocantins', 'Guaraí', 'Colinas do Tocantins', 'Formoso do Araguaia', 'Miracema do Tocantins', 'Tocantinópolis'],
-}]
+const form = document.querySelector('.form-register');
+const cep = document.querySelector('#txtCep');
+const street = document.querySelector('#txtStreet');
+const city = document.querySelector('#txtCity');
+const neighborhood = document.querySelector('#txtNeighborhood');;
+const state = document.querySelector('#states');
+const numberStreet = document.querySelector('#txtNumberStreet');
 
-const states = document.querySelector('#states')
-const cities = document.querySelector('#cities')
-const wrapperCities = document.querySelector('#wrapper-cities')
+// const script = document.createElement('script');
+// script.src = '../formMask.js';
+// script.type = 'text/javascript';
+// document.body.appendChild(script);
 
-const removeChild = (el) => {
-	while (el.firstChild) {
-  		el.removeChild(el.firstChild);
-	}
+
+cep.addEventListener("input", (e)=> {
+  const value = e.target.value.replace(/\D/g, ""); // remove caracteres não numéricos
+  let valueFormat = "";
+
+  if (value.length > 5) {
+    valueFormat += value.substr(0, 5) + "-";
+    valueFormat += value.substr(5);
+  } else {
+    valueFormat = value;
+  }
+
+  e.target.value = valueFormat;
+});
+
+// get address
+cep.addEventListener('keyup', (e)=>{
+
+    const inputValue = e.target.value;
+
+    // verifying if we have lenght equal 8 
+    if(inputValue.length === 9){
+        getAddress(inputValue);
+    }
+});
+async function getAddress(cep){
+
+    const apiUrl = `https://viacep.com.br/ws/${cep}/json/`;
+
+    const response = await fetch(apiUrl); // getting res of api
+
+    const data = await response.json(); // converting to JSON
+
+    console.log(data);
+    // checking error from api
+    if(data.erro === true){
+
+        //cleaning form
+        formCadastrar.reset();
+
+    }
+    //adding values in our inputs
+    street.value = data.logradouro;
+    city.value = data.localidade;
+    neighborhood.value = data.bairro;
+    state.value = data.uf;
 }
 
-const hideElement = el => el.style.display = 'none'
 
-const showElement = el => el.style.display = ''
+const nameIn = document.querySelector('#txtName');
+    nameIn.addEventListener('keypress', (e) => {
+    const key = e.key;
+    const regex = /[a-zA-ZáéíóúÁÉÍÓÚâêîôÂÊÎÔãõÃÕçÇ ]/;
+    const permit = regex.test(key);
+
+    if (!permit) {
+        e.preventDefault();
+    }
+});
+
+city.addEventListener('keypress', (e) => {
+    const key = e.key;
+    const regex = /[a-zA-ZáéíóúÁÉÍÓÚâêîôÂÊÎÔãõÃÕçÇ ]/;
+    const permit = regex.test(key);
+
+    if (!permit) {
+        e.preventDefault();
+    }
+});
 
 
-states.addEventListener('change', e => {
-	removeChild(cities)
-	if(e.target.value === states.value){
-		statesAndCities.map( data => {			
-			data[e.target.value].map( city => {
-				const option = document.createElement("option")
-				const value = option.text = city;
-				cities.add(option);
-			})
-		})
-	}
-	
-})
+neighborhood.addEventListener('keypress', (e) => {
+    const key = e.key;
+    const regex = /[a-zA-ZáéíóúÁÉÍÓÚâêîôÂÊÎÔãõÃÕçÇ ]/;
+    const permit = regex.test(key);
+
+    if (!permit) {
+        e.preventDefault();
+    }
+});
+
+const complement = document.querySelector('#txtComplement')
+
+complement.addEventListener('keypress', (e) => {
+    const key = e.key;
+    const regex = /[a-zA-ZáéíóúÁÉÍÓÚâêîôÂÊÎÔãõÃÕçÇ 0-9º()-]/;
+    const permit = regex.test(key);
+
+    if (!permit) {
+        e.preventDefault();
+    }
+});
+
+const cpf = document.querySelector("#txtCpf");
+new FormMask(cpf, "   .   .   -  ", " ", [".", "-"]);
+
+const phone = document.querySelector("#txtPhone");
+new FormMask(phone, "(  )     -    ", " ", ["-", "(", ")", "+"]);
+
+
+const add = document.querySelector('#add');
+const formRegister = document.querySelector('.register-wrapper');
+const listing = document.querySelector('.listing-wrapper');
+
+// add.addEventListener('click', (e) => {
+//   formRegister.style.display = 'flex';
+//   listing.style.display = 'none';
+// });
+
+// const back = document.querySelector('#back');
+// back.addEventListener('click', (e) => {
+//   formRegister.style.display = 'none';
+//   listing.style.display = 'flex';
+// });

@@ -9,6 +9,7 @@
     <title>Autoridade | Página principal</title>
     <link rel="stylesheet" href="../../assets/css/officer/search-companion.style.css">
     <link rel="stylesheet" href="../../assets/css/officer/global-officer.style.css">
+    <script src="../../assets/js/officer/formMask.script.js" defer></script>
     <script src="../../assets/js/officer/global-officer.script.js" defer></script>
     <script src="../../assets/js/officer/search-companion.script.js" defer></script>
     <script src="https://kit.fontawesome.com/b62fa57115.js" crossorigin="anonymous" defer></script>
@@ -23,11 +24,15 @@
         </div>
         <form id="deleteForm" method="post" action="../../controller/companion/delete-companion.php">
           <input type="hidden" id="companionId" name="companionId" value="">
-          <button type="button" class="close neutral-button" onclick="closeModal()">Cancelar</button>
+          <button type="button" class="close neutral-button" onclick="closeModalDelete()">Cancelar</button>
           <button type="submit" class="red-button">Excluir</button>
         </form>
       </div>
     </div>
+
+ 
+
+
     <header class="header-officer">
         <div class="inner-header">
             <div class="department-container">
@@ -180,7 +185,7 @@
                 <?php   
                   require_once '../../Global.php';
                   try {
-                      $listCompanion = CompanionDao::list();
+                    $listCompanion = CompanionDao::list();
                   } catch(Exception $e) {
                       echo '<pre>';
                           print_r($e);
@@ -207,24 +212,162 @@
                               <td><?php echo $companion['nameCompanion']; ?></td>
                               <td><?php echo $companion['cpfCompanion']; ?></td>
                               <td><?php echo $companion['missedCount']; ?>
-                              <td><button class="orange-button">Editar</button></td>
-                              <td><button class="red-button" data-id="<?php echo $companion['idCompanion']; ?>" onclick="openModal(this)">Deletar</button></td>
+                              <td><button class="orange-button update-button-open" data-id="<?php echo $companion['idCompanion']; ?>">Editar</button></td>
+                              <td><button class="red-button" data-id="<?php echo $companion['idCompanion']; ?>" onclick="openModalDelete(this)">Deletar</button></td>
                             </tr>
+                        <!-- Modal edit -->
+                        <div  class="updateModal">
+                        <div class="updateModal-content">
+                          <fieldset class="register-content">
+                                  <legend class="register-title">Editar Acompanhante:</legend>
+                                  <div class="register">
+                                    <form class="form-update" action="../../controller/companion/update-companion.php" method="POST">
+                                      <div class="row">
+                                          <div class="col">
+                                              <div class="row">
+                                                  <span class="upper-title">Dados pessoais</span>
+                                              </div>
+                                              <div class="row name-line">
+                                                  <div class="col">
+                                                      <label>Nome Completo:</label>
+                                                      <input required type="text" id="txtName" name="txtName"  value="<?php echo( $companion['nameCompanion']);?>">
+                                                  </div>
+                                                  <div class="col">
+                                                      <label>CPF:</label>
+                                                      <input required type="text" id="txtCpf" name="txtCpf"  value="<?php echo( $companion['cpfCompanion']);?>">
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="col">
+                                              <label>Telefone:</label>
+                                              <input required type="text" id="txtPhone" name="txtPhone" value="<?php echo( $companion['phoneCompanion']);  ?>" >
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="col">
+                                              <div class="row">
+                                                  <span class="upper-title">Localização</span>
+                                              </div>
+                                              <div class="col">
+                                                  <label>CEP:</label>
+                                                  <input required maxlength="9" type="text" id="txtCep" name="txtCep" value="<?php echo( $companion['cepCompanion']); ?>" >
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="row city-line">
+                                          <div class="col">
+                                              <label>Rua:</label>
+                                              <input required type="text" id="txtStreet" name="txtStreet" value="<?php echo( $companion['streetCompanion']); ?>" >
+                                          </div>
+                                          <div class="col">
+                                              <label>Bairro:</label>
+                                              <input required type="text" id="txtNeighborhood" name="txtNeighborhood" value="<?php echo( $companion['neighborhoodCompanion']); ?>">
+                                          </div>
+                                          <div class="col">
+                                              <label>N° Rua:</label>
+                                              <input required type="number" name="txtNumberStreet" value="<?php echo( $companion['numberStreetCompanion']); ?>" >
+                                          </div>
+                                      </div>
+                                      <div class="row city-line">
+                                          <div class="col">
+                                            <label>Complemento:</label>
+                                            <input required type="text" id="txtComplement" name="txtComplement" value="<?php echo( $companion['complementCompanion']); ?>">
+                                          </div>
+                                          <div class="col">
+                                              <label>Estado:</label>
+                                              <select required name="txtState" id="states">
+                                          <option value="" selected>Escolher...</option>
+                                          <option value="AC"<?php echo ($companion['stateCompanion'] == 'AC') ? ' selected' : ''; ?>>Acre</option>
+                                          <option value="AL"<?php echo ($companion['stateCompanion'] == 'AL') ? ' selected' : ''; ?>>Alagoas</option>
+                                          <option value="AP"<?php echo ($companion['stateCompanion'] == 'AP') ? ' selected' : ''; ?>>Amapá</option>
+                                          <option value="AM"<?php echo ($companion['stateCompanion'] == 'AM') ? ' selected' : ''; ?>>Amazonas</option>
+                                          <option value="BA"<?php echo ($companion['stateCompanion'] == 'BA') ? ' selected' : ''; ?>>Bahia</option>
+                                          <option value="CE"<?php echo ($companion['stateCompanion'] == 'CE') ? ' selected' : ''; ?>>Ceará</option>
+                                          <option value="DF"<?php echo ($companion['stateCompanion'] == 'DF') ? ' selected' : ''; ?>>Distrito Federal</option>
+                                          <option value="ES"<?php echo ($companion['stateCompanion'] == 'ES') ? ' selected' : ''; ?>>Espírito Santo</option>
+                                          <option value="GO"<?php echo ($companion['stateCompanion'] == 'GO') ? ' selected' : ''; ?>>Goiás</option>
+                                          <option value="MA"<?php echo ($companion['stateCompanion'] == 'MA') ? ' selected' : ''; ?>>Maranhão</option>
+                                          <option value="MT"<?php echo ($companion['stateCompanion'] == 'MT') ? ' selected' : ''; ?>>Mato Grosso</option>
+                                          <option value="MS"<?php echo ($companion['stateCompanion'] == 'MS') ? ' selected' : ''; ?>>Mato Grosso do Sul</option>
+                                          <option value="MG"<?php echo ($companion['stateCompanion'] == 'MG') ? ' selected' : ''; ?>>Minas Gerais</option>
+                                          <option value="PA"<?php echo ($companion['stateCompanion'] == 'PA') ? ' selected' : ''; ?>>Pará</option>
+                                          <option value="PB"<?php echo ($companion['stateCompanion'] == 'PB') ? ' selected' : ''; ?>>Paraíba</option>
+                                          <option value="PR"<?php echo ($companion['stateCompanion'] == 'PR') ? ' selected' : ''; ?>>Paraná</option>
+                                          <option value="PE"<?php echo ($companion['stateCompanion'] == 'PE') ? ' selected' : ''; ?>>Pernambuco</option>
+                                          <option value="PI"<?php echo ($companion['stateCompanion'] == 'PI') ? ' selected' : ''; ?>>Piauí</option>
+                                          <option value="RJ"<?php echo ($companion['stateCompanion'] == 'RJ') ? ' selected' : ''; ?>>Rio de Janeiro</option>
+                                          <option value="RN"<?php echo ($companion['stateCompanion'] == 'RN') ? ' selected' : ''; ?>>Rio Grande do Norte</option>
+                                          <option value="RS"<?php echo ($companion['stateCompanion'] == 'RS') ? ' selected' : ''; ?>>Rio Grande do Sul</option>
+                                          <option value="RO"<?php echo ($companion['stateCompanion'] == 'RO') ? ' selected' : ''; ?>>Rondônia</option>
+                                          <option value="RR"<?php echo ($companion['stateCompanion'] == 'RR') ? ' selected' : ''; ?>>Roraima</option>
+                                          <option value="SC"<?php echo ($companion['stateCompanion'] == 'SC') ? ' selected' : ''; ?>>Santa Catarina</option>
+                                          <option value="SP"<?php echo ($companion['stateCompanion'] == 'SP') ? ' selected' : ''; ?>>São Paulo</option>
+                                          <option value="SE"<?php echo ($companion['stateCompanion'] == 'SE') ? ' selected' : ''; ?>>Sergipe</option>
+                                          <option value="TO"<?php echo ($companion['stateCompanion'] == 'TO') ? ' selected' : ''; ?>>Tocantins</option>
+                                        </select>
+
+                                          </div>
+                                          <div class="col"  id="wrapper-cities">
+                                              <label>Cidade:</label>
+                                              <input required type="text" id="txtCity" name="txtCity" value="<?php echo( $companion['cityCompanion']); ?>" maxlength="14">
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="col">
+                                              <span class="upper-title">Dados de acesso</span>
+                                              <div class="row">
+                                                  <div class="col">
+                                                      <label>Email:</label>
+                                                      <input required type="email" name="txtEmail" value="<?php echo( $companion['emailCompanion']); ?>" >
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="row pass-line">
+                                        <div class="col">
+                                          <label>Senha:</label>
+                                          <input required type="password" name="txtPassword" value="<?php echo( $companion['passwordCompanion']); ?>" >
+                                        </div>
+                                        <div class="col">
+                                          <label>Confirmar Senha</label>
+                                          <input required type="password" name="txtConfirmPassword" value="<?php echo( $companion['passwordCompanion']); ?>" >
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col">
+                                          <input type="hidden" name="idCompanion" value="<?php echo($companion['idCompanion']); ?>">
+                                        </div>
+                                      </div>
+                                      <div class="button-line">
+                                        <div class="column-button">
+                                          <button class="neutral-button button update-button-close" type="button">Fechar</button>
+                                          <button class="red-button button" type="reset">Limpar</button>
+                                          <button class="green-button button" type="submit">Editar</button>
+                                        </div>
+                                      </div>
+                                    </form>
+                                  </div>
+                              </fieldset>
+                        </div>
+                      </div>
                           <?php endforeach; ?>
                         </tbody>
                       </table>    
                       <script>
-                        function openModal(button) {
+                        function openModalDelete(button) {
                           var modal = document.getElementById("deleteModal");
                           var companionId = button.getAttribute("data-id");
                           document.getElementById("companionId").value = companionId; // Define o valor do ID do usuário no campo oculto do formulário
                           modal.style.display = "block";
                         }
 
-                        function closeModal() {
+                        function closeModalDelete() {
                           var modal = document.getElementById("deleteModal");
                           modal.style.display = "none";
                         }
+                        
 
                         function filterTable() {
                           var input = document.getElementById("query");

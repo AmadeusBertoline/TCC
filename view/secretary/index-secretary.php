@@ -1,3 +1,7 @@
+<?php 
+    include '../../controller/secretary/verify-login-secretary.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,19 +21,19 @@
 
     <!-- Header -->
     <header class="row">
-        <div class="logo-container">
-            <!-- Linkar ao banco a imagem da secretária e o nome -->
-            <img src="../../assets/img/secretary/logo-sspsp.png" alt="logo" class="image-logo">
-        </div>
         <div class="title-container">
-            <h1>Secretária de Segurança Pública de São Paulo</h1>
+            <h1>
+                <?php
+                    $name = $_SESSION['name-secretary'];
+                    if(isset($_SESSION['id-secretary'])){
+                        echo($name);
+                    }
+                ?>
+            </h1>
         </div>
         <div class="config-container row">
-            <a href="#" class="link-icon">
-                <i class="fa-sharp fa-solid fa-message fa-xl icon-header"></i>
-            </a>
-            <a href="#" class="link-icon">
-                <i class="fa-sharp fa-solid fa-gear fa-xl icon-header"></i>
+            <a href="../../controller/secretary/logout-secretary.php" class="link-icon">
+                <i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i>
             </a>
         </div>
     </header>
@@ -38,86 +42,48 @@
     <!-- Side--Bar -->
     <aside class="side-bar">
         <nav>
+            <div class="logo-container">
+                <!-- Linkar ao banco a imagem da secretária e o nome -->
+                <img src="<?php
+                    $logo = $_SESSION['logo-secretary'];
+                    if(isset($_SESSION['logo-secretary'])){
+                        echo($logo); 
+                    }
+                ?>" alt="logo" class="image-logo">
+            </div>
+            
             <div class="dashboard-container">
                 <div class="dashboard-background" id="dashboard-background">
                     <a href="#">Dashboard</a>
                 </div>
             </div>
 
-                <ul class="option-wrapper col">
-                    <div class="option-background" id="user-background">
-                        <li class="option-container">
-                            <a href="#" class="option-links row" id="user-link">
-                                <i class="fa-solid fa-caret-up icon-arrow" id="user-iconArrow" alt="icon-arrow"></i>
-                                Usuário
-                            </a>
-                        </li>
-                    </div>
-                        <ul class="links-wrapper" id="user-option">
-                            <li class="option-list"><a href="./register-user.html">Cadastro</a></li>
-                            <li class="option-list"><a href="./listing-user.html">Listagem</a></li>
-                        </ul>
-
-                <div class="option-background" id="departament-background">
+            <ul class="option-wrapper col">
+                <div class="option-background" id="user-background">
                     <li class="option-container">
-                        <a href="#" class="option-links row" id="departament-link">
-                            <i class="fa-solid fa-caret-up icon-arrow" id="departament-iconArrow" alt="icon-arrow"></i>
-                            Departamento
+                        <a href="./register-user.php" class="option-links row" id="user-link">
+                            Usuário
                         </a>
                     </li>
                 </div>
-                    <ul class="links-wrapper" id="departament-option">
-                        <li class="option-list"><a href="./register-departament.html">Cadastro</a></li>
-                        <li class="option-list"><a href="./listing-departament.html">Listagem</a></li>
-                    </ul>
 
-                <div class="option-background" id="authority-background">
+                <div class="option-background" id="officer-background">
                     <li class="option-container">
-                        <a href="#" class="option-links row" id="authority-link">
-                            <i class="fa-solid fa-caret-up icon-arrow" id="authority-iconArrow" alt="icon-arrow"></i>
+                        <a href="./register-officer.php" class="option-links row" id="officer-link">
                             Autoridade
                         </a>
                     </li>
                 </div>  
-                    <ul class="links-wrapper" id="authority-option">
-                        <li class="option-list"><a href="./register-authority.html">Cadastro</a></li>
-                        <li class="option-list"><a href="./listing-authority.html">Listagem</a></li>
-                    </ul>
-                <div class="option-background" id="incident-background">
+
+                <div class="option-background" id="missing-background">
                     <li class="option-container">
-                        <a href="#" class="option-links row" id="incident-link">
-                            <i class="fa-solid fa-caret-up icon-arrow" id="incident-iconArrow" alt="icon-arrow"></i>
-                            Ocorrência
+                        <a href="./register-missed.php" class="option-links row" id="missing-link">
+                            Desaparecido
                         </a>
                     </li>
                 </div>
-                    <ul class="links-wrapper" id="incident-option">
-                        <div class="sub-option option-background" id="family-background">
-                            <li class="option-container">
-                                <a href="#" class="option-links row" id="family-link">
-                                    <i class="fa-solid fa-caret-up icon-arrow" id="family-iconArrow" alt="icon-arrow"></i>
-                                    Familia
-                                </a>
-                            </li>
-                        </div>
-                            <ul class="links-wrapper" id="family-option">
-                                <li class="option-list"><a href="./register-family.html">Cadastro</a></li>
-                                <li class="option-list"><a href="./listing-family.html">Listagem</a></li>
-                            </ul>
-                        <div class="sub-option option-background" id="missing-background">
-                            <li class="option-container">
-                                <a href="#" class="option-links row" id="missing-link">
-                                    <i class="fa-solid fa-caret-up icon-arrow" id="missing-iconArrow" alt="icon-arrow"></i>
-                                    Desaparecido
-                                </a>
-                            </li>
-                        </div>
-                            <ul class="links-wrapper" id="missing-option">
-                                <li class="option-list"><a href="./register-missing.html">Cadastro</a></li>
-                                <li class="option-list"><a href="./listing-missing.html">Listagem</a></li>
-                            </ul>
-                    </ul>
             </ul>
+
         </nav>
     </aside>
 </body>

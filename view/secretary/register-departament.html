@@ -1,15 +1,20 @@
+<?php 
+    include '../../controller/secretary/verify-login-secretary.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secretaria Pública | Firelook </title>
-    <link rel="stylesheet" href="../../assets/css/secretary/register-departament.style.css">
+    <title>Secretaria Pública | Desaparecido </title>
+    <link rel="stylesheet" href="../../assets/css/secretary/register-missed.style.css">
     <link rel="stylesheet" href="../../assets/css/secretary/global.style.css">
     <link rel="shortcut icon" href="../../assets/img/secretary/logo-firelook.png" type="image/x-png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+    <script src="../../assets/js/secretary/formMask.script.js" defer></script>
     <script src="https://kit.fontawesome.com/b62fa57115.js" crossorigin="anonymous" defer></script>
-    <script src="../../assets/js/secretary/register-departament.script.js" defer></script>
+    <script src="../../assets/js/secretary/register-missed.script.js" defer></script>
     <script src="../../assets/js/secretary/global.script.js" defer></script>
 
 </head>
@@ -17,19 +22,19 @@
 
     <!-- Header -->
     <header class="row">
-        <div class="logo-container">
-            <!-- Linkar ao banco a imagem da secretária e o nome -->
-            <img src="../../assets/img/secretary/logo-sspsp.png" alt="logo" class="image-logo">
-        </div>
         <div class="title-container">
-            <h1>Secretária de Segurança Pública de São Paulo</h1>
+            <h1>
+                <?php
+                    $name = $_SESSION['name-secretary'];
+                    if(isset($_SESSION['id-secretary'])){
+                        echo($name);
+                    }
+                ?>
+            </h1>
         </div>
         <div class="config-container row">
-            <a href="#" class="link-icon">
-                <i class="fa-sharp fa-solid fa-message fa-xl icon-header"></i>
-            </a>
-            <a href="#" class="link-icon">
-                <i class="fa-sharp fa-solid fa-gear fa-xl icon-header"></i>
+            <a href="#" class="link-icon" id="logout">
+                <i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i>
             </a>
         </div>
     </header>
@@ -38,85 +43,46 @@
     <!-- Side--Bar -->
     <aside class="side-bar">
         <nav>
+            <div class="logo-container">
+                <!-- Linkar ao banco a imagem da secretária e o nome -->
+                <img src="<?php
+                    $logo = $_SESSION['logo-secretary'];
+                    if(isset($_SESSION['logo-secretary'])){
+                        echo($logo); 
+                    }
+                ?>" alt="logo" class="image-logo">
+            </div>
+            
             <div class="dashboard-container">
                 <div class="dashboard-background" id="dashboard-background">
-                    <a href="#">Dashboard</a>
+                    <a href="./index-secretary.php">Dashboard</a>
                 </div>
             </div>
 
-                <ul class="option-wrapper col">
-                    <div class="option-background" id="user-background">
-                        <li class="option-container">
-                            <a href="#" class="option-links row" id="user-link">
-                                <i class="fa-solid fa-caret-up icon-arrow" id="user-iconArrow" alt="icon-arrow"></i>
-                                Usuário
-                            </a>
-                        </li>
-                    </div>
-                        <ul class="links-wrapper" id="user-option">
-                            <li class="option-list"><a href="./register-user.html">Cadastro</a></li>
-                            <li class="option-list"><a href="./listing-user.html">Listagem</a></li>
-                        </ul>
-
-                <div class="option-background" id="departament-background">
+            <ul class="option-wrapper col">
+                <div class="option-background" id="user-background">
                     <li class="option-container">
-                        <a href="#" class="option-links row" id="departament-link">
-                            <i class="fa-solid fa-caret-up icon-arrow" id="departament-iconArrow" alt="icon-arrow"></i>
-                            Departamento
+                        <a href="./register-user.php" class="option-links row" id="user-link">
+                            Usuário
                         </a>
                     </li>
                 </div>
-                    <ul class="links-wrapper" id="departament-option">
-                        <li class="option-list"><a href="#">Cadastro</a></li>
-                        <li class="option-list"><a href="./listing-departament.html">Listagem</a></li>
-                    </ul>
 
                 <div class="option-background" id="authority-background">
                     <li class="option-container">
-                        <a href="#" class="option-links row" id="authority-link">
-                            <i class="fa-solid fa-caret-up icon-arrow" id="authority-iconArrow" alt="icon-arrow"></i>
+                        <a href="./register-authority.php" class="option-links row" id="authority-link">
                             Autoridade
                         </a>
                     </li>
                 </div>  
-                    <ul class="links-wrapper" id="authority-option">
-                        <li class="option-list"><a href="./register-authority.html">Cadastro</a></li>
-                        <li class="option-list"><a href="./listing-authority.html">Listagem</a></li>
-                    </ul>
-                <div class="option-background" id="incident-background">
+
+                <div class="option-background" id="missing-background">
                     <li class="option-container">
-                        <a href="#" class="option-links row" id="incident-link">
-                            <i class="fa-solid fa-caret-up icon-arrow" id="incident-iconArrow" alt="icon-arrow"></i>
-                            Ocorrência
+                        <a href="#" class="option-links row" id="missing-link">
+                            Desaparecido
                         </a>
                     </li>
                 </div>
-                    <ul class="links-wrapper" id="incident-option">
-                        <div class="sub-option option-background" id="family-background">
-                            <li class="option-container">
-                                <a href="#" class="option-links row" id="family-link">
-                                    <i class="fa-solid fa-caret-up icon-arrow" id="family-iconArrow" alt="icon-arrow"></i>
-                                    Familia
-                                </a>
-                            </li>
-                        </div>
-                            <ul class="links-wrapper" id="family-option">
-                                <li class="option-list"><a href="./register-family.html">Cadastro</a></li>
-                                <li class="option-list"><a href="./listing-family.html">Listagem</a></li>
-                            </ul>
-                        <div class="sub-option option-background" id="missing-background">
-                            <li class="option-container">
-                                <a href="#" class="option-links row" id="missing-link">
-                                    <i class="fa-solid fa-caret-up icon-arrow" id="missing-iconArrow" alt="icon-arrow"></i>
-                                    Desaparecido
-                                </a>
-                            </li>
-                        </div>
-                            <ul class="links-wrapper" id="missing-option">
-                                <li class="option-list"><a href="./register-missing.html">Cadastro</a></li>
-                                <li class="option-list"><a href="./listing-missing.html">Listagem</a></li>
-                            </ul>
-                    </ul>
             </ul>
         </nav>
     </aside>
@@ -132,8 +98,25 @@
                 </h1>
             </article>
             <article class="form-wrapper">
-                <form class="register" id="register-authority" action="#" method="post">
+                <form class="register" id="register-authority" action="../../controller/departament/register-departament.php" method="post" enctype="multipart/form-data">
                     <div class="input-wrapper col">
+                        <div class="photo-row row">
+                            <div class="col">
+                                <div class="image-wrapper col">
+                                    <div class="photo-preview"></div>
+                                    <input 
+                                        type="file" 
+                                        name="txt-PicturePath" 
+                                        id="txt-PicturePath"
+                                        class="photo"
+                                        title="Escolha uma Imagem"
+                                        onchange="changePhoto()"
+                                        accept="image/*"
+                                    />
+                                    <label for="txt-PicturePath" class="label-photo">Escolha uma imagem:</label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="input-row row">
                             <div class="col">
                                 <label for="txt-name">Nome Departamento:</label>
@@ -173,11 +156,11 @@
                     </div>
                     <div class="input-row row">
                         <div class="col">
-                            <label for="txt-phone">Cpf:</label>
+                            <label for="txt-cep">Cep:</label>
                             <input 
                                 type="text" 
-                                name="txt-phone" 
-                                id="txt-phone" 
+                                name="txt-cep" 
+                                id="txt-cep" 
                                 class="input"
                                 maxlength="100"
                                 required
@@ -200,8 +183,8 @@
                             <label for="txt-numberSt">Nº Logradouro:</label>
                             <input 
                                 type="number" 
-                                name="txt-numberSt" 
-                                id="txt-numberSt" 
+                                name="txt-numberStreet" 
+                                id="txt-numberStreet" 
                                 class="input"
                                 maxlength="5"
                                 required

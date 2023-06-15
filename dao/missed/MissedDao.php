@@ -183,11 +183,14 @@
                             tbCompanion.nameCompanion, tbCompanion.phoneCompanion, tbCompanion.emailCompanion, 
                             tbMissed.streetMissed, tbMissed.CityMissed
                             FROM tbMissed
-                            INNER JOIN tbCompanion ON tbMissed.idCompanion = tbCompanion.idCompanion";
+                            INNER JOIN tbCompanion ON tbMissed.idCompanion = tbCompanion.idCompanion
+                            ORDER BY tbMissed.idMissed DESC";
             $result = $connection->query($querySelect);
             $list = $result->fetchAll();
             return $list;   
         }
+
+        
 
         public static function listFeaturesByMissedId($missedId){
             $connection = Connection::connect();
@@ -223,21 +226,143 @@
             return 'Atualizou';
         }
 
-        
 
-    // public function calculateAge(){
-    //     $connection = Connection::connect();
+        public static function searchMissed($missed){
+            $connection = Connection::connect();
 
-    //     $querySelect = " SELECT TIMESTAMPDIFF(YEAR, tbMissed.dateBirthMissed, NOW()) AS idade
-    //                     FROM tbMissed ";
+            $querySelect = "SELECT nameMissed FROM tbMissed WHERE nameMissed 
+            LIKE '%".$missed->getName()."%'";
 
-    //     $result = $connection->query($querySelect);
+            $list = $connection->query($querySelect);
 
-    //     $age = $result->fetchAll();
+            $name = $list->fetchAll();
 
-    //     return $age;
-    // }
+            return $name;
+        }
 
 
+
+        public static function listaMenor(){
+            $connection = Connection::connect();
+
+            $querySelect = "SELECT nameMissed, picturePathMissed
+                            FROM tbMissed
+                            WHERE nameMissed LIKE 'BI%' OR nameMissed LIKE 'ARI%' OR nameMissed LIKE 'Ma%'";
+
+            $result = $connection->query($querySelect);
+
+            $list = $result->fetchAll();
+
+            return $list;
+        }
+
+        public static function listMissedSession()
+    {
+        $connection = Connection::connect();
+        $querySelect = "SELECT tbMissed.nameMissed, tbMissed.hourRegister, tbMissed.picturePathMissed, tbMissed.dateBirthMissed, tbMissed.cpfMissed, tbMissed.dateDisappearance, tbMissed.hourDisappearance , tbMissed.streetNumberMissed, tbMissed.neighborhoodMissed, tbMissed.cityMissed, tbMissed.stateMissed, tbMissed.cepMissed, tbMissed.referenceMissed,tbMissed.phoneMissed,tbMissed.idMissed,
+                            tbCompanion.idCompanion,tbCompanion.nameCompanion, tbCompanion.phoneCompanion, tbCompanion.emailCompanion, 
+                            tbMissed.streetMissed, tbMissed.CityMissed
+                            FROM tbMissed
+                            INNER JOIN tbCompanion ON tbMissed.idCompanion = tbCompanion.idCompanion
+                            WHERE cpfCompanion = '" . ($_SESSION['login-familiar']) . "'";
+        $result = $connection->query($querySelect);
+        $list = $result->fetchAll();
+        return $list;
     }
+
+
+    public static function updatePictureSession($missed)
+    {
+        $connection = Connection::connect();
+
+        $queryInsert = "UPDATE tbMissed
+                            INNER JOIN tbCompanion ON tbMissed.idCompanion = tbCompanion.idCompanion
+                            SET picturePathMissed = ?
+                            WHERE cpfCompanion = '" .($_SESSION['familiar']) . "'";
+        $prepareStatement = $connection->prepare($queryInsert);
+
+        $prepareStatement->bindValue(1, $missed->getPicturePath());
+
+        try {
+            $prepareStatement->execute();
+        
+            if ($prepareStatement->rowCount() > 0) {
+                echo '<script>
+                        alert("Foto do desaparecido atualizada!");
+                        window.location = "../../view/feed/feed-network.php";
+                    </script>';
+            } else {
+                echo '<script>
+                        alert("Não foi possível atualizar a foto!");
+                    </script>';
+            }
+        } catch (Exception $e) {
+            echo '<script>
+                    alert("Ocorreu um erro indefinido!");
+                </script>';
+        }
+        
+    }
+
+    public static function registerMissedSession($missed){
+
+        require_once '../../Global.php';
+
+        $missedId = $missed->getId();
+
+        $connection = Connection::connect();
+
+
+        try {
+        
+            // adicionar as características do desaparecimento
+            if (!empty($missed->getFeatures())) {
+                $queryInsertFeatures = "INSERT INTO tbFeatureMissed(idMissed, idFeature, descFeatureMissed) VALUES (?, ?, ?)";
+        
+                foreach ($missed->getFeatures() as $feature) {
+                    $prepareStatementFeatures = $connection->prepare($queryInsertFeatures);
+        
+                    $prepareStatementFeatures->bindValue(1, $missedId);
+                    $prepareStatementFeatures->bindValue(2, $feature['type']);
+                    $prepareStatementFeatures->bindValue(3, $feature['description']);
+        
+                    $prepareStatementFeatures->execute();
+                }
+            }
+        
+            // adicionar as razões do desaparecimento
+            if (!empty($missed->getReasons())) {
+                $queryInsertReasons = "INSERT INTO tbreason(idMissed, typeReason, descReason) VALUES (?, ?, ?)";
+        
+                foreach ($missed->getReasons() as $reason) {
+                    $prepareStatementReasons = $connection->prepare($queryInsertReasons);
+        
+                    $prepareStatementReasons->bindValue(1, $missedId);
+                    $prepareStatementReasons->bindValue(2, $reason['type']);
+                    $prepareStatementReasons->bindValue(3, $reason['description']);
+        
+                    $prepareStatementReasons->execute();
+                }
+            }
+
+            echo ('
+                    <script>
+                        alert("Dados cadastrados com sucesso!");
+                        window.location = "../../view/feed/feed-network.php";
+                    </script>
+                ');
+            return true;
+
+        } catch (Exception $e) {
+            echo ('
+                    <script>
+                        alert("Ocorreu um erro no cadastro de dados do desaparecido!");
+                    </script>
+                ');
+            echo ($e);
+        }
+    }
+      
+    
+}
 ?>

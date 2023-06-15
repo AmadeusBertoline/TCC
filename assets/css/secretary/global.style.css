@@ -29,36 +29,31 @@ a:hover{
 
 
 
-
 /* Start Header Style */
 header{
     position: fixed;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     background-color: rgb(228, 230, 231);
     color: rgb(17, 17, 17);
-    height: 100px;
+    height: 70px;
     width: 100%;
-    font-size: 16px;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 0 40px 0 25px;
 }
 
-.logo-container{
-    width: 225px;
-    display: flex;
-    justify-content:center;
-    align-items: center;
-}
 
 .title-container{
     width: 70%;
-    text-align: left;
 }
 
 .config-container{
     width: 15%;
     justify-content: right;
     align-items: center;
-    padding: 0 60px 0 0;
+    padding: 0 100px 0 0;
+    font-size: 20px;
 }
 
 .link-icon{
@@ -75,16 +70,13 @@ header{
     font-size: 30px;
 }
 
-.image-logo{
-    height: 60px;
-}
 /* End Header Style */
 
 
 
 /* Start Navbar Style */
 .side-bar{
-    margin: 100px 0 0 0;
+    margin: 70px 0 0 0;
     height: 100%;
     width: 225px;
     border-right: 2px solid rgba(17, 17, 17, 0.158);
@@ -94,12 +86,24 @@ header{
 }
 nav{
     width: 225px;
-    padding: 50px 0 0 0;
+    padding: 20px 0 0 0;
+}
+
+.logo-container{
+    width: 225px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.image-logo{
+    height: 75px;
 }
 
 .dashboard-container{
     width: 225px;
     height: 50px;
+    margin: 20px 0 0 0;
     align-items: center;
     display: flex;
     font-size: 22px;
@@ -108,6 +112,7 @@ nav{
 
 .option-wrapper{
     width: 225px;
+    margin: 10px 0 0 0;
 }
 
 .option-background , .dashboard-background{
@@ -133,22 +138,18 @@ nav{
 }
 
 .links-wrapper{
-    background-color: rgb(228, 230, 231);
-    display: block;
     font-size: 20px;
     font-weight: bold;
     width: 100%;
-    height: 0;
+    height: 120px;
     transition: 0.5s all;
 }
 
 .option-list{
-    height: 0;
+    height: 50px;
     list-style: none;
-    opacity: 0;
     padding: 10px 0 0 70px;
     transition: 0.5s all;
-    visibility: hidden;
 }
 
 .option-container{
@@ -161,61 +162,6 @@ nav{
     justify-content: center;
     align-items: center;
 }
-
-.sub-option{
-    height: 0;
-    opacity: 0;
-    align-items: center;
-    display: flex;
-    margin: 0;
-    cursor: initial;
-    visibility: hidden;
-}
-
-.sub-option:hover{
-    width: 200px;
-}
-
-.icon-arrow{
-    margin: 0 10px 0 0;
-    transition: all 0.5s;
-}
-
-#incident-option{
-    background-color: rgba(228, 230, 231, 0);
-    padding: 0;
-}
-    /* Function styles */
-    .links-wrapper.show  {
-        display: block;
-        height: 120px;
-    }
-
-    .links-wrapper.show:not(#incident-option) li{
-        height: 50px;
-        opacity: 1;
-        visibility: visible;
-    }
-
-    #incident-option.show .sub-option{
-        height: 50px;
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .option-background.paint {
-        background-color: rgb(179, 181, 182);
-        width: 200px;
-    }
-
-    .sub-option.paint {
-        background-color: rgb(190, 194, 196);
-        width: 200px;
-    }
-
-    .icon-arrow.rotate{
-        transform: rotate(90deg);
-    }
 
 
 

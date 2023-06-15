@@ -21,14 +21,33 @@ if (!isset($_SESSION)) {
 
     <title>ANJOS PERDIDOS | Feed de Divulgações</title><!-- Título-->
     <link rel="icon" href="../../assets/ico/feed/browser_logo.png"><!-- Ícone, navegador-->
+    <?php
+    
+
+    if (isset($_SESSION['login-familiar']) && isset($_SESSION['password-familiar'])) {
+        //familiar
+        echo '<link rel="stylesheet" href="../../assets/css/feed/home-family.style.css">';
+        echo '<link rel="stylesheet" href="../../assets/css/feed/home_UserCommon.css">';
+    } else if (isset($_SESSION['usuarioComum']) && isset($_SESSION['senha-usuarioComum'])) {
+        //usuário comum e guest
+        echo '<link rel="stylesheet" href="../../assets/css/feed/home-UserCommon.style.css">';
+    } else {
+        echo '<link rel="stylesheet" href="../../assets/css/feed/home-UserCommon.style.css">';
+    }
+
+    
+    
+    ?>
 </head>
 
 <!--Esse é um teste de branch-->
 
 <body>
-    
+
+
     <main>
-        <div class="flex-container_header"> <!-- 'flexbox' dentro da tag '<header>'-->
+        <header>
+            <!-- 'flexbox' dentro da tag '<header>'-->
             <a href="javascript:location.reload()" class="flexbox_brand-system"><!-- tag link, Item do 'flex-container_header' / 'flexbox' do nome e logo do sistema -->
 
                 <div class="img-logo">
@@ -49,11 +68,12 @@ if (!isset($_SESSION)) {
             </a>
 
             <div tabindex="0" class="flexbox_container-search">
-                <!-- Item do 'flex-container_header' / 'flexbox' barra de pesquisa, tabindex faz ele ser selecionável pela tecla tab. -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#9c9c9c" style="width: 35px; height: 50px;">
-                    <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
-                </svg><!-- Imagem da lupa, barra de pesquisa -->
-                <input type="search" class="inputSearchClass" id="inputSearchId" placeholder="Buscar no Anjos Perdidos..." /><!-- 'input' barra de pesquisa -->
+
+                <form class="search-form" method="post" action="../../controller/feed/search-missed.php">
+                    <button name="search" class="button-busca" type="submit"><i class="fa-solid fa-magnifying-glass-plus" style="color: #00b7ea;"></i></button>
+                    <input name="input-search" type="search" class="inputSearchClass" id="inputSearchId" placeholder="Buscar no Anjos Perdidos..." /><!-- 'input' barra de pesquisa -->
+                </form>
+
             </div>
 
 
@@ -61,12 +81,16 @@ if (!isset($_SESSION)) {
                 <ul><!-- <ul> - Lista não ordenada, lista dos itens da navbar -->
                     <?php
 
-                    if (!isset($_SESSION['login']) || !isset($_SESSION['password'])) {
+                    if (isset($_SESSION['login']) || isset($_SESSION['password'])) {
                         // Incluí componente sem a sessão
-                        include '../../assets/components/access-buttons.php';
-                    } else {
                         include '../../assets/components/navList-home.php';
+                    } else if (isset($_SESSION['login-familiar']) || isset($_SESSION['password-familiar'])) {
+                        include '../../assets/components/familiar/nav-family.php';
+                    } else {
+
+                        include '../../assets/components/access-buttons.php';
                     }
+
 
                     ?>
                 </ul>
@@ -76,7 +100,9 @@ if (!isset($_SESSION)) {
                 <span></span><!-- Linhas-->
                 <span></span><!-- Linhas-->
             </div>
-        </div>
+
+        </header>
+
         <!--início carrossel-->
 
         <div id="carousel-space">
@@ -84,60 +110,51 @@ if (!isset($_SESSION)) {
 
                 <div class="slide-container swiper"><!-- Container, 'box-shadow' carrosel -->
 
-                    <span class="location_item">Desaparecimentos próximos<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" style="width: 5px; height: 5px; cursor: pointer; <?php if (!isset($_SESSION['user']) || isset($_SESSION['user'])) {
-                                                                                                                                                                                            echo 'fill: #00B7EA;';
-                                                                                                                                                                                        } else {
-                                                                                                                                                                                            echo 'fill: #2065AA;';
-                                                                                                                                                                                        } ?> ">
+                    <span class="location_item">Crianças<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" style="width: 5px; height: 5px; cursor: pointer; <?php if (!isset($_SESSION['login']) || isset($_SESSION['password'])) {
+                                                                                                                                                                            echo 'fill: #00B7EA;';
+                                                                                                                                                                        } else {
+                                                                                                                                                                            echo 'fill: #2065AA;';
+                                                                                                                                                                        } ?> ">
                             <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"></path>
-                        </svg>Guaianases</span>
+                        </svg>Adolecentes</span>
 
                     <div class="slide-content"><!-- Container, slides visíveis-->
                         <div class="card-wrapper swiper-wrapper"><!-- Container, todos os slides -->
-                            <div class="card swiper-slide"><!-- Container, slide único-->
-                                <div class="image-content"><!-- Container, fundo azul & foto-->
-                                    <span class="overlay"></span><!-- fundo azul & foto-->
 
-                                    <div class="card-image"><!-- Container foto-->
-                                        <img src="../../assets/img/feed/user0.png" alt="" class="card-img"><!-- Foto-->
+                            <?php
+
+                            require_once '../../Global.php';
+
+                            try {
+                                $listaMenor = MissedDao::listaMenor();
+                            } catch (Exception $e) {
+                                echo '<pre>';
+                                echo $e;
+                                echo '</pre>';
+                                echo $e->getMessage();
+                            }
+
+
+
+                            ?>
+
+                            <?php foreach ($listaMenor as $menor) { ?>
+                                <div class="card swiper-slide">
+                                    <div class="image-content">
+                                        <span class="overlay"></span>
+
+                                        <div class="card-image">
+                                            <img src="<?php echo $menor['picturePathMissed'] ?>" alt="" class="card-img">
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="card-content"><!-- Container, nome & "Ver Mais"-->
-                                    <h2 class="name">Isabelly Carvalho</h2><!-- Nome -->
-                                    <button class="button"><a href="#">Ver Mais</a></button><!-- btn "Ver Mais"  -->
-                                </div>
-                            </div>
-
-                            <div class="card swiper-slide">
-                                <div class="image-content">
-                                    <span class="overlay"></span>
-
-                                    <div class="card-image">
-                                        <img src="../../assets/img/feed/user1.png" alt="" class="card-img">
+                                    <div class="card-content">
+                                        <h2 class="name"><?php echo $menor['nameMissed']  ?></h2>
+                                        <button class="button"><a href="#">Ver Mais</a></button>
                                     </div>
-                                </div>
 
-                                <div class="card-content">
-                                    <h2 class="name">Isaac Souza</h2>
-                                    <button class="button"><a href="#">Ver Mais</a></button>
                                 </div>
-                            </div>
-
-                            <div class="card swiper-slide">
-                                <div class="image-content">
-                                    <span class="overlay"></span>
-
-                                    <div class="card-image">
-                                        <img src="../../assets/img/feed/user2.png" alt="" class="card-img">
-                                    </div>
-                                </div>
-
-                                <div class="card-content">
-                                    <h2 class="name">Seann Barroso</h2>
-                                    <button class="button"><a href="#">Ver Mais</a></button>
-                                </div>
-                            </div>
+                            <?php } ?>
 
                         </div>
                     </div>
@@ -163,9 +180,9 @@ if (!isset($_SESSION)) {
 
             ?>
 
-
             <div id="post-container">
                 <?php foreach ($missedList as $missed) { ?>
+
 
                     <div class="family-post">
 
@@ -187,8 +204,8 @@ if (!isset($_SESSION)) {
                             <div class="content-post">
                                 <h1 class="name-missed"><b>Você viu</b> <?php echo $missed['nameMissed']; ?>?</h1>
 
-                                <p><b>Idade: </b><?php $date = new DateTime($missed['dateBirthMissed']);
-                                                    $interval = $date->diff(new DateTime(date('Y-m-d')));
+                                <p><b>Idade: </b><?php $dateBirth = new DateTime($missed['dateBirthMissed']);
+                                                    $interval = $dateBirth->diff(new DateTime(date('Y-m-d')));
                                                     echo $interval->format('%Y anos') ?></p>
 
                                 <p class="date-disappear"><b>Desaparecido em:</b>
@@ -211,11 +228,189 @@ if (!isset($_SESSION)) {
                         </div>
 
                         <div class="bottom-post">
-                            <button name="pista" id="open-modal-comment" class="open-modal-comment"><i class="fa-solid fa-magnifying-glass-plus" style="color: #00b7ea;"></i> Pista</button>
+                            <div class="pistas">
+                                <button name="pista" id="open-modal-comment" class="open-modal-comment"><i class="fa-solid fa-magnifying-glass-plus" style="color: #00b7ea;"></i> Pista</button>
+                                <button name="pista" id="open-modal-comment-view" class="open-modal-comment-view"> Ver pistas</button>
+                            </div>
+
                             <button id="open-modal" class="open-modal">Ver mais</button>
                         </div>
 
                     </div>
+
+
+
+                    <!--Modal de exibir minhas pistas-->
+                    <div id="fadeCommentViewEdit" class="fadeCommentViewEdit"></div>
+                    <div id="modalCommentViewEdit" class="modalCommentViewEdit">
+
+                        <div class="modal-header-comment">
+                            <div class="title-modal">
+                                <h2>Minhas pistas</h2>
+                                <img src="../../assets/ico/feed/logo.svg" alt="">
+                            </div>
+                            <div class="buttons">
+                                <button class="minhas-pistas">Todas as pistas</button>
+                                <button id="close-modal-comment-view-edit" class="close-modal-comment-view-edit">x</button>
+                            </div>
+                        </div>
+                        <?php
+                        require_once '../../Global.php';
+
+                        if (isset($_SESSION['login']) || isset($_SESSION['password'])) {
+                            if (!isset($_SESSION)) {
+                                session_start();
+                            }
+
+                            $usuario = new Person();
+
+                            $usuario->setCpf($_SESSION['login']);
+                            $usuario->setPassword($_SESSION['password']);
+                            $usuario->setIdMissed($missed['idMissed']);
+
+                            try {
+                                $listaPistaUser = PistaDao::listarPistaSession($usuario);
+                            } catch (Exception $e) {
+                                echo '<pre>';
+                                echo $e;
+                                echo '</pre>';
+                                echo $e->getMessage();
+                            }
+                        }
+
+
+                        ?>
+
+                        <div class="modal-body-comment-view">
+                            <div class="user-identify">
+                                <div class="name-comment-edit">
+                                    <?php
+                                    if (isset($_SESSION['login']) || isset($_SESSION['password'])) {
+
+
+                                        foreach ($listaPistaUser as $listaUser) { ?>
+                                            <div class="comment-content-edit">
+                                                <div class="descricao-pista">
+                                                    <p><?php echo $listaUser['descricaoPista']; ?></p>
+                                                </div>
+
+                                                <!--Modal de editar pistas-->
+                                                <div id="fadeCommentEdit" class="fadeCommentEdit"></div>
+                                                <div id="modalCommentEdit" class="modalCommentEdit">
+                                                    <div class="modal-header-comment">
+                                                        <h2>Edite a sua pista</h2>
+                                                        <button id="close-modal-comment-edit" class="close-modal-comment-edit">x</button>
+                                                    </div>
+
+                                                    <div class="modal-body-comment">
+                                                        <form required class="form-pista" method="post" action="../../controller/pista/edita-pista.php">
+
+
+                                                            <textarea maxlength="100" wrap="hard" name="comment-edit" id="comment" cols="30" rows="2" required></textarea>
+                                                            <textarea class="idMissed" name="idPistaEdit" id="idMissed" cols="30" rows="10"><?php echo $listaUser['idPista'] ?></textarea>
+
+                                                            <button id="submit-pista-edit" class="close-modal-submit-edit" type="submit" name="edit-pista" value=""><i class="fa-solid fa-magnifying-glass-plus" style="color: #38BDF8;"></i></button>
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <!--Fim do modal de editar pistas-->
+
+
+                                                <!--Modal de deletar pistas-->
+                                                <div id="fadeCommentDelete" class="fadeCommentDelete"></div>
+                                                <div id="modalCommentDelete" class="modalCommentDelete">
+                                                    <div class="modal-header-comment">
+                                                        <h2>Deseja excluir sua pista ?</h2>
+                                                        <button id="close-modal-comment-delete" class="close-modal-comment-delete">x</button>
+                                                    </div>
+
+                                                    <div class="modal-body-comment-delete">
+                                                        <p>Você apagará uma atitude nobre.</p>
+                                                        <form required class="form-pista-delete" method="post" action="../../controller/pista/deleta-pista.php">
+
+                                                            <button id="submit-pista-delete" class="close-modal-submit-delete" type="submit" name="delete-pista" value="<?php echo $listaUser['idPista'] ?>"><i class="fa-solid fa-trash" style="color: #38bdf8;"></i></button>
+                                                            <button id="close-pista-delete" class="close-pista-delete">Cancelar</button>
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="update-delete-pista">
+                                                    <button id="open-modal-comment-edit" class="open-modal-comment-edit"><i class="fa-sharp fa-solid fa-pen-to-square" style="color: #38bdf8;"></i></button>
+                                                    <button id="open-modal-comment-delete" class="open-modal-comment-delete"><i class="fa-solid fa-trash" style="color: #38bdf8;"></i></button>
+                                                </div>
+
+
+
+
+
+                                            </div>
+                                    <?php }
+                                    } ?>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Fim do modal de exibir minhas pistas-->
+
+
+
+                    <!--Modal para ver as pistas-->
+                    <div id="fadeCommentView" class="fadeCommentView"></div>
+                    <div id="modalCommentView" class="modalCommentView">
+
+                        <div class="modal-header-comment">
+                            <div class="title-modal">
+                                <h2>Pistas</h2>
+                                <img src="../../assets/ico/feed/logo.svg" alt="">
+                            </div>
+                            <div class="buttons">
+                                <button id="open-modal-comment-view-edit" class="open-modal-comment-view-edit">Minhas pistas</button>
+                                <button id="close-modal-comment-view" class="close-modal-comment-view">x</button>
+                            </div>
+                        </div>
+                        <?php
+                        try {
+
+                            require_once '../../Global.php';
+
+                            $pista = new Pista();
+
+                            $pista->setIdMissed($missed['idMissed']);
+
+                            $listaPista = PistaDao::listarPista($pista);
+                        } catch (Exception $e) {
+                            echo '<pre>';
+                            echo $e;
+                            echo '</pre>';
+                            echo $e->getMessage();
+                        }
+                        ?>
+
+                        <div class="modal-body-comment-view">
+                            <?php foreach ($listaPista as $pista) { ?>
+                                <div class="user-identify">
+
+                                    <div class="name-comment">
+                                        <div class="comment-content">
+                                            <h1><?php echo $pista['nomeUsuarioComum']; ?></h1>
+                                            <p><?php echo $pista['descricaoPista']; ?></p>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <!--Fim do modal para ver as pistas-->
 
                     <!--Modal de comentário-->
                     <div id="fadeComment" class="fadeComment"></div>
@@ -225,14 +420,11 @@ if (!isset($_SESSION)) {
                             <button id="close-modal-comment" class="close-modal-comment">x</button>
                         </div>
 
-                        <?php
-
-                        ?>
                         <div class="modal-body-comment">
-                            <form class="form-pista" method="post" action="../../controller/pista/cadastra-pista.php">
+                            <form required class="form-pista" method="post" action="../../controller/pista/cadastra-pista.php">
 
 
-                                <textarea maxlength="300" wrap="hard" name="comment" id="comment" cols="30" rows="2"></textarea>
+                                <textarea maxlength="100" wrap="hard" name="comment" id="comment" cols="30" rows="2" required></textarea>
                                 <textarea class="idMissed" name="idMissed" id="idMissed" cols="30" rows="10"><?php echo $missed['idMissed'] ?></textarea>
 
 
@@ -244,14 +436,22 @@ if (!isset($_SESSION)) {
                     <!--Fim do modal de comentário-->
 
 
-                    <!--Modal do "Ver Mais"-->
+                    <!-- Modal do "Ver Mais" -->
                     <div id="fade" class="fade"></div>
                     <div id="modal" class="modal">
                         <div class="modal-header">
                             <h2>Informações do desaparecido</h2>
                         </div>
                         <?php
-                        $listFeatures = MissedDao::listFeaturesByMissedId($missed['idMissed']);
+                        try {
+                            $listFeatures = MissedDao::listFeaturesByMissedId($missed['idMissed']);
+                        } catch (Exception $e) {
+                            echo '<pre>';
+                            echo $e;
+                            echo '</pre>';
+                            echo $e->getMessage();
+                        }
+
                         ?>
                         <div class="modal-body">
                             <?php foreach ($listFeatures as $feature) { ?>
@@ -261,6 +461,8 @@ if (!isset($_SESSION)) {
                         <button id="close-modal" class="close-modal">Voltar</button>
                     </div>
                     <!--Fim do modal do ver mais-->
+
+
 
                 <?php } ?>
 
@@ -272,7 +474,7 @@ if (!isset($_SESSION)) {
 
         </div>
     </main>
-    <script type="text/javascript" src="../../assets/js/feed/more-info-modal.js"></script>
+    <script type="text/javascript" src="../../assets/js/feed/more-info-modal.js" defer></script>
 </body>
 
 

@@ -53,6 +53,36 @@ label{
     width: 330px;
 }
 
+#txt-PicturePath{
+    display: none;
+}
+
+.label-photo{
+    margin: 0;
+    background-color: #dbd9d9;
+    padding: 5px 0 0 10px;
+    width: cont(100% - 10px);
+    transition: all .5s ease;
+}
+
+.label-photo:hover{
+    background-color: #c5c5c5;
+    cursor: pointer;
+}
+
+.photo-row{
+    display: flex;
+    justify-content: center;
+}
+
+.image-wrapper{
+    border: 2px solid rgba(17, 17, 17, 0.158);
+    margin: 10px 0 0 0;
+    height: 300px;
+    width: 300px;
+    justify-content: end;
+}
+
 .button{
     width: 150px;
     font-size: 15px;

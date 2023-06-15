@@ -124,8 +124,8 @@
         
         public static function list(){
             $connection = Connection::connect();
-            $querySelect = "SELECT c.idCompanion, c.nameCompanion, c.cpfCompanion, c.phoneCompanion,
-                            c.emailCompanion, COUNT(m.idMissed) AS missedCount
+            $querySelect = "SELECT c.idCompanion, c.nameCompanion, c.cpfCompanion, c.phoneCompanion, c.cepCompanion, c.streetCompanion,
+                                 c.neighborhoodCompanion, c.numberStreetCompanion, c.complementCompanion, c.stateCompanion, c.cityCompanion, c.emailCompanion, c.passwordCompanion, COUNT(m.idMissed) AS missedCount
                             FROM tbCompanion c
                             LEFT JOIN tbMissed m ON c.idCompanion = m.idCompanion
                             GROUP BY c.idCompanion, c.nameCompanion, c.cpfCompanion";
@@ -133,38 +133,65 @@
             $list = $result->fetchAll();
             return $list;   
         }
+
         
+        public static function update($companion){
+            $connection = Connection::connect();
 
-        public static function updatePicture($companion){
-            $connection =  Connection::connect();
+            $queryUpdate = "UPDATE tbCompanion
+            SET nameCompanion = ?, phoneCompanion = ?, cpfCompanion = ?, cepCompanion = ?, streetCompanion = ?, neighborhoodCompanion = ?, numberStreetCompanion = ?,
+               complementCompanion = ?, stateCompanion = ?, cityCompanion = ?, emailCompanion = ?, passwordCompanion = ?
+            WHERE idCompanion = ?";
 
-            $queryInsert = "UPDATE tbCompanion
-                            SET picturePath = ?
-                            WHERE idCompanion = ?";
-            
-            $prepareStatement = $connection->prepare($queryInsert);
-            
-            $prepareStatement->bindValue(1, $companion->getPicturePath());
-            $prepareStatement->bindValue(2, $companion->getId());
+            $prepareStatement = $connection->prepare($queryUpdate);
+
+            $prepareStatement->bindValue(1, $companion->getName());
+            $prepareStatement->bindValue(2, $companion->getPhone());
+            $prepareStatement->bindValue(3, $companion->getCpf());
+            $prepareStatement->bindValue(4, $companion->getCep());
+            $prepareStatement->bindValue(5, $companion->getStreet());
+            $prepareStatement->bindValue(6, $companion->getNeighborhood());
+            $prepareStatement->bindValue(7, $companion->getNumberStreet());
+            $prepareStatement->bindValue(8, $companion->getComplement());
+            $prepareStatement->bindValue(9, $companion->getState());
+            $prepareStatement->bindValue(10, $companion->getCity());
+            $prepareStatement->bindValue(11, $companion->getEmail());
+            $prepareStatement->bindValue(12, $companion->getPassword());
+            $prepareStatement->bindValue(13, $companion->getId());
+
+            try{
+                $prepareStatement->execute();
+
+                echo('
+                <script>
+                    alert("Editado com sucesso!");
+                    window.location = "../../view/officer/search-companion.php";
+                </script>
+                ');
+                
+                return 'Editou';
+            }catch(Exception $e){
+                echo $e;
+            }
+        }
+
+
+        public static function verificar($familiar){
+
+            $conexao = Connection::connect();
+
+            $querySelect = "SELECT idCompanion FROM tbCompanion
+                            WHERE cpfCompanion = '".$familiar->getCpf()."' AND passwordCompanion = '".$familiar->getPassword()."'";
+
+
+            $resultado = $conexao->query($querySelect);
+
+            $familiar = $resultado->fetchAll();
+
+            return $familiar;    
+        }
+
+
+
     }
-
-
-    public static function verificar($familiar){
-
-        //conexão ao banco
-        $conexao = Connection::connect();
-        //consultar se existe os dados no banco
-        $querySelect = "SELECT idCompanion FROM tbcompanion
-                        WHERE cpfCompanion = '".$familiar->getCpf()."' AND passwordCompanion = '".$familiar->getPassword()."' ";
-        
-        $resultado = $conexao->query($querySelect);
-
-        $familiar = $resultado->fetchAll();
-
-        return $familiar;
-
-    }
-
-
-}
-?>s
+?>

@@ -1,43 +1,35 @@
 <?php 
     require_once '../../Global.php';
 
+    if(!empty($_POST['txtCompanion'])){
+        
+        $missed = new Missed();
+        $txtName = $_POST['txtName'];
+        $txtCpf = $_POST['txtCpf'];
+        $txtPhone = $_POST['txtPhone'];
+        $txtCep = $_POST['txtCep'];
+        $txtDateBirth = $_POST['txtDateBirth'];
+        $txtStreet  = $_POST['txtStreet'];
+        $txtNeighborhood = $_POST['txtNeighborhood'];
+        $txtNumberStreet  = $_POST['txtNumberStreet'];
+        $txtReference  = $_POST['txtReference'];
+        $txtCity  = $_POST['txtCity'];
+        $txtState  = $_POST['txtState'];
+        $txtCompanion = $_POST['txtCompanion'];
+        $txtDateDisappearance = $_POST['txtDateDisappearance'];
+        $txtHourDisappearance = $_POST['txtHourDisappearance'];
+    
+        if((isset($_POST['caracteristica'])) && (isset($_POST['descricao']))){
+            $tipoCaracteristica = $_POST['caracteristica'];
+            $caracteristica = $_POST['descricao'];
+        }
 
-
-    if( (!empty($_POST['txtName'])) && (!empty($_POST['txtCpf']) ) &&
-        (!empty($_POST['txtPhone'])) && (!empty($_POST['txtCep']) ) &&
-        (!empty($_POST['txtDateBirth']) ) &&  (!empty($_POST['txtStreet']) ) && 
-        (!empty($_POST['txtNeighborhood'])) && (!empty($_POST['txtNumberStreet']) ) &&
-        (!empty($_POST['txtCity'])) && (!empty($_POST['txtState'])) && 
-        (!empty($_POST['txtCompanion'])) &&
-        (!empty($_POST['txtDateDisappearance'])) && 
-        (!empty($_POST['txtHourDisappearance']))
-      ){ 
-        if((!empty($_FILES['txtPicturePath']))){
-            $missed = new Missed();
-            $txtName = $_POST['txtName'];
-            $txtCpf = $_POST['txtCpf'];
-            $txtPhone = $_POST['txtPhone'];
-            $txtCep = $_POST['txtCep'];
-            $txtDateBirth = $_POST['txtDateBirth'];
-            $txtStreet  = $_POST['txtStreet'];
-            $txtNeighborhood = $_POST['txtNeighborhood'];
-            $txtNumberStreet  = $_POST['txtNumberStreet'];
-            $txtReference  = $_POST['txtReference'];
-            $txtCity  = $_POST['txtCity'];
-            $txtState  = $_POST['txtState'];
-            $txtCompanion = $_POST['txtCompanion'];
-            $txtDateDisappearance = $_POST['txtDateDisappearance'];
-            $txtHourDisappearance = $_POST['txtHourDisappearance'];
-            if((isset($_POST['caracteristica'])) && (isset($_POST['descricao']))){
-                $tipoCaracteristica = $_POST['caracteristica'];
-                $caracteristica = $_POST['descricao'];
-            }
-
-            if((isset($_POST['tipoMotivo']) && isset($_POST['motivo']))){
-                $tipoMotivo = $_POST['tipoMotivo'];
-                $motivo = $_POST['motivo'];
-            }
-            
+        if((isset($_POST['tipoMotivo']) && isset($_POST['motivo']))){
+            $tipoMotivo = $_POST['tipoMotivo'];
+            $motivo = $_POST['motivo'];
+        }
+        
+        if(!empty($_POST['txtCpf'])){
             $cpf = str_replace("-","",$txtCpf);
             $cpfArray= str_replace(".","",$cpf);
     
@@ -55,95 +47,87 @@
                         }
                     }
                 }
-                    
+        }
                 
-                if((isset($_POST['tipoMotivo']) && isset($_POST['motivo']))){
-                    //motivos
-                    if (!empty(array_filter($tipoMotivo))) {
-                        if (!empty(array_filter($motivo))) {
-                            foreach($_POST['tipoMotivo'] as $key => $value) {
-                                $type = $_POST['tipoMotivo'][$key];
-                                $description = $_POST['motivo'][$key];
-                                $missed->addReason($type, $description);        
-                            }
+            
+            if((isset($_POST['tipoMotivo']) && isset($_POST['motivo']))){
+                //motivos
+                if (!empty(array_filter($tipoMotivo))) {
+                    if (!empty(array_filter($motivo))) {
+                        foreach($_POST['tipoMotivo'] as $key => $value) {
+                            $type = $_POST['tipoMotivo'][$key];
+                            $description = $_POST['motivo'][$key];
+                            $missed->addReason($type, $description);
+    
                         }
                     }
                 }
-
-                
-                $missed->setName($txtName);
-                $missed->setCpf($txtCpf);
-                $missed->setPhone($txtPhone);
-                $date = $txtDateBirth;
-                $date = date("Y-m-d",strtotime(str_replace('/','-',$date)));  
-                $missed->setDateBirth($date);
-
-                $missed->setCep($txtCep);
-                $missed->setStreet($txtStreet);
-                $missed->setNeighborhood($txtNeighborhood);
-                $missed->setNumberStreet($txtNumberStreet);
-                $missed->setReference($txtReference);
-                $missed->setCity($txtCity);
-                $missed->setState($txtState);
-                $missed->setCompanion($txtCompanion);
-                $missed->setPicturePath(""); // Inicialmente definimos como vazio, pois atualizaremos o caminho da foto posteriormente
-                $missed->setDateDisappearance($txtDateDisappearance);
-                $missed->setHourDisappearance($txtHourDisappearance);
-                MissedDao::register($missed);
-
-                $missed->setId(MissedDao::getOnlyId($missed));
-
-
-                // Nome original do arquivo no computador do usuário
-                $nome = $_FILES['txtPicturePath']['name'];
-                
-                //para validações que possam ser necessárias, na nossa loja não será obrigatório
-                $tipo = $_FILES['txtPicturePath']['type']; // exemplo image/gif
-                $tamanho = $_FILES['txtPicturePath']['size']; // tamanho em bytes
-                
-                //nome temporário do arquivo como foi armazenado no servidor, é o ARQUIVO!!!
-                $arquivo = $_FILES['txtPicturePath']['tmp_name'];
-                
-                $diretorio = "../../resource/missed/img/"; // diretório raiz do projeto
-
-                $extensao = strtolower(pathinfo($nome, PATHINFO_EXTENSION)); // obtém a extensão em letras minúsculas
-                $timestamp = time(); // obtém o timestamp atual
-                $nomenovo = $missed->getId() . '_' . $timestamp . '.' . $extensao; // combina o ID do objeto Missed com o timestamp e a extensão
-                
-                $nomecompleto = $diretorio.$nomenovo;
-                
-                move_uploaded_file($arquivo, $nomecompleto);
-                
-                $missed->setPicturePath($nomecompleto);
-                
-                MissedDao::updatePicture($missed);
-                
-            }else{
-                echo('
-                <script>
-                    alert("Coloque um CPF válido!");
-                    window.location = "../../view/officer/register-missed.php";
-                </script>
-                ');
             }
+
+            
+            $missed->setName($txtName);
+            $missed->setCpf($txtCpf);
+            $missed->setPhone($txtPhone);
+            $date = $txtDateBirth;
+            $date = date("Y-m-d",strtotime(str_replace('/','-',$date)));  
+            $missed->setDateBirth($date);
+
+            $missed->setCep($txtCep);
+            $missed->setStreet($txtStreet);
+            $missed->setNeighborhood($txtNeighborhood);
+            $missed->setNumberStreet($txtNumberStreet);
+            $missed->setReference($txtReference);
+            $missed->setCity($txtCity);
+            $missed->setState($txtState);
+            $missed->setCompanion($txtCompanion);
+            $missed->setPicturePath(""); // Inicialmente definimos como vazio, pois atualizaremos o caminho da foto posteriormente
+            $missed->setDateDisappearance($txtDateDisappearance);
+            $missed->setHourDisappearance($txtHourDisappearance);
+            MissedDao::register($missed);
+
+            $missed->setId(MissedDao::getOnlyId($missed));
+
+
+            // Nome original do arquivo no computador do usuário
+            $nome = $_FILES['txtPicturePath']['name'];
+            
+            //para validações que possam ser necessárias, na nossa loja não será obrigatório
+            $tipo = $_FILES['txtPicturePath']['type']; // exemplo image/gif
+            $tamanho = $_FILES['txtPicturePath']['size']; // tamanho em bytes
+            
+            //nome temporário do arquivo como foi armazenado no servidor, é o ARQUIVO!!!
+            $arquivo = $_FILES['txtPicturePath']['tmp_name'];
+            
+            $diretorio = "../../resource/missed/img/"; // diretório raiz do projeto
+
+            $extensao = strtolower(pathinfo($nome, PATHINFO_EXTENSION)); // obtém a extensão em letras minúsculas
+            $timestamp = time(); // obtém o timestamp atual
+            $nomenovo = $missed->getId() . '_' . $timestamp . '.' . $extensao; // combina o ID do objeto Missed com o timestamp e a extensão
+            
+            $nomecompleto = $diretorio.$nomenovo;
+            
+            move_uploaded_file($arquivo, $nomecompleto);
+            
+            $missed->setPicturePath($nomecompleto);
+            
+            MissedDao::updatePicture($missed);
+            
         }else{
             echo('
             <script>
-                alert("Adicione uma foto do desaparecido!");
+                alert("Coloque um CPF válido!");
                 window.location = "../../view/officer/register-missed.php";
             </script>
             ');
         }
-
     }else{
         echo('
-            <script>
-                alert("Preencha todos os campos!");
-                window.location = "../../view/officer/register-missed.php";
-            </script>
+        <script>
+            alert("Adicione um acompanhante!");
+            window.location = "../../view/officer/register-missed.php";
+        </script>
         ');
     }
-
     function checkCpf($cpfArray){
         //        --------verificação digito 1--------
        $j = 10;

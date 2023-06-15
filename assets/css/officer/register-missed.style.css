@@ -313,6 +313,7 @@ button{
 .middle-line{
     display: flex;
     gap: 5px;
+    width: 100%;
 }
 .city-line-one{
     display: flex;
@@ -346,7 +347,16 @@ button{
 .city-line-two select{
     height: 22px;
 }
-
+.hour-line{
+    width: 100%;
+    gap: 5px;
+}
+.hour-line .col:nth-child(1){
+    width: 35%;
+}
+.hour-line .col:nth-child(2){
+    width: 30%;
+}
 .side{
     width: 50%;
 }

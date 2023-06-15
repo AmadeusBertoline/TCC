@@ -7,15 +7,7 @@
         <span class="text-page active">Início</span><!-- texto 'ínicio'-->
     </a>
 </li>
-<li class="list-log"><!-- <li> - Item da lista da navBar-->
-    <a class="pageAccess" href="#"><!--'flexbox' guia 'Minha Rede' -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="width: 100%; height: 25%;">
-            <path
-                d="M0 80C0 53.5 21.5 32 48 32h96c26.5 0 48 21.5 48 48V96H384V80c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H432c-26.5 0-48-21.5-48-48V160H192v16c0 1.7-.1 3.4-.3 5L272 288h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H272c-26.5 0-48-21.5-48-48V336c0-1.7 .1-3.4 .3-5L144 224H48c-26.5 0-48-21.5-48-48V80z" />
-        </svg><!-- ícone 'minha rede'-->
-        <span class="text-page">Histórico</span><!-- texto 'minha rede'-->
-    </a>
-</li>
+
 <li class="list-log"><!-- <li> - Item da lista da navBar-->
     <a class="pageAccess" href="#"><!--'flexbox' guia 'Configurações' -->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 100%; height: 25%;">

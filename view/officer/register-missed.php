@@ -9,13 +9,14 @@
     <title>Autoridade | Página principal</title>
     <link rel="stylesheet" href="../../assets/css/officer/register-missed.style.css">
     <link rel="stylesheet" href="../../assets/css/officer/global-officer.style.css">
+    <script src="../../assets/js/officer/formMask.script.js" defer></script>
     <script src="../../assets/js/officer/global-officer.script.js" defer></script>
     <script src="../../assets/js/officer/register-missed.script.js" defer></script>
     <script src="https://kit.fontawesome.com/b62fa57115.js" crossorigin="anonymous" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-</head>
+  </head>
 <body>
     <header class="header-officer">
         <div class="inner-header">
@@ -105,7 +106,7 @@
                           </h3>
                           <div class="accordion-content">
                             <div class="content">
-                              <a href="../officer/register-companion.php">
+                              <a href="./register-companion.php">
                                 <h4>
                                   <i class="fa-solid fa-pen icon"></i>
                                   Cadastrar
@@ -159,7 +160,7 @@
             <fieldset class="register-content">
                 <legend class="register-title">Cadastrar Desaparecido(a):</legend>
                 <div class="register">
-                    <form class="form-register" action="../../controller/missed/register-missed.php" method="POST" enctype="multipart/form-data">
+                    <form class="form-register"id="form-register" action="../../controller/missed/register-missed.php" method="POST" enctype="multipart/form-data">
                       
                       <div class="col">
                         <div class="row">
@@ -170,11 +171,11 @@
                               <div class="row">
                                   <div class="col">
                                       <label>Nome Completo:</label>
-                                      <input type="text" name="txtName">
+                                      <input type="text" id="txtName" name="txtName" required>
                                   </div>
                                   <div class="col">
                                       <label>CPF:</label>
-                                      <input type="text" name="txtCpf">
+                                      <input type="text" id="txtCpf" name="txtCpf">
                                   </div>
                               </div>
                           </div>
@@ -182,11 +183,11 @@
                       <div class="row phone-line">
                           <div class="col">
                               <label>Telefone:</label>
-                              <input type="text" name="txtPhone">
+                              <input type="text" id="txtPhone" name="txtPhone">
                           </div>
                           <div class="col">
-                              <label>Data de Nascimento:</label>
-                              <input type="date" name="txtDateBirth">
+                              <label>Nascimento (aproximado):</label>
+                              <input type="date" name="txtDateBirth" required>
                           </div>
                       </div>
                       <div class="row">
@@ -196,7 +197,7 @@
                             </div>
                             <div class="col" id="camposCaracteristica">
                                 <div class="row middle-line">
-                                    <div class="col">
+                                    <div class="col idk">
                                         <label>Característica:</label>
                                         <?php
                                         require_once '../../Global.php';
@@ -249,11 +250,11 @@
                             <div class="row middle-line">
                                 <div class="col">
                                     <label>Assunto:</label>
-                                    <input type="text" name="tipoMotivo[]">
+                                    <input type="text" name="tipoMotivo[]" style=" width: 130px; height:26px !important; border-radius: 4px; border: 1px solid rgb(150, 150, 150);">
                                 </div>
                                 <div class="col">
                                     <label>Descrição:</label>
-                                    <input type="text" name="motivo[]">
+                                    <input type="text" name="motivo[]" style=" height:26px !important; border-radius: 4px; border: 1px solid rgb(150, 150, 150);">
                                 </div>  
                             </div>
                         </div>
@@ -274,41 +275,33 @@
                       </div>
                       <div class="col">
                           <label>CEP:</label>
-                          <input type="text" name="txtCep">
+                          <input type="text" name="txtCep" id="txtCep" maxlength="9">
                       </div>
                   </div>
                 </div>
                 <div class="row city-line-one">
                     <div class="col">
                         <label>Rua:</label>
-                        <input type="text" name="txtStreet">
-                    </div>
-                    <div class="col">
-                        <label>Data de desaparecimento:</label>
-                        <input type="date" name="txtDateDisappearance">
-                    </div>
-                    <div class="col">
-                        <label>Horário:</label>
-                      <input type="time" name="txtHourDisappearance">
+                        <input type="text" name="txtStreet" id="txtStreet">
                     </div>
                     <div class="col">
                         <label>Bairro:</label>
-                        <input type="text" name="txtNeighborhood">
+                        <input type="text" name="txtNeighborhood" id="txtNeighborhood" required>
                     </div>
                     <div class="col">
                         <label>N° Rua:</label>
-                        <input type="number" name="txtNumberStreet">
+                        <input type="number" name="txtNumberStreet" id="txtNumberStreet">
                     </div>
                 </div>
                 <div class="row city-line-two">
                     <div class="col">
                       <label>Referência:</label>
-                      <input type="text" name="txtReference">
+                      <input type="text" id="txtComplement" name="txtReference">
                     </div>
                     <div class="col">
                         <label>Estado:</label>
-                        <select name="txtState" id="states">
-                              <option selected style="display:none;">Estado</option>
+                        <select name="txtState" id="states" required>
+                              <option value="" style="display:none;">Estado</option>
                               <option value="AC">Acre</option>
                               <option value="AL">Alagoas</option>
                               <option value="AP">Amapá</option>
@@ -340,10 +333,18 @@
                     </div>
                         <div class="col"  id="wrapper-cities">
                             <label>Cidade:</label>
-                            <select id="cities" name="txtCity">
-                              <option selected>Escolha um estado</option>
-                            </select>
+                            <input type="text" id="txtCity" name="txtCity" required>
                         </div>
+                    </div>
+                    <div class="row hour-line">
+                      <div class="col">
+                        <label>Data(aproximado):</label>
+                        <input type="date" name="txtDateDisappearance">
+                      </div>
+                      <div class="col">
+                        <label>Horário:</label>
+                        <input type="time" name="txtHourDisappearance">
+                      </div>
                     </div>
                 </div>
                   </div>
@@ -362,14 +363,14 @@
                                   try {
                                       $listCompanion = CompanionDao::list();
                                   } catch(Exception $e) {
-                                      // echo '<pre>';
-                                      //     print_r($e);
-                                      // echo '</pre>';
-                                      // echo $e->getMessage();
+                                      echo '<pre>';
+                                          print_r($e);
+                                      echo '</pre>';
+                                      echo $e->getMessage();
                                   }
                               ?>
-                              <select id="acompanhante" name="txtCompanion" class="form-control">
-                                            <option selected>Escolher...</option>
+                              <select id="acompanhante" name="txtCompanion" class="form-control" required>
+                                            <option value="">Escolher...</option>
                                             <?php foreach($listCompanion as $companion){ ?>
                                             <option value="<?php echo $companion['idCompanion'];?>">
                                                 <?php echo  $companion['nameCompanion'];?> |<?php echo  $companion['cpfCompanion'];?>
@@ -393,7 +394,7 @@
                               <label for="inputPic">Desaparecido: </label>
                               <div>
                                   <div class="custom-file">
-                                      <input type="file" accept="image/*" class="custom-file-input" id="picture" name="txtPicturePath" aria-describedby="inputGroupFile01" onchange="loadFile(event)">
+                                      <input type="file" accept="image/*" class="custom-file-input" id="picture" name="txtPicturePath" aria-describedby="inputGroupFile01" onchange="loadFile(event)" required>
                                   </div>
                               </div>
                               <div style="height:350px; width: 96%; border: 1px solid rgb(196, 196, 196);">

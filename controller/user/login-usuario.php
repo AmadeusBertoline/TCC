@@ -16,8 +16,8 @@ if (isset($_POST['familiar'])) {
 
         if (!empty(CompanionDao::verificar($familiar))) {
 
-            $_SESSION['login'] = $familiar->getCpf();
-            $_SESSION['password'] = $familiar->getPassword();
+            $_SESSION['login-familiar'] = $familiar->getCpf();
+            $_SESSION['password-familiar'] = $familiar->getPassword();
 
             header("Location: ../../view/feed/feed.php");
         } else {
@@ -46,6 +46,7 @@ if (isset($_POST['familiar'])) {
 
     if (!empty($_POST['cpf']) && !empty($_POST['password'])) {
 
+        
         $usuario = new Person();
 
         $usuario->setCpf($_POST['cpf']);
@@ -67,7 +68,6 @@ if (isset($_POST['familiar'])) {
         } else {
 
             echo '
-
 
     
     <head><script type="text/javascript" src="../../assets/js/user/error-login.js" defer></script>
