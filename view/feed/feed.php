@@ -11,7 +11,7 @@ if (!isset($_SESSION)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../../assets/css/feed/home_UserCommon.css"><!-- Caminho, arquivo CSS-->
+    <!-- Caminho, arquivo CSS-->
     <link rel="stylesheet" href="../../assets/css/feed/swiper-bundle.min.css"><!-- Caminho, arquivo CSS do Carrosel-->
 
     <script src="../../assets/js/feed/feed-home.script.js" defer></script><!-- Caminho, arquivo JS-->
@@ -22,21 +22,21 @@ if (!isset($_SESSION)) {
     <title>ANJOS PERDIDOS | Feed de Divulgações</title><!-- Título-->
     <link rel="icon" href="../../assets/ico/feed/browser_logo.png"><!-- Ícone, navegador-->
     <?php
-    
+
 
     if (isset($_SESSION['login-familiar']) && isset($_SESSION['password-familiar'])) {
         //familiar
         echo '<link rel="stylesheet" href="../../assets/css/feed/home-family.style.css">';
         echo '<link rel="stylesheet" href="../../assets/css/feed/home_UserCommon.css">';
-    } else if (isset($_SESSION['usuarioComum']) && isset($_SESSION['senha-usuarioComum'])) {
+    } else if (isset($_SESSION['login']) && isset($_SESSION['password'])) {
         //usuário comum e guest
-        echo '<link rel="stylesheet" href="../../assets/css/feed/home-UserCommon.style.css">';
+        echo '<link rel="stylesheet" href="../../assets/css/feed/home_UserCommon.css">';
     } else {
         echo '<link rel="stylesheet" href="../../assets/css/feed/home-UserCommon.style.css">';
     }
 
-    
-    
+
+
     ?>
 </head>
 
@@ -67,16 +67,48 @@ if (!isset($_SESSION)) {
                 </div>
             </a>
 
+            <?php
+            require_once '../../Global.php';
+            try {
+                $listMissed = MissedDao::list();
+            } catch (Exception $e) {
+                echo '<pre>';
+                print_r($e);
+                echo '</pre>';
+                echo $e->getMessage();
+            }
+            ?>
             <div tabindex="0" class="flexbox_container-search">
 
-                <form class="search-form" method="post" action="../../controller/feed/search-missed.php">
+                <form class="search-form" method="post" >
                     <button name="search" class="button-busca" type="submit"><i class="fa-solid fa-magnifying-glass-plus" style="color: #00b7ea;"></i></button>
                     <input name="input-search" type="search" class="inputSearchClass" id="inputSearchId" placeholder="Buscar no Anjos Perdidos..." /><!-- 'input' barra de pesquisa -->
                 </form>
 
             </div>
+            <script>
+                function filterTable() {
+                    var input = document.getElementById("search");
+                    var filter = input.value.toUpperCase();
+                    var posts = document.getElementsByClassName("family-post");
+
+                    // Percorre todos os posts e mostra apenas aqueles que correspondem à pesquisa
+                    for (var i = 0; i < posts.length; i++) {
+                        var post = posts[i];
+                        var nome = post.getAttribute("data-nome");
+                        var display = false;
+
+                        if (nome.toUpperCase().indexOf(filter) > -1) {
+                            display = true;
+                        }
+
+                        post.style.display = display ? "block" : "none";
+                    }
+                }
+            </script>
 
 
+           
             <nav class="nav"><!--Item do 'flex-container_header' / tag semântica '<nav>' -->
                 <ul><!-- <ul> - Lista não ordenada, lista dos itens da navbar -->
                     <?php
@@ -134,8 +166,6 @@ if (!isset($_SESSION)) {
                                 echo $e->getMessage();
                             }
 
-
-
                             ?>
 
                             <?php foreach ($listaMenor as $menor) { ?>
@@ -184,7 +214,7 @@ if (!isset($_SESSION)) {
                 <?php foreach ($missedList as $missed) { ?>
 
 
-                    <div class="family-post">
+                    <div class="family-post" data-nome="<?php echo $missed['nameMissed'] ?>">
 
                         <div class="family">
                             <div class="img-nome">
