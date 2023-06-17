@@ -29,7 +29,7 @@ if (!isset($_SESSION)) {
 
     ?>
 
-   
+
     <script src="https://kit.fontawesome.com/98872a96e6.js" crossorigin="anonymous"></script>
     <title>ANJOS PERDIDOS | Feed de Divulgações</title><!-- Título-->
     <link rel="icon" href="../../assets/ico/feed/browser_logo.png"><!-- Ícone, navegador-->
@@ -112,7 +112,7 @@ if (!isset($_SESSION)) {
     <main class="main-missed">
         <?php foreach ($missedList as $missed) { ?>
 
-            
+
 
             <section class="container-missed">
                 <article class="left-side-missed">
@@ -121,33 +121,43 @@ if (!isset($_SESSION)) {
                             <b class="description-name-missed">
                                 <?php echo $missed['nameMissed']; ?>
                             </b>
-                            <span class="description-name-family"> 
-                                Acompanhate<b>:</b><?php echo $missed['nameCompanion'] ?>
+                            <span class="description-name-family">
+                                <b>Acompanhate:</b>
+                                <?php
+                                $limitedName = substr($missed['nameCompanion'], 0, 20);
+                                echo $limitedName;
+                                ?>...
                             </span>
                         </label>
                         <div class="pm-box-img">
                             <img src="<?php echo $missed['picturePathMissed']; ?>" alt="">
                         </div>
                         <div class="pm-buttons">
-                            <button class="button update-img" id="btn-update-img">Trocar foto</button>
+                            <button class="button update-img" id="btn-update-img">Trocar foto <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM323.8 202.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4 3.9-19.8 10.5l-87 127.6L170.7 297c-4.6-5.7-11.5-9-18.7-9s-14.2 3.3-18.7 9l-64 80c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6h96 32H424c8.9 0 17.1-4.9 21.2-12.8s3.6-17.4-1.4-24.7l-120-176zM112 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg></button>
                             <div class="fade-modal" id="modal-update-img">
                                 <div class="modal update-img">
                                     <div class="content update-img">
                                         <button type="button" class="x-btn" id="cancel-btn-update-img">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512">
-                                                <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                                                <path
+                                                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
                                             </svg>
                                         </button>
                                         <div class="content-head">
                                             <b class="modal-title">Editar Foto</b>
                                             <p class="subtitle-modal">Insira uma foto abaixo.</p>
                                         </div>
-                                        <form class="form update-img" action="../../controller/missed/updatePictureMissed.php" method="POST" enctype="multipart/form-data">
+                                        <form class="form update-img"
+                                            action="../../controller/missed/updatePictureMissed.php" method="POST"
+                                            enctype="multipart/form-data">
                                             <div class="form box-img">
-                                                <img id="pictureMissed" src="<?php echo $missed['picturePathMissed']; ?>" alt="">
+                                                <img id="pictureMissed" src="<?php echo $missed['picturePathMissed']; ?>"
+                                                    alt="">
                                             </div>
                                             <div class="update-img-btns">
-                                                <input type="file" accept="image/*" class="button file-input" id="picture" name="txtPicturePath" aria-describedby="inputGroupFile01" onchange="loadFile(event)">
+                                                <input type="file" accept="image/*" class="button file-input" id="picture"
+                                                    name="txtPicturePath" aria-describedby="inputGroupFile01"
+                                                    onchange="loadFile(event)">
                                                 <input type="submit" value="Salvar" class="button submit-input">
                                             </div>
                                         </form>
@@ -155,148 +165,166 @@ if (!isset($_SESSION)) {
                                 </div>
                             </div>
                             <div class="pm-buttons-edit">
-                                <button class="button edit-missed" id="btn-edit-missed">incluir informações</button>
+                                <button class="button edit-missed" id="btn-edit-missed">Incluir informações</button>
                                 <button class="button edit-missed" id="btn-edit-missed">Editar informações</button>
                             </div>
+
                             <div class="fade-modal" id="modal-edit-missed">
                                 <div class="modal edit-missed">
                                     <div class="content edit-missed">
                                         <button type="button" class="x-btn" id="cancel-btn-edit-missed">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512">
-                                                <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                                                <path
+                                                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
                                             </svg>
                                         </button>
                                         <div class="content-head">
                                             <b class="modal-title">Incluir informações</b>
                                             <p class="modal-subtitle">Adicione informações aos campos vazios.</p>
                                         </div>
-                                        <form class="form edit-missed" action="../../controller/missed/insertCompanionMissed.php" method="POST">
+                                        <form class="form edit-missed"
+                                            action="../../controller/missed/insertCompanionMissed.php" method="POST">
                                             <fieldset class="fieldset-add-features">
                                                 <legend><b>Caracaterísticas adicionais - desaparecido (a)</b></legend>
 
                                                 <div class="list-features">
-                                                <?php
-                                                require_once '../../Global.php';
+                                                    <?php
+                                                    require_once '../../Global.php';
 
-                                                try {
-                                                    $list = FeatureDao::listFeatureSession();
-                                                } catch (Exception $e) {
-                                                    echo '<pre>';
-                                                    print_r($e);
-                                                    echo '</pre>';
-                                                    echo $e->getMessage();
-                                                }
-                                        
-                                                $features = array();
-                                        
-                                                foreach ($list as $keylist) {
-                                                    $typeFeature = $keylist['typeFeature'];
-                                                    $descFeatureMissed = $keylist['descFeatureMissed'];
-                                        
-                                                    if (!isset($features[$typeFeature])) {
-                                                        $features[$typeFeature] = array();
+                                                    try {
+                                                        $list = FeatureDao::listFeatureSession();
+                                                    } catch (Exception $e) {
+                                                        echo '<pre>';
+                                                        print_r($e);
+                                                        echo '</pre>';
+                                                        echo $e->getMessage();
                                                     }
-                                        
-                                                    $features[$typeFeature][] = $descFeatureMissed;
-                                                }
-                                        
-                                                foreach ($features as $typeFeature => $descFeatureMissedList) {
-                                                    echo ('<div class="item-feature"> <b>'.$typeFeature . ':</b> ' . implode(', ', $descFeatureMissedList) . '.<br></div>');
-                                                }?>
+
+                                                    $features = array();
+
+                                                    foreach ($list as $keylist) {
+                                                        $typeFeature = $keylist['typeFeature'];
+                                                        $descFeatureMissed = $keylist['descFeatureMissed'];
+
+                                                        if (!isset($features[$typeFeature])) {
+                                                            $features[$typeFeature] = array();
+                                                        }
+
+                                                        $features[$typeFeature][] = $descFeatureMissed;
+                                                    }
+
+                                                    foreach ($features as $typeFeature => $descFeatureMissedList) {
+                                                        echo ('<div class="item-feature"> <b>' . $typeFeature . ':</b> ' . implode(', ', $descFeatureMissedList) . '.<br></div>');
+                                                    } ?>
                                                 </div>
-                                                
+
                                                 <div class="col">
                                                     <div class="row">
-                                                        <span class="upper-title"> <b> Adicionar Características adicionais: </b></span>
+                                                        <span class="upper-title"> <b> Adicionar Características adicionais:
+                                                            </b></span>
                                                     </div>
                                                     <div class="col" id="camposCaracteristica">
                                                         <div class="row middle-line">
                                                             <div class="col">
                                                                 <?php
                                                                 require_once '../../Global.php';
-                                                                
+
                                                                 try {
                                                                     $listFeature = FeatureDao::list();
-                                                                } catch(Exception $e) {
+                                                                } catch (Exception $e) {
                                                                     echo '<pre>';
-                                                                        print_r($e);
+                                                                    print_r($e);
                                                                     echo '</pre>';
                                                                     echo $e->getMessage();
                                                                 }
-                                                            ?>
-                                                            <select id="caracteristica" name="caracteristica[]" class="form-control" style="width:130px; height:30px !important; border: 1px solid #12122038; border-radius: 5px;">
-                                                                        <option selected>Caracaterísticas...</option>
-                                                                        <?php foreach($listFeature as $feature){ ?>
-                                                                        <option value="<?php echo $feature['idFeature'];?>">
-                                                                            <?php echo  $feature['typeFeature'];?>
+                                                                ?>
+                                                                <select id="caracteristica" name="caracteristica[]"
+                                                                    class="form-control"
+                                                                    style="width:130px; height:30px !important; border: 1px solid #12122038; border-radius: 5px;">
+                                                                    <option selected>Caracaterísticas...</option>
+                                                                    <?php foreach ($listFeature as $feature) { ?>
+                                                                        <option value="<?php echo $feature['idFeature']; ?>">
+                                                                            <?php echo $feature['typeFeature']; ?>
                                                                         </option>
-                                                                        <?php } ?>
-                                                                    </select>
-                                                            <script>
-                                                                $(document).ready(function() {
-                                                                    $('#caracteristica').select2();
-                                                                });
-                                                            </script>
+                                                                    <?php } ?>
+                                                                </select>
+                                                                <script>
+                                                                    $(document).ready(function () {
+                                                                        $('#caracteristica').select2();
+                                                                    });
+                                                                </script>
                                                             </div>
                                                             <div class="col">
-                                                                <input type="text" name="descricao[]" placeholder="Descrição" style=" height:30px !important; border-radius: 4px; border: 1px solid #12122038;">
-                                                            </div>  
+                                                                <input type="text" name="descricao[]"
+                                                                    placeholder="Descrição"
+                                                                    style=" height:30px !important; border-radius: 4px; border: 1px solid #12122038;">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="row button-container">
-                                                    <div class="col">
-                                                        <div class="row button-content">
-                                                        <button id="btnAddCaracteristica" class="button submit-attributes" type="button">Adicionar</button>
-                                                        <button id="btnRemoverCaracteristica" class="button reset-attributes" type="button">Remover</button>
+                                                        <div class="col">
+                                                            <div class="row button-content">
+                                                                <button id="btnAddCaracteristica"
+                                                                    class="button submit-attributes"
+                                                                    type="button">Adicionar</button>
+                                                                <button id="btnRemoverCaracteristica"
+                                                                    class="button reset-attributes"
+                                                                    type="button">Remover</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             </fieldset>
                                             <fieldset class="fieldset-add-reasons">
                                                 <legend><b>Possíveis motivos do desaparecimento</b></legend>
                                                 <div class="list-reason">
-                                                <?php
-                                                require_once '../../Global.php';
+                                                    <?php
+                                                    require_once '../../Global.php';
 
-                                                try {
-                                                    $list = ReasonDao::listReasonSession();
-                                                } catch (Exception $e) {
-                                                    echo '<pre>';
-                                                    print_r($e);
-                                                    echo '</pre>';
-                                                    echo $e->getMessage();
-                                                }
-                                        
-                                        
-                                                foreach ($list as $keylist) {
+                                                    try {
+                                                        $list = ReasonDao::listReasonSession();
+                                                    } catch (Exception $e) {
+                                                        echo '<pre>';
+                                                        print_r($e);
+                                                        echo '</pre>';
+                                                        echo $e->getMessage();
+                                                    }
 
-                                                    echo ('<div class="item-reason"><b>'.$keylist['typeReason'].': </b>'. $keylist['descReason'] .'.</div>');
-                                                    
-                                                }?>
+
+                                                    foreach ($list as $keylist) {
+
+                                                        echo ('<div class="item-reason"><b>' . $keylist['typeReason'] . ': </b>' . $keylist['descReason'] . '.</div>');
+
+                                                    } ?>
                                                 </div>
                                                 <div class="col">
                                                     <div class="row">
-                                                        <span class="upper-title"><b>Adicionar motivos do desaparecimento:</b> </span>
+                                                        <span class="upper-title"><b>Adicionar motivos do
+                                                                desaparecimento:</b> </span>
                                                     </div>
                                                     <div class="col" id="camposMotivo">
                                                         <div class="row middle-line">
                                                             <div class="col">
-                                                                <input type="text" name="tipoMotivo[]" placeholder="Assunto" style="height:30px !important; border-radius: 5px; border: 1px solid #12122038;">
+                                                                <input type="text" name="tipoMotivo[]" placeholder="Assunto"
+                                                                    style="height:30px !important; border-radius: 5px; border: 1px solid #12122038;">
                                                             </div>
-                                                            <div class="col">   
-                                                                <input type="text" name="motivo[]" placeholder="Descrição" style="height:30px !important; border-radius: 5px; border: 1px solid #12122038;">
-                                                            </div>  
+                                                            <div class="col">
+                                                                <input type="text" name="motivo[]" placeholder="Descrição"
+                                                                    style="height:30px !important; border-radius: 5px; border: 1px solid #12122038;">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="row button-container">
-                                                    <div class="col">
-                                                        <div class="row button-content">
-                                                            <button id="btnAddMotivo" class="button submit-attributes" type="button">Adicionar</button>
-                                                            <button id="btnRemoverMotivo" class="button reset-attributes" type="button">Remover</button>
+                                                        <div class="col">
+                                                            <div class="row button-content">
+                                                                <button id="btnAddMotivo" class="button submit-attributes"
+                                                                    type="button">Adicionar</button>
+                                                                <button id="btnRemoverMotivo"
+                                                                    class="button reset-attributes"
+                                                                    type="button">Remover</button>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
                                                 </div>
                                             </fieldset>
                                             <div class="buttons-add-attributes">
@@ -304,7 +332,7 @@ if (!isset($_SESSION)) {
                                                 <input type="reset" value="Limpar" class="button reset-attributes">
                                             </div>
 
-                                            
+
                                         </form>
                                     </div>
                                 </div>
@@ -314,18 +342,20 @@ if (!isset($_SESSION)) {
                         <div class="non-editableData">
                             <label>Desaparecido (a) em:
                                 <br>
-                                <span> 
+                                <span>
                                     <?php
-                                        $date = new DateTime($missed['dateDisappearance']);
-                                        echo $date->format('d/m/Y')
-                                    ?>.
+                                    $date = new DateTime($missed['dateDisappearance']);
+                                    echo $date->format('d/m/Y')
+                                        ?>.
                                 </span>
                             </label>
                             <br>
                             <label>Visto (a) por último em:
                                 <br>
                                 <span>
-                                    <?php echo ($missed['neighborhoodMissed'].", "); ?><?php echo ($missed['cityMissed']); ?> - <?php echo ($missed['stateMissed']);?>.
+                                    <?php echo ($missed['neighborhoodMissed'] . ", "); ?>
+                                    <?php echo ($missed['cityMissed']); ?> -
+                                    <?php echo ($missed['stateMissed']); ?>.
                                 </span>
                             </label>
                             <br>
@@ -336,24 +366,24 @@ if (!isset($_SESSION)) {
                                 </span>
                             </label>
                             <br>
-                            <label>Por volta das: 
+                            <label>Por volta das:
                                 <br>
                                 <span>
                                     <?php
-                                      $data = new DateTime($missed['hourDisappearance']);
-                                      echo $data->format('h:i');
+                                    $data = new DateTime($missed['hourDisappearance']);
+                                    echo $data->format('h:i');
                                     ?>h
                                 </span>
                             </label>
-                            <br> 
-                            <a class="see-more" id="see-more">Ver mais...</a> 
+                            <br>
+                            <a class="see-more" id="see-more">Ver mais...</a>
                         </div>
-                        
+
                     </div>
                 </article>
                 <article class="center-side-missed">
                     <div class="pistas">
-                        
+
                     </div>
                 </article>
             </section>
@@ -361,18 +391,18 @@ if (!isset($_SESSION)) {
 
         <script>
             <?php
-                require_once '../../Global.php';
+            require_once '../../Global.php';
 
-                try {
+            try {
                 $listFeature = FeatureDao::list();
-                } catch(Exception $e) {
+            } catch (Exception $e) {
                 echo 'console.error("' . addslashes($e->getMessage()) . '");';
-                }
+            }
             ?>
-            
+
             var listFeature = <?php echo json_encode($listFeature); ?>;
         </script>
-       
+
 
 
 

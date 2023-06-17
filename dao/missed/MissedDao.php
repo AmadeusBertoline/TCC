@@ -1,5 +1,8 @@
 <?php
 
+if (!isset($_SESSION)) {
+    session_start();
+}
     class MissedDao{
         public static function register($missed){
             require_once '../../Global.php';
@@ -278,7 +281,7 @@
         $queryInsert = "UPDATE tbMissed
                             INNER JOIN tbCompanion ON tbMissed.idCompanion = tbCompanion.idCompanion
                             SET picturePathMissed = ?
-                            WHERE cpfCompanion = '" .($_SESSION['familiar']) . "'";
+                            WHERE cpfCompanion = '" .($_SESSION['login-familiar']) . "'";
         $prepareStatement = $connection->prepare($queryInsert);
 
         $prepareStatement->bindValue(1, $missed->getPicturePath());

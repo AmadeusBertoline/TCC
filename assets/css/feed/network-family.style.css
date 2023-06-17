@@ -224,9 +224,8 @@
     }
 
     .description-name-family{
-        display: flex;
-        align-items: center;
-        column-gap: 8.5px;
+        font-size: 1rem;
+        text-align: center;
         color: #2065AA;
     }
     .pm-box-img {
@@ -493,9 +492,7 @@
         flex-wrap: wrap;
       }
       
-      .item-feature{
-
-      }
+     
       .row.middle-line{
         margin-top: 10px;
         display: flex;
