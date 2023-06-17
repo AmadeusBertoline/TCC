@@ -17,7 +17,6 @@ if (!isset($_SESSION)) {
     <script src="../../assets/js/feed/feed-home.script.js" defer></script><!-- Caminho, arquivo JS-->
     <script src="../../assets/js/feed/swiper.script.js" defer></script><!-- Caminho, arquivo JS do Carrosel-->
     <script src="../../assets/js/feed/swiper-bundle.min.js" defer></script><!-- Caminho, arquivo JS do Carrosel-->
-    <script src="https://kit.fontawesome.com/98872a96e6.js" crossorigin="anonymous"></script>
 
     <title>ANJOS PERDIDOS | Feed de Divulgações</title><!-- Título-->
     <link rel="icon" href="../../assets/ico/feed/browser_logo.png"><!-- Ícone, navegador-->

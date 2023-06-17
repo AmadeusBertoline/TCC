@@ -1,60 +1,74 @@
 <?php
 
-    require_once '../../Global.php';
+require_once '../../Global.php';
 
-    class UsuarioDao{
+class UsuarioDao
+{
 
-        public static function cadastrar($usuario){
+    public static function cadastrar($usuario)
+    {
 
-            $conexao = Connection::connect();
+        $conexao = Connection::connect();
 
-            $queryInsert = "INSERT INTO tbusuariocomum (nomeUsuarioComum, dataNascimentoUsuarioComum, emailUsuarioComum, cepUsuarioComum,
+        $queryInsert = "INSERT INTO tbusuariocomum (nomeUsuarioComum, dataNascimentoUsuarioComum, emailUsuarioComum, cepUsuarioComum,
                             estadoUsuarioComum, cidadeUsuarioComum, bairroUsuarioComum, numeroLogUsuarioComum, logradouroUsuarioComum,
                             complementoUsuarioComum, cpfUsuarioComum, senhaUsuarioComum)
                             VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
-            
-            $stmt = $conexao->prepare($queryInsert);
 
-            $stmt->bindValue(1, $usuario->getName());
-            $stmt->bindValue(2, $usuario->getDateBirth());
-            $stmt->bindValue(3,$usuario->getEmail());
-            $stmt->bindValue(4,$usuario->getCep());
-            $stmt->bindValue(5,$usuario->getState());
-            $stmt->bindValue(6,$usuario->getCity());
-            $stmt->bindValue(7,$usuario->getNeighborhood());
-            $stmt->bindValue(8,$usuario->getNumberStreet());
-            $stmt->bindValue(9,$usuario->getStreet());
-            $stmt->bindValue(10,$usuario->getComplement());
-            $stmt->bindValue(11,$usuario->getCpf());
-            $stmt->bindValue(12,$usuario->getPassword());
+        $stmt = $conexao->prepare($queryInsert);
+
+        $stmt->bindValue(1, $usuario->getName());
+        $stmt->bindValue(2, $usuario->getDateBirth());
+        $stmt->bindValue(3, $usuario->getEmail());
+        $stmt->bindValue(4, $usuario->getCep());
+        $stmt->bindValue(5, $usuario->getState());
+        $stmt->bindValue(6, $usuario->getCity());
+        $stmt->bindValue(7, $usuario->getNeighborhood());
+        $stmt->bindValue(8, $usuario->getNumberStreet());
+        $stmt->bindValue(9, $usuario->getStreet());
+        $stmt->bindValue(10, $usuario->getComplement());
+        $stmt->bindValue(11, $usuario->getCpf());
+        $stmt->bindValue(12, $usuario->getPassword());
 
 
-            try{
-                $stmt->execute();
+        try {
+            $stmt->execute();
+        } catch (Exception $e) {
 
-            }catch(Exception $e){
-
-                echo 'Erro no DAO '.$e;
-            }
-
+            echo 'Erro no DAO ' . $e;
         }
-        
-
-        public static function verificar($usuario){
-
-            $conexao = Connection::connect();
-
-            $querySelect = "SELECT codusuariocomum FROM tbusuariocomum
-                            WHERE cpfUsuarioComum = '".$usuario->getCpf()."' AND senhaUsuarioComum = '".$usuario->getPassword()."'";
-
-
-            $resultado = $conexao->query($querySelect);
-
-            $usuario = $resultado->fetchAll();
-
-            return $usuario;    
-        }
-
-
-        
     }
+
+
+    public static function verificar($usuario)
+    {
+
+        $conexao = Connection::connect();
+
+        $querySelect = "SELECT codusuariocomum FROM tbusuariocomum
+                            WHERE cpfUsuarioComum = '" . $usuario->getCpf() . "' AND senhaUsuarioComum = '" . $usuario->getPassword() . "'";
+
+
+        $resultado = $conexao->query($querySelect);
+
+        $usuario = $resultado->fetchAll();
+
+        return $usuario;
+    }
+
+    public static function listUpdate()
+    {
+        $conexao = Connection::connect();
+
+        $querySelect = "SELECT nomeUsuarioComum, emailUsuarioComum, senhaUsuarioComum
+                        FROM tbUsuarioComum
+                        WHERE cpfUsuarioComum LIKE '".$_SESSION['login']."' AND senhaUsuarioComum 
+                        LIKE '".$_SESSION['password']."'";
+
+        $result = $conexao->query($querySelect);
+
+        $list = $result->fetchAll();
+
+        return $list;
+    }
+}

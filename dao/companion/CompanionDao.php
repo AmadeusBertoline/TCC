@@ -192,6 +192,17 @@
         }
 
 
+        public static function listSession(){
+            $connection = Connection::connect();
+            $querySelect = "SELECT c.idCompanion, c.nameCompanion, c.cpfCompanion, c.phoneCompanion, c.cepCompanion, c.streetCompanion,
+                                 c.neighborhoodCompanion, c.numberStreetCompanion, c.complementCompanion, c.stateCompanion, c.cityCompanion, c.emailCompanion, c.passwordCompanion, COUNT(m.idMissed) AS missedCount
+                            FROM tbCompanion c
+                            LEFT JOIN tbMissed m ON c.idCompanion = m.idCompanion
+                            GROUP BY c.idCompanion, c.nameCompanion, c.cpfCompanion";
+            $result = $connection->query($querySelect);
+            $list = $result->fetchAll();
+            return $list;   
+        }
+
 
     }
-?>

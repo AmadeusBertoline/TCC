@@ -5,6 +5,100 @@
     font-family: Nexa, 'Segoe UI', Arial;
 }
 
+header{
+    height: 9vh;
+    box-shadow: 1px 0px 10px 1px rgba(0, 0, 0, 0.214);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 1.4rem;
+    font-weight: bold;
+    white-space: none;
+    width: 15%;
+}
+
+.img-logo{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 5%;
+}
+
+nav{
+    width: 20%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+ul{
+    display: flex;
+    align-items: center;
+    gap: 1%;
+    padding: 1%;
+    height: 100%;
+    transition: 1s;
+    width: 100%;
+
+}
+
+ul li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #00b7ea;
+    cursor: pointer;
+    height: 93%;
+    /* padding-top: 4%; */
+    transition: all 0.5s ease-in;
+    margin-top: 4%;
+    transition: 1s;
+    width: 100%;
+}
+
+ul li:hover{
+    border-bottom: 1px solid #00b7ea;
+    transition: 0.5s;
+}
+
+ul li:hover > i{
+    transition: 0.5s;
+    color: #00b7ea;
+}
+
+ul li h3{
+    font-weight: 200;
+    font-size: 1rem;
+    margin-top: 12%;
+}
+
+ul li i{
+    color:black;
+    /* margin-top: 10%; */
+}
+/*CSS - Ícone da burguerbar, navBar*/
+.burguerBar {
+	cursor: pointer;
+	display: none;
+	z-index: 11;
+}
+
+/*CSS - Traços do ícone da burguerbar, navBar*/
+.burguerBar>span {
+	margin: 5px;
+	height: 5px;
+	width: 35px;
+	display: flex;
+	flex-direction: column;
+	background-color: #00b7ea;
+	border-radius: 2.5px;
+	transition: all 0.3s ease-in-out;
+}
+
 
 #container{
     width: 100%;
@@ -12,7 +106,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 7%;
 }
+
 /* Modal de editar dados */
 .configs{
     box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.11);
@@ -62,15 +158,65 @@ form h1{
     font-size: 1rem;
     font-weight: bold;
 }
-/* Modal de editar  */
+/* Fim modal de editar  */
+
+/*Exibição dos dados*/
 
 .dados{
-    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.11);
-    width: 30%;
-    height: 45%;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.227);
+    width: 27%;
+    height: 40%;
     padding: 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .dados h1{
     margin-bottom: 2%;
 }
+
+i{
+    margin-left: 3%;
+    cursor: pointer;
+}
+
+p{
+    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+}
+
+.password{
+    border: none;
+}
+.password:focus{
+    outline: none;
+}
+.email{
+    border: none;
+}
+.email:focus{
+    outline: none;
+}
+
+label{
+    margin-right: 4%;
+}
+
+#open-modal-edit{
+    margin-top: 5%;
+    border: none;
+    background-image: linear-gradient(to right, #38BDF8, #2b96c4);
+    font-weight: bold;
+    width: 30%;
+    border-radius: 5px;
+    padding: 1%;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+/*Fim exibição dos dados*/
+
+
