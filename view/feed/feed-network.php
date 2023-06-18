@@ -190,7 +190,7 @@ if (!isset($_SESSION)) {
                                         <form class="form edit-missed"
                                             action="../../controller/missed/insertCompanionMissed.php" method="POST">
                                             <fieldset class="fieldset-personal-date">
-                                                <legend><b>Dados pessoais - desaparecido (a)</b></legend>
+                                                <legend><b>Dados pessoais - desaparecido (a)</b> ( OBRIGATÓRIO ) </legend>
 
                                                 <?php if (!empty($missed['cpfMissed'])) { ?>
 
@@ -254,7 +254,7 @@ if (!isset($_SESSION)) {
 
                                             </fieldset>
                                             <fieldset class="fieldset-add-features">
-                                                <legend><b>Caracaterísticas adicionais - desaparecido (a)</b></legend>
+                                                <legend><b>Caracaterísticas adicionais - desaparecido (a)</b> ( OPCIONAL )</legend>
 
                                                 <div class="list-features">
                                                     <?php
@@ -345,7 +345,7 @@ if (!isset($_SESSION)) {
                                                 </div>
                                             </fieldset>
                                             <fieldset class="fieldset-add-reasons">
-                                                <legend><b>Motivos desaparecimento - ( possíveis )</b></legend>
+                                                <legend><b>Motivos desaparecimento - ( possíveis )</b> ( OPCIONAL ) </legend>
                                                 <div class="list-reason">
                                                     <?php
                                                     require_once '../../Global.php';
@@ -397,7 +397,7 @@ if (!isset($_SESSION)) {
                                                 </div>
                                             </fieldset>
                                             <fieldset class="fieldset-last-location">
-                                                <legend><b>Último lugar visto (a)</b></legend>
+                                                <legend><b>Último lugar visto (a)</b> ( OBRIGATÓRIO ) </legend>
 
                                                <?php if (!empty($missed['cepMissed'])) { ?>
 
@@ -422,7 +422,7 @@ if (!isset($_SESSION)) {
                                                     <div class="input-flex">
                                                         <label>Rua desaparecido(a):</label>
                                                         <fieldset>
-                                                            <?php echo ($missed['dateBirthMissed']); ?>
+                                                            <?php echo ($missed['streetMissed']); ?>
                                                         </fieldset>
                                                     </div>
 
