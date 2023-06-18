@@ -133,7 +133,12 @@ if (!isset($_SESSION)) {
                             <img src="<?php echo $missed['picturePathMissed']; ?>" alt="">
                         </div>
                         <div class="pm-buttons">
-                            <button class="button update-img" id="btn-update-img">Trocar foto <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM323.8 202.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4 3.9-19.8 10.5l-87 127.6L170.7 297c-4.6-5.7-11.5-9-18.7-9s-14.2 3.3-18.7 9l-64 80c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6h96 32H424c8.9 0 17.1-4.9 21.2-12.8s3.6-17.4-1.4-24.7l-120-176zM112 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg></button>
+                            <button class="button update-img" id="btn-update-img">Trocar foto <svg
+                                    xmlns="http://www.w3.org/2000/svg" height="1em"
+                                    viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                    <path
+                                        d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM323.8 202.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4 3.9-19.8 10.5l-87 127.6L170.7 297c-4.6-5.7-11.5-9-18.7-9s-14.2 3.3-18.7 9l-64 80c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6h96 32H424c8.9 0 17.1-4.9 21.2-12.8s3.6-17.4-1.4-24.7l-120-176zM112 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z" />
+                                </svg></button>
                             <div class="fade-modal" id="modal-update-img">
                                 <div class="modal update-img">
                                     <div class="content update-img">
@@ -184,6 +189,70 @@ if (!isset($_SESSION)) {
                                         </div>
                                         <form class="form edit-missed"
                                             action="../../controller/missed/insertCompanionMissed.php" method="POST">
+                                            <fieldset class="fieldset-personal-date">
+                                                <legend><b>Dados pessoais - desaparecido (a)</b></legend>
+
+                                                <?php if (!empty($missed['cpfMissed'])) { ?>
+
+                                                    <div class="input-flex">
+                                                        <label>CPF desaparecido(a):</label>
+                                                        <fieldset>
+                                                            <?php echo $missed['cpfMissed']; ?>
+                                                        </fieldset>
+                                                    </div>
+
+                                                <?php } else { ?>
+
+                                                    <div class="input-flex">
+                                                        <label for="txtCpfMissed">CPF desaparecido(a):</label>
+                                                        <input type="text" name="txtCpfMissed">
+                                                    </div>
+
+                                                <?php } ?>
+
+                                                <?php if (!empty($missed['dateBirthMissed'])) { ?>
+
+                                                    <div class="input-flex">
+                                                        <label>Data de nascimento:</label>
+                                                        <fieldset>
+                                                            <?php $date = new DateTime($missed['dateBirthMissed']);
+                                                            echo $date->format('d/m/Y'); ?>
+                                                        </fieldset>
+                                                    </div>
+
+                                                <?php } else { ?>
+
+                                                    <div class="input-flex">
+                                                        <label for="txtDateBirthMissed">Data de nascimento:</label>
+                                                        <input type="date" name="txtDateBirthMissed">
+                                                    </div>
+
+                                                <?php } ?>
+
+                                                <?php if (!empty($missed['phoneMissed'])) { ?>
+
+                                                    <div class="input-flex">
+                                                        <label>Telefone Celular:</label>
+                                                        <fieldset>
+                                                            <?php echo $missed['phoneMissed']; ?>
+                                                        </fieldset>
+                                                    </div>
+
+                                                <?php } else { ?>
+
+                                                    <div class="input-flex">
+                                                        <label for="txtPhoneMissed">Telefone Celular</label>
+                                                        <input type="text" name="txtPhoneMissed">
+                                                    </div>
+
+                                                <?php } ?>
+
+
+                                               
+
+
+
+                                            </fieldset>
                                             <fieldset class="fieldset-add-features">
                                                 <legend><b>Caracaterísticas adicionais - desaparecido (a)</b></legend>
 
@@ -276,7 +345,7 @@ if (!isset($_SESSION)) {
                                                 </div>
                                             </fieldset>
                                             <fieldset class="fieldset-add-reasons">
-                                                <legend><b>Possíveis motivos do desaparecimento</b></legend>
+                                                <legend><b>Motivos desaparecimento - ( possíveis )</b></legend>
                                                 <div class="list-reason">
                                                     <?php
                                                     require_once '../../Global.php';
@@ -326,6 +395,64 @@ if (!isset($_SESSION)) {
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </fieldset>
+                                            <fieldset class="fieldset-last-location">
+                                                <legend><b>Último lugar visto (a)</b></legend>
+
+                                               <?php if (!empty($missed['cepMissed'])) { ?>
+
+                                                    <div class="input-flex">
+                                                        <label>CEP desaparecido(a):</label>
+                                                        <fieldset>
+                                                            <?php echo $missed['cepMissed']; ?>
+                                                        </fieldset>
+                                                    </div>
+
+                                                <?php } else { ?>
+
+                                                    <div class="input-flex">
+                                                        <label for="txtCepMissed">CEP desaparecido(a):</label>
+                                                        <input type="text" name="txtCepMissed">
+                                                    </div>
+
+                                                <?php } ?>
+
+                                                <?php if (!empty($missed['streetMissed'])) { ?>
+
+                                                    <div class="input-flex">
+                                                        <label>Rua desaparecido(a):</label>
+                                                        <fieldset>
+                                                            <?php echo ($missed['dateBirthMissed']); ?>
+                                                        </fieldset>
+                                                    </div>
+
+                                                <?php } else { ?>
+
+                                                    <div class="input-flex">
+                                                        <label for="txtStreetMissed">Rua desaparecido(a):</label>
+                                                        <input type="date" name="txtStreetMissed">
+                                                    </div>
+
+                                                <?php } ?>
+
+                                                <?php if (!empty($missed['streetNumberMissed'])) { ?>
+
+                                                    <div class="input-flex">
+                                                        <label>N° Rua desaparecido(a)</label>
+                                                        <fieldset>
+                                                            <?php echo $missed['streetNumberMissed']; ?>
+                                                        </fieldset>
+                                                    </div>
+
+                                                <?php } else { ?>
+
+                                                    <div class="input-flex">
+                                                        <label for="txtStreetNumberMissed">N° Rua desaparecido(a)</label>
+                                                        <input type="number" name="txtStreetNumberMissed">
+                                                    </div>
+
+                                                <?php } ?>
+
                                             </fieldset>
                                             <div class="buttons-add-attributes">
                                                 <input type="submit" value="Salvar" class="button submit-attributes">
