@@ -430,7 +430,7 @@ if (!isset($_SESSION)) {
 
                                                     <div class="input-flex">
                                                         <label for="txtStreetMissed">Rua desaparecido(a):</label>
-                                                        <input type="date" name="txtStreetMissed">
+                                                        <input type="text" name="txtStreetMissed">
                                                     </div>
 
                                                 <?php } ?>

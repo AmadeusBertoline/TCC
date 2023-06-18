@@ -12,9 +12,58 @@ try {
 
 foreach ($missedList as $missedItem) {
 
-    if(empty($_POST['txtCpfMissed']) && empty($_POST['txtDateBirthMissed']) && empty($_POST['txtPhoneMissed'])
-    && empty($_POST['txtCepMissed']) && empty($_POST['txtStreetMissed']) && empty($_POST['txtStreetNumberMissed']) &&
-    empty($_POST['caracteristica[]']) &&  empty($_POST['descricao[]']) && empty($_POST['tipoMotivo[]']) && empty($_POST['motivo[]'])  ){
+    function checkCpf($cpfArray)
+    {
+        //        --------verificação digito 1--------
+        $j = 10;
+        $soma1 = 0;
+        for ($i = 0; $i < 9; $i++) {
+            $soma1 = $soma1 + ($cpfArray[$i] * $j);
+            $j--;
+        }
+
+        $digito1 = 0;
+        $res1 = $soma1 % 11;
+        if ($res1 < 2) {
+            $digito1 = 0;
+        } else {
+            $digito1 = 11 - $res1;
+        }
+
+        //reset 
+        $j = 11;
+        $i = 0;
+
+        //        --------verificação digito 2--------
+        $soma2 = 0;
+        for ($i = 0; $i < 9; $i++) {
+            $soma2 = $soma2 + ($cpfArray[$i] * $j);
+            $j--;
+        }
+        $soma2 = $soma2 + (2 * $digito1);
+        $res2 = $soma2 % 11;
+        $digito2 = 0;
+        if ($res2 < 2) {
+            $digito2 = 0;
+        } else {
+            $digito2 = 11 - $res2;
+        }
+
+        if (($digito1 == $cpfArray[9]) && ($digito2 == $cpfArray[10])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    $missed = new Missed();
+
+    if (
+        empty($_POST['txtCpfMissed']) && empty($_POST['txtDateBirthMissed']) && empty($_POST['txtPhoneMissed'])
+        && empty($_POST['txtCepMissed']) && empty($_POST['txtStreetMissed']) && empty($_POST['txtStreetNumberMissed']) &&
+        empty($_POST['caracteristica[]']) && empty($_POST['descricao[]']) && empty($_POST['tipoMotivo[]']) && empty($_POST['motivo[]'])
+    ) {
 
 
         echo '<script>
@@ -62,10 +111,8 @@ foreach ($missedList as $missedItem) {
         }
     }
 
-    $missed = new Missed();
 
-    $missed->setId($missedItem['idMissed']);
-    MissedDao::registerMissedSession($missed);
+
 
 
 
@@ -74,14 +121,13 @@ foreach ($missedList as $missedItem) {
         && !empty($_POST['txtCepMissed']) && !empty($_POST['txtStreetMissed']) && !empty($_POST['txtStreetNumberMissed'])
     ) {
 
-        $missed = new Missed();
 
-        $txtCpf = $_POST['txtCpf'];
-        $txtDateBirth = $_POST['txtDateBirth'];
-        $txtPhone = $_POST['txtPhone'];
-        $txtCep = $_POST['txtCep'];
-        $txtStreet = $_POST['txtStreet'];
-        $txtNumberStreet = $_POST['txtNumberStreet'];
+        $txtCpf = $_POST['txtCpfMissed'];
+        $txtDateBirth = $_POST['txtDateBirthMissed'];
+        $txtPhone = $_POST['txtPhoneMissed'];
+        $txtCep = $_POST['txtCepMissed'];
+        $txtStreet = $_POST['txtStreetMissed'];
+        $txtNumberStreet = $_POST['txtStreetNumberMissed'];
 
         $cpf = str_replace("-", "", $txtCpf);
         $cpfArray = str_replace(".", "", $cpf);
@@ -96,10 +142,6 @@ foreach ($missedList as $missedItem) {
             $missed->setCep($txtCep);
             $missed->setStreet($txtStreet);
             $missed->setNumberStreet($txtNumberStreet);
-
-            $missed->setId($missedItem['idMissed']);
-            MissedDao::registerMissedSession($missed);
-
 
         } else {
             echo ('
@@ -119,50 +161,8 @@ foreach ($missedList as $missedItem) {
             </script>';
     }
 
-    function checkCpf($cpfArray)
-    {
-        //        --------verificação digito 1--------
-        $j = 10;
-        $soma1 = 0;
-        for ($i = 0; $i < 9; $i++) {
-            $soma1 = $soma1 + ($cpfArray[$i] * $j);
-            $j--;
-        }
-
-        $digito1 = 0;
-        $res1 = $soma1 % 11;
-        if ($res1 < 2) {
-            $digito1 = 0;
-        } else {
-            $digito1 = 11 - $res1;
-        }
-
-        //reset 
-        $j = 11;
-        $i = 0;
-
-        //        --------verificação digito 2--------
-        $soma2 = 0;
-        for ($i = 0; $i < 9; $i++) {
-            $soma2 = $soma2 + ($cpfArray[$i] * $j);
-            $j--;
-        }
-        $soma2 = $soma2 + (2 * $digito1);
-        $res2 = $soma2 % 11;
-        $digito2 = 0;
-        if ($res2 < 2) {
-            $digito2 = 0;
-        } else {
-            $digito2 = 11 - $res2;
-        }
-
-        if (($digito1 == $cpfArray[9]) && ($digito2 == $cpfArray[10])) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
+    $missed->setId($missedItem['idMissed']);
+    MissedDao::registerMissedSession($missed);
 
 
 }
