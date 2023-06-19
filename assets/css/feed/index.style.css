@@ -242,6 +242,7 @@ nav>ul {
   align-items: center;
   row-gap: 5px;
   padding: 10px 5px;
+  text-align: center;
 }
 
 .image-content {

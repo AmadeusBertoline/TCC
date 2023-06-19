@@ -1,4 +1,7 @@
 <?php
+if(!isset($_SESSION)){
+    session_start();
+}
 
 require_once '../../Global.php';
 
@@ -60,7 +63,7 @@ class UsuarioDao
     {
         $conexao = Connection::connect();
 
-        $querySelect = "SELECT nomeUsuarioComum, emailUsuarioComum, senhaUsuarioComum
+        $querySelect = "SELECT codUsuarioComum, nomeUsuarioComum, emailUsuarioComum, senhaUsuarioComum
                         FROM tbUsuarioComum
                         WHERE cpfUsuarioComum LIKE '".$_SESSION['login']."' AND senhaUsuarioComum 
                         LIKE '".$_SESSION['password']."'";
@@ -70,5 +73,32 @@ class UsuarioDao
         $list = $result->fetchAll();
 
         return $list;
+    }
+
+    public static function updateUser($user){
+
+        $conexao = Connection::connect();
+
+        $queryInsert = "UPDATE tbUsuarioComum
+                        SET emailUsuarioComum = ?,
+                        senhaUsuarioComum = ?
+                        WHERE codUsuarioComum = ? ";
+
+        $statement = $conexao->prepare($queryInsert);
+
+        $statement->bindValue(1, $user->getEmail());
+        $statement->bindValue(2, $user->getPassword());
+        $statement->bindValue(3, $user->getId());
+
+        try{
+            $statement->execute();
+        }catch(Exception $e){
+            echo '<pre>';
+            echo $e;
+            echo '</pre>';
+            echo $e->getMessage();
+        }
+        header("Location: ../../view/feed/ajustes-user.php");
+
     }
 }

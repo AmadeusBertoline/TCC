@@ -247,7 +247,7 @@
 
             $querySelect = "SELECT nameMissed, picturePathMissed
                             FROM tbMissed
-                            WHERE nameMissed LIKE 'BI%' OR nameMissed LIKE 'ARI%' OR nameMissed LIKE 'Ma%'";
+                            WHERE DATEDIFF(CURDATE(), dateBirthMissed) / 365.25 <= 18";
 
             $result = $connection->query($querySelect);
 

@@ -2,7 +2,6 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +14,9 @@ if (!isset($_SESSION)) {
     <script src="../../assets/js/feed/feed-home.script.js" defer></script>
     <script src="../../assets/js/feed/home_UserCommon.js" defer></script>
     <script src="../../assets/js/feed/index.script.js" defer></script>
-    <script src="../../assets/js/user/login-secretaria.js"></script>
+    <script src="../../assets/js/user/login-secretaria.js" defer></script>
+    <script src="../../assets/js/feed/ajustes-edit.js" defer></script>
+    <script src="../../assets/js/feed/show-password.js" defer></script>
     <script src="https://kit.fontawesome.com/98872a96e6.js" crossorigin="anonymous"></script>
 
     <title>Minhas informações</title>
@@ -30,8 +31,6 @@ if (!isset($_SESSION)) {
                 <?php
 
                 if (!isset($_SESSION['login']) || isset($_SESSION['password'])) {
-                    // Incluí componente sem a sessão
-                    //include '../assets/components/access-buttons.php';
                     echo "<img src= '../../assets/ico/feed/logo.svg' alt='img_logo'><!-- logo -->";
                 }
                 ?>
@@ -43,7 +42,14 @@ if (!isset($_SESSION)) {
         <div tabindex="0" class="flexbox_container-search">
 
             <form class="search-form" method="post">
-                <button name="search" class="button-busca" type="submit"><i class="fa-solid fa-magnifying-glass-plus" style="color: #00b7ea;"></i></button>
+                <button name="search" class="button-busca" type="submit"><svg class="lupa" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>
+                            .lupa {
+                                fill: #38bdf8
+                            }
+                        </style>
+                        <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM184 296c0 13.3 10.7 24 24 24s24-10.7 24-24V232h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H232V120c0-13.3-10.7-24-24-24s-24 10.7-24 24v64H120c-13.3 0-24 10.7-24 24s10.7 24 24 24h64v64z" />
+                    </svg></button>
                 <input name="input-search" type="search" class="inputSearchClass" id="inputSearchId" placeholder="Buscar no Anjos Perdidos..." />
             </form>
 
@@ -54,7 +60,6 @@ if (!isset($_SESSION)) {
                 <?php
 
                 if (isset($_SESSION['login']) || isset($_SESSION['password'])) {
-                    // Incluí componente sem a sessão
                     include '../../assets/components/navBar-user.php';
                 } else if (isset($_SESSION['login-familiar']) || isset($_SESSION['password-familiar'])) {
                     include '../../assets/components/familiar/nav-family.php';
@@ -63,6 +68,7 @@ if (!isset($_SESSION)) {
                 ?>
             </ul>
         </nav>
+
         <div class="burguerBar"><!-- Container BurguerBar-->
             <span></span><!-- linhas-->
             <span></span><!-- Linhas-->
@@ -75,6 +81,7 @@ if (!isset($_SESSION)) {
     require_once '../../Global.php';
 
     if (isset($_SESSION['login']) || isset($_SESSION['password'])) {
+
         try {
             $listUser = UsuarioDao::listUpdate();
         } catch (Exception $e) {
@@ -89,8 +96,11 @@ if (!isset($_SESSION)) {
     <div id="container">
         <div class="left-side">
             <div class="congratulations">
-                <h1>Olá, Amadeus Bertoline da Silva</h1>
+                <?php foreach ($listUser as $hello) { ?>
+                    <h1>Olá, <?php echo $hello['nomeUsuarioComum'] ?> </h1>
+                <?php } ?>
                 <span>Você deu 10 pistas</span>
+
                 <span class="span-agradecimento">Obrigado por ajudar a salvar vidas <svg class="heart" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                         <style>
                             .heart {
@@ -103,43 +113,58 @@ if (!isset($_SESSION)) {
             </div>
         </div>
         <div class="right-side">
+
             <?php foreach ($listUser as $list) { ?>
+
                 <div class="dados">
                     <h1>Meus Dados</h1>
                     <div class="campos">
                         <div>
                             <label for=""><b>Email</b></label>
-                            <input class="email" disabled type="email" name="email" id="email" value="<?php echo $list['emailUsuarioComum'] ?>">
+                            <input class="email" disabled type="email" id="email" value="<?php echo $list['emailUsuarioComum'] ?>">
                         </div>
 
-                        
-                        <div class="password-div">
+                        <div>
                             <label for=""><b>Senha</b></label>
-                            <input class="password" disabled type="password" name="password" id="password" value="<?php echo $list['senhaUsuarioComum'] ?>">
-                            <img onclick="eyeClick()" width="20px" src="../../assets/img/user/olho.png" id="eyeSvg" alt="">
+                            <input class="password" disabled type="password" id="password" name="password" value="<?php echo $list['senhaUsuarioComum'] ?>">
+                            <!-- <img onclick="eyeClick()" width="20px" src="../../assets/img/user/olho.png" id="eyeSvg" alt=""> -->
                         </div>
 
-                        
                     </div>
 
+                    <button id="open-modal-update-data" class="open-modal-update-data">Editar dados</button>
 
-                    <button id="open-modal-edit" class="">Editar dados</button>
+                </div>
+
+
+                <!--Modal de editar dados-->
+                <div id="fadeUpdateData" class="fadeUpdateData"></div>
+                <div id="modalUpdateData" class="modalUpdateData">
+                    <div class="modal-header-update-data">
+                        <h2>Edite seus dados</h2>
+                        <button id="close-modal-update-data" class="close-modal-update-data">x</button>
+                    </div>
+
+                    <div class="modal-body-update-data">
+                        <form class="edit" action="../../controller/user/update-usuario.php" method="post">
+                            <input name="email" maxlength="40" placeholder="Novo email..." type="text" value="<?php echo $list['emailUsuarioComum']
+                                                                                                                ?>">
+                            <input name="password" maxlength="40" placeholder="Nova senha..." type="password" id="password-edit" value="<?php echo $list['senhaUsuarioComum']
+                                                                                                                                        ?>">
+                            <div class="password-div-edit">
+                                <input name="password-edit-confirm" maxlength="40" placeholder="Confirme sua senha..." type="password" id="password-edit-confirm">
+                                <img onclick="eyeClick()" width="20px" src="../../assets/img/user/olho.png" id="eyeSvgEdit" alt="">
+                            </div>
+                            <button name="codUser" class="submit" type="submit" value="<?php echo $list['codUsuarioComum'] ?>">Salvar</button>
+                        </form>
+                    </div>
 
                 </div>
             <?php } ?>
+
         </div>
 
-        <!-- Modal de editar -->
-        <!-- <div class="configs">
-            <form class="edit" action="" method="post">
-                <h1>Edite seus dados</h1>
-                <input maxlength="40" placeholder="Novo email..." type="text">
-                <input maxlength="40" placeholder="Nova senha..." type="text">
-                <input maxlength="40" placeholder="Confirme sua senha..." type="text">
-                <input maxlength="40" class="submit" type="submit" value="Salvar">
-            </form>
-        </div> -->
-        <!-- Fim do modal editar -->
+
     </div>
 </body>
 

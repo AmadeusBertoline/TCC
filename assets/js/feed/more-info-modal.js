@@ -217,3 +217,7 @@ for (let i = 0; i < btnCloseModalDeleteAlert2.length; i++) {
 }
 /*Fim modal alert delete */
 
+
+
+
+

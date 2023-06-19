@@ -79,8 +79,15 @@ if (!isset($_SESSION)) {
             ?>
             <div tabindex="0" class="flexbox_container-search">
 
-                <form class="search-form" method="post" >
-                    <button name="search" class="button-busca" type="submit"><i class="fa-solid fa-magnifying-glass-plus" style="color: #00b7ea;"></i></button>
+                <form class="search-form" method="post">
+                    <button name="search" class="button-busca" type="submit"><svg class="lupa" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <style>
+                                .lupa {
+                                    fill: #38bdf8
+                                }
+                            </style>
+                            <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM184 296c0 13.3 10.7 24 24 24s24-10.7 24-24V232h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H232V120c0-13.3-10.7-24-24-24s-24 10.7-24 24v64H120c-13.3 0-24 10.7-24 24s10.7 24 24 24h64v64z" />
+                        </svg></button>
                     <input name="input-search" type="search" class="inputSearchClass" id="inputSearchId" placeholder="Buscar no Anjos Perdidos..." /><!-- 'input' barra de pesquisa -->
                 </form>
 
@@ -107,7 +114,7 @@ if (!isset($_SESSION)) {
             </script>
 
 
-           
+
             <nav class="nav"><!--Item do 'flex-container_header' / tag semântica '<nav>' -->
                 <ul><!-- <ul> - Lista não ordenada, lista dos itens da navbar -->
                     <?php
@@ -121,7 +128,6 @@ if (!isset($_SESSION)) {
 
                         include '../../assets/components/access-buttons.php';
                     }
-
 
                     ?>
                 </ul>
@@ -177,8 +183,30 @@ if (!isset($_SESSION)) {
                                         </div>
                                     </div>
 
+                                    <?php
+                                    // Supondo que o nome completo do usuário está armazenado na coluna 'nome'
+                                    $nomeCompleto = $menor['nameMissed'];
+
+                                    // Separar o nome completo em partes usando o espaço como delimitador
+                                    $partesNome = explode(' ', $nomeCompleto);
+
+                                    // Pegar o primeiro nome
+                                    $primeiroNome = $partesNome[0];
+
+                                    // Verificar se existe um segundo nome
+                                    if (isset($partesNome[1])) {
+                                        // Pegar o segundo nome
+                                        $segundoNome = $partesNome[1];
+                                    } else {
+                                        // Definir o segundo nome como vazio se não existir
+                                        $segundoNome = '';
+                                    }
+
+
+                                    ?>
+
                                     <div class="card-content">
-                                        <h2 class="name"><?php echo $menor['nameMissed']  ?></h2>
+                                        <h2 class="name"><?php echo $primeiroNome . ' ' . $segundoNome; ?></h2>
                                         <button class="button"><a href="#">Ver Mais</a></button>
                                     </div>
 
@@ -258,7 +286,14 @@ if (!isset($_SESSION)) {
 
                         <div class="bottom-post">
                             <div class="pistas">
-                                <button name="pista" id="open-modal-comment" class="open-modal-comment"><i class="fa-solid fa-magnifying-glass-plus" style="color: #00b7ea;"></i> Pista</button>
+                                <button name="pista" id="open-modal-comment" class="open-modal-comment"><svg class="lupa" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                        <style>
+                                            .lupa {
+                                                fill: #38bdf8
+                                            }
+                                        </style>
+                                        <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM184 296c0 13.3 10.7 24 24 24s24-10.7 24-24V232h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H232V120c0-13.3-10.7-24-24-24s-24 10.7-24 24v64H120c-13.3 0-24 10.7-24 24s10.7 24 24 24h64v64z" />
+                                    </svg> Pista</button>
                                 <button name="pista" id="open-modal-comment-view" class="open-modal-comment-view"> Ver pistas</button>
                             </div>
 
@@ -266,7 +301,6 @@ if (!isset($_SESSION)) {
                         </div>
 
                     </div>
-
 
 
                     <!--Modal de exibir minhas pistas-->
@@ -338,7 +372,14 @@ if (!isset($_SESSION)) {
                                                             <textarea maxlength="100" wrap="hard" name="comment-edit" id="comment" cols="30" rows="2" required></textarea>
                                                             <textarea class="idMissed" name="idPistaEdit" id="idMissed" cols="30" rows="10"><?php echo $listaUser['idPista'] ?></textarea>
 
-                                                            <button id="submit-pista-edit" class="close-modal-submit-edit" type="submit" name="edit-pista" value=""><i class="fa-solid fa-magnifying-glass-plus" style="color: #38BDF8;"></i></button>
+                                                            <button id="submit-pista-edit" class="close-modal-submit-edit" type="submit" name="edit-pista" value=""><svg class="lupa" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                                                    <style>
+                                                                        .lupa {
+                                                                            fill: #00b7ea
+                                                                        }
+                                                                    </style>
+                                                                    <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" />
+                                                                </svg></button>
 
                                                         </form>
                                                     </div>
@@ -358,7 +399,14 @@ if (!isset($_SESSION)) {
                                                         <p>Você apagará uma atitude nobre.</p>
                                                         <form required class="form-pista-delete" method="post" action="../../controller/pista/deleta-pista.php">
 
-                                                            <button id="submit-pista-delete" class="close-modal-submit-delete" type="submit" name="delete-pista" value="<?php echo $listaUser['idPista'] ?>"><i class="fa-solid fa-trash" style="color: #38bdf8;"></i></button>
+                                                            <button id="submit-pista-delete" class="close-modal-submit-delete" type="submit" name="delete-pista" value="<?php echo $listaUser['idPista'] ?>"><svg class="lupa" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                                                    <style>
+                                                                        .lupa {
+                                                                            fill: #00b7ea
+                                                                        }
+                                                                    </style>
+                                                                    <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+                                                                </svg></button>
                                                             <button id="close-pista-delete" class="close-pista-delete">Cancelar</button>
 
                                                         </form>
@@ -368,13 +416,23 @@ if (!isset($_SESSION)) {
 
 
                                                 <div class="update-delete-pista">
-                                                    <button id="open-modal-comment-edit" class="open-modal-comment-edit"><i class="fa-sharp fa-solid fa-pen-to-square" style="color: #38bdf8;"></i></button>
-                                                    <button id="open-modal-comment-delete" class="open-modal-comment-delete"><i class="fa-solid fa-trash" style="color: #38bdf8;"></i></button>
+                                                    <button id="open-modal-comment-edit" class="open-modal-comment-edit"><svg class="lupa" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                                            <style>
+                                                                .lupa {
+                                                                    fill: #00b7ea
+                                                                }
+                                                            </style>
+                                                            <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" />
+                                                        </svg></button>
+                                                    <button id="open-modal-comment-delete" class="open-modal-comment-delete"><svg class="lupa" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                                            <style>
+                                                                .lupa {
+                                                                    fill: #00b7ea
+                                                                }
+                                                            </style>
+                                                            <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+                                                        </svg></button>
                                                 </div>
-
-
-
-
 
                                             </div>
                                     <?php }
@@ -456,8 +514,14 @@ if (!isset($_SESSION)) {
                                 <textarea maxlength="100" wrap="hard" name="comment" id="comment" cols="30" rows="2" required></textarea>
                                 <textarea class="idMissed" name="idMissed" id="idMissed" cols="30" rows="10"><?php echo $missed['idMissed'] ?></textarea>
 
-
-                                <button id="submit-pista" class="close-modal-submit" type="submit"><i class="fa-solid fa-magnifying-glass-plus" style="color: #38BDF8;"></i></button>
+                                <button id="submit-pista" class="close-modal-submit" type="submit"><svg class="lupa" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                        <style>
+                                            .lupa {
+                                                fill: #38bdf8
+                                            }
+                                        </style>
+                                        <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM184 296c0 13.3 10.7 24 24 24s24-10.7 24-24V232h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H232V120c0-13.3-10.7-24-24-24s-24 10.7-24 24v64H120c-13.3 0-24 10.7-24 24s10.7 24 24 24h64v64z" />
+                                    </svg></button>
 
                             </form>
                         </div>

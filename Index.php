@@ -41,8 +41,7 @@
                             Sobre nós
                         </a>
                     </li>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                        style="width: auto; height: 8.5%; cursor: pointer;fill: #00B7EA;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: auto; height: 8.5%; cursor: pointer;fill: #00B7EA;">
                         <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"></path>
                     </svg>
                     <li>
@@ -50,8 +49,7 @@
                             Como Funciona
                         </a>
                     </li>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                        style="width: auto; height: 8.5%; cursor: pointer;fill: #00B7EA;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: auto; height: 8.5%; cursor: pointer;fill: #00B7EA;">
                         <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"></path>
                     </svg>
                     <li>
@@ -106,54 +104,65 @@
                 <div class="right_section-header"><!-- sessão direita, carrosel-->
                     <div class="slide-container swiper">
                         <!-- Container - "desaparecimentos proximos a você: Guaianases" -->
-                        <span class="location_item">Desaparecimentos próximos<svg xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 500 500" style="width: 5px; height: 5px; cursor: pointer;fill: #00B7EA;">
+                        <span class="location_item">Desaparecimento de crianças<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" style="width: 5px; height: 5px; cursor: pointer;fill: #00B7EA;">
                                 <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"></path>
-                            </svg>Guaianases</span><!-- Texto-->
+                            </svg>Adolescentes</span><!-- Texto-->
                         <div class="slide-content"><!-- Slides, carrosel-->
                             <div class="card-wrapper swiper-wrapper">
-                                <div class="card swiper-slide">
-                                    <div class="image-content">
-                                        <span class="overlay"></span>
 
-                                        <div class="card-image">
-                                            <img src="./assets/img/feed/user0.png" alt="" class="card-img">
+                                <?php
+                                require_once './Global.php';
+
+                                try {
+                                    $listaMenor = MissedDao::listaMenor();
+                                } catch (Exception $e) {
+                                    echo '<pre>';
+                                    echo $e;
+                                    echo '</pre>';
+                                    echo $e->getMessage();
+                                }
+
+                                ?>
+
+                                <?php foreach ($listaMenor as $menor) { ?>
+                                    <div class="card swiper-slide">
+                                        <div class="image-content">
+                                            <span class="overlay"></span>
+
+                                            <div class="card-image">
+                                                <img src="./resource/missed/img/<?php echo $menor['picturePathMissed'] ?>" alt="desaparecido" class="card-img">
+                                            </div>
+                                        </div>
+
+                                        <?php
+                                        // Supondo que o nome completo do usuário está armazenado na coluna 'nome'
+                                        $nomeCompleto = $menor['nameMissed'] ;
+
+                                        // Separar o nome completo em partes usando o espaço como delimitador
+                                        $partesNome = explode(' ', $nomeCompleto);
+
+                                        // Pegar o primeiro nome
+                                        $primeiroNome = $partesNome[0];
+
+                                        // Verificar se existe um segundo nome
+                                        if (isset($partesNome[1])) {
+                                            // Pegar o segundo nome
+                                            $segundoNome = $partesNome[1];
+                                        } else {
+                                            // Definir o segundo nome como vazio se não existir
+                                            $segundoNome = '';
+                                        }
+
+                                        
+                                        ?>
+
+                                        <div class="card-content">
+                                            <h2 class="name"><?php echo $primeiroNome . ' ' . $segundoNome; ?></h2>
+                                            <button class="button"><a href="">Ver Mais</a></button>
                                         </div>
                                     </div>
+                                <?php } ?>
 
-                                    <div class="card-content">
-                                        <h2 class="name">Isabelly Carvalho</h2>
-                                        <button class="button"><a href="">Ver Mais</a></button>
-                                    </div>
-                                </div>
-                                <div class="card swiper-slide">
-                                    <div class="image-content">
-                                        <span class="overlay"></span>
-
-                                        <div class="card-image">
-                                            <img src="./assets/img/feed/user1.png" alt="" class="card-img">
-                                        </div>
-                                    </div>
-
-                                    <div class="card-content">
-                                        <h2 class="name">Jean Charles</h2>
-                                        <button class="button"><a href="">Ver Mais</a></button>
-                                    </div>
-                                </div>
-                                <div class="card swiper-slide">
-                                    <div class="image-content">
-                                        <span class="overlay"></span>
-
-                                        <div class="card-image">
-                                            <img src="./assets/img/feed/user2.png" alt="" class="card-img">
-                                        </div>
-                                    </div>
-
-                                    <div class="card-content">
-                                        <h2 class="name">Isaac Souza</h2>
-                                        <button class="button"><a href="">Ver Mais</a></button>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -183,7 +192,8 @@
                         <h1 class="textCien">A dor de milhares</h1>
                         <p>O <b>desaparecimento</b> é um problema alarmante. Em <b>2021</b>, o <b>Brasil</b> registrou
                             <b> 65.225 pessoas desaparecidas</b>, uma <b>média</b> de <b> 203 casos diários</b>,
-                            contabilizando <b>11</b> desaparecidos a <b>hora!</b></p>
+                            contabilizando <b>11</b> desaparecidos a <b>hora!</b>
+                        </p>
                     </div>
                 </article>
 
@@ -195,7 +205,8 @@
                         <h1 class="textCien">Buscar é a solução.</h1>
                         <p><b>Familiares não descansam</b> até saber o <b>paradeiro</b> do seu <b>ente querido</b> – se
                             é que chegam a saber. O seu <b>pesar</b> pela <b>perda</b> é <b>agravado</b>, por meios de
-                            <b>busca não eficientes</b>.</p>
+                            <b>busca não eficientes</b>.
+                        </p>
                     </div>
                 </article>
             </div>
