@@ -60,7 +60,7 @@ header {
 
 /*CSS - Flex-container/flexbox dentro do 'flex-container_header' , fundo da barra de pesquisa */
 .flexbox_container-search {
-	width: 50%;
+	width: 40%;
 	height: 50px;
 	display: flex;
 	justify-content: center;
@@ -560,7 +560,7 @@ nav>ul>li>a>span {
 
 .img-logo span {
 	margin-left: 5%;
-	font-size: 2.1rem;
+	font-size: 2rem;
 	font-weight: bold;
 	font-family: Nexa, 'Segoe UI', sans-serif;
 
@@ -749,7 +749,7 @@ nav>ul>li>a>span {
 .post {
 	display: flex;
 	flex-direction: row;
-	width: 100%;
+	/* width: 100%; */
 	align-items: flex-start;
 	border-radius: 6px;
 	padding: 1%;
@@ -1072,6 +1072,7 @@ textarea {
 	align-items: center;
 	justify-content: center;
 }
+
 
 #open-modal-comment {
 	width: 18%;
@@ -2014,6 +2015,10 @@ textarea {
 	.bottom-post{
 		padding: 1%;
 	}
+
+	/* #carousel-space{
+		padding-top: 10%;
+	} */
 }
 @media screen and (max-width: 1536px) {
 
@@ -2089,7 +2094,97 @@ textarea {
 }
 }
 
-@media screen and (max-width: 1212px){
+@media screen and (max-width: 1228px){
+	.family-post{
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 1169px){
+	#post-container{
+		width: 60%;
+	}
+}
+
+@media screen and (max-width: 1120px){
+	#post-container{
+		width: 70%;
+	}
+}
+
+@media screen and (max-width: 954px){
+	#post-container{
+		width: 75%;
+	}
+	.img-logo span {
+		font-size: 1.8rem;
+	}
+	.img-logo img{
+		width: 15%;
+	}
+
+	.flexbox_container-search{
+		margin-right: 21%;
+	}
+	
+}
+
+@media screen and (max-width: 896px){
+	#post-container{
+		width: 80%;
+	}
+}
+
+@media screen and (max-width: 830px){
+	#post-container{
+		width: 90%;
+	}
+}
+
+@media screen and (max-width: 753px){
+	#post-container{
+		width: 95%;
+	}
+}
+
+@media screen and (max-width: 712px){
+	#post-container{
+		width: 98%;
+	}
+	.img-logo span {
+		font-size: 1.5rem;
+	}
+	.img-logo img{
+		width: 15%;
+	}
+
+	.flexbox_container-search{
+		margin-right: 21%;
+	}
+}
+
+@media screen and (max-width: 690px){
+	#carousel-space{
+		padding-top: 12%;
+	}
+	.img-logo span {
+		font-size: 1.8rem;
+	}
+	.img-logo span {
+		font-size: 1.2rem;
+	}
+	.img-logo img{
+		width: 15%;
+	}
+
+	.flexbox_container-search{
+		margin-right: 21%;
+	}
+
+
+}
+
+/* @media screen and (max-width: 1212px){
 .post{
 	flex-direction: column;
 	align-items: center;
@@ -2125,7 +2220,7 @@ textarea {
 
 
 
-}
+} */
 
 @media screen and (max-width: 1181px) {
 	.flex-container_header {

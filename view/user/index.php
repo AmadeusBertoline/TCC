@@ -41,7 +41,7 @@
                 <input class="submit" type="submit" value="Entrar">
 
                 <div class="form-bottom">
-                    <p>Esqueci minha senha.</p>
+                    <p>Esqueci minha senha</p>
                     <div class="cadastre-se">
                         <label for="">Não possui uma conta ?</label>
                         <a href="./register-user.php"><input class="cadastre-se-button" type="button" value="Cadastre-se"></a>

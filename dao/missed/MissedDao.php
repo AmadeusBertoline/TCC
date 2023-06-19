@@ -1,8 +1,5 @@
 <?php
 
-if (!isset($_SESSION)) {
-    session_start();
-}
     class MissedDao{
         public static function register($missed){
             require_once '../../Global.php';
@@ -250,7 +247,7 @@ if (!isset($_SESSION)) {
 
             $querySelect = "SELECT nameMissed, picturePathMissed
                             FROM tbMissed
-                            WHERE nameMissed LIKE 'BI%' OR nameMissed LIKE 'ARI%' OR nameMissed LIKE 'Ma%'";
+                            WHERE DATEDIFF(CURDATE(), dateBirthMissed) / 365.25 <= 18";
 
             $result = $connection->query($querySelect);
 
@@ -281,7 +278,7 @@ if (!isset($_SESSION)) {
         $queryInsert = "UPDATE tbMissed
                             INNER JOIN tbCompanion ON tbMissed.idCompanion = tbCompanion.idCompanion
                             SET picturePathMissed = ?
-                            WHERE cpfCompanion = '" .($_SESSION['login-familiar']) . "'";
+                            WHERE cpfCompanion = '" .($_SESSION['familiar']) . "'";
         $prepareStatement = $connection->prepare($queryInsert);
 
         $prepareStatement->bindValue(1, $missed->getPicturePath());
@@ -315,36 +312,9 @@ if (!isset($_SESSION)) {
 
         $connection = Connection::connect();
 
-        $queryInsert = "UPDATE tbMissed
-                        SET cpfMissed = ?, dateBirthMissed = ?, phoneMissed = ?, cepMissed = ?, streetMissed = ?, streetNumberMissed = ? 
-                        WHERE idMissed = '".$missedId."'";
-
-        $prepareStatement = $connection->prepare($queryInsert);
-
-        $prepareStatement->bindValue(1, $missed->getCpf());
-        $prepareStatement->bindValue(2, $missed->getDateBirth());
-        $prepareStatement->bindValue(3, $missed->getPhone());
-        $prepareStatement->bindValue(4, $missed->getCep());
-        $prepareStatement->bindValue(5, $missed->getStreet());
-        $prepareStatement->bindValue(6, $missed->getNumberStreet());
-
-
-        
-        
-
-        
 
         try {
-
-            if (!empty($missed->getCpf()) && !empty($missed->getDateBirth()) && !empty($missed->getPhone()) && !empty($missed->getCep()) && !empty($missed->getStreet()) && !empty($missed->getNumberStreet())) {
-                
-                
-                $prepareStatement->execute();
-
-            }
-           
-           
-
+        
             // adicionar as características do desaparecimento
             if (!empty($missed->getFeatures())) {
                 $queryInsertFeatures = "INSERT INTO tbFeatureMissed(idMissed, idFeature, descFeatureMissed) VALUES (?, ?, ?)";
@@ -390,7 +360,7 @@ if (!isset($_SESSION)) {
                     </script>
                 ');
             echo ($e);
-        }   
+        }
     }
       
     
