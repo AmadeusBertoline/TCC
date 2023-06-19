@@ -315,7 +315,6 @@ if (!isset($_SESSION)) {
 
         $connection = Connection::connect();
 
-
         $queryInsert = "UPDATE tbMissed
                         SET cpfMissed = ?, dateBirthMissed = ?, phoneMissed = ?, cepMissed = ?, streetMissed = ?, streetNumberMissed = ? 
                         WHERE idMissed = '".$missedId."'";
@@ -329,13 +328,21 @@ if (!isset($_SESSION)) {
         $prepareStatement->bindValue(5, $missed->getStreet());
         $prepareStatement->bindValue(6, $missed->getNumberStreet());
 
+
+        
         
 
         
 
         try {
 
-            $prepareStatement->execute();
+            if (!empty($missed->getCpf()) && !empty($missed->getDateBirth()) && !empty($missed->getPhone()) && !empty($missed->getCep()) && !empty($missed->getStreet()) && !empty($missed->getNumberStreet())) {
+                
+                
+                $prepareStatement->execute();
+
+            }
+           
            
 
             // adicionar as características do desaparecimento

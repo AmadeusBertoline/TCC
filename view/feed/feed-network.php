@@ -210,7 +210,7 @@ if (!isset($_SESSION)) {
 
                                                 <?php } ?>
 
-                                                <?php if (!empty($missed['dateBirthMissed'])) { ?>
+                                                <?php if ($missed['dateBirthMissed'] !== '0000-00-00') { ?>
 
                                                     <div class="input-flex">
                                                         <label>Data de nascimento:</label>

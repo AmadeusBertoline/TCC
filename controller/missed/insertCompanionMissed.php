@@ -59,21 +59,6 @@ foreach ($missedList as $missedItem) {
 
     $missed = new Missed();
 
-    if (
-        empty($_POST['txtCpfMissed']) && empty($_POST['txtDateBirthMissed']) && empty($_POST['txtPhoneMissed'])
-        && empty($_POST['txtCepMissed']) && empty($_POST['txtStreetMissed']) && empty($_POST['txtStreetNumberMissed']) &&
-        empty($_POST['caracteristica[]']) && empty($_POST['descricao[]']) && empty($_POST['tipoMotivo[]']) && empty($_POST['motivo[]'])
-    ) {
-
-
-        echo '<script>
-                alert("Nenhum campo preechido!");
-                window.location = "../../view/feed/feed-network.php";
-            </script>';
-
-
-    }
-
     if ((isset($_POST['caracteristica'])) && (isset($_POST['descricao']))) {
         $tipoCaracteristica = $_POST['caracteristica'];
         $caracteristica = $_POST['descricao'];
@@ -112,10 +97,6 @@ foreach ($missedList as $missedItem) {
     }
 
 
-
-
-
-
     if (
         !empty($_POST['txtCpfMissed']) && !empty($_POST['txtDateBirthMissed']) && !empty($_POST['txtPhoneMissed'])
         && !empty($_POST['txtCepMissed']) && !empty($_POST['txtStreetMissed']) && !empty($_POST['txtStreetNumberMissed'])
@@ -135,10 +116,10 @@ foreach ($missedList as $missedItem) {
         if (checkCpf($cpfArray) == true) {
 
             $missed->setCpf($txtCpf);
+            $date = $txtDateBirth;
             $date = date("Y-m-d", strtotime(str_replace('/', '-', $date)));
             $missed->setDateBirth($date);
             $missed->setPhone($txtPhone);
-            $date = $txtDateBirth;
             $missed->setCep($txtCep);
             $missed->setStreet($txtStreet);
             $missed->setNumberStreet($txtNumberStreet);
@@ -154,12 +135,22 @@ foreach ($missedList as $missedItem) {
 
 
 
-    } else {
-        echo '<script>
-                alert("Preencha as sessões obrigatórias: Dados pessoais & Último lugar visto!");
-                window.location = "../../view/feed/feed-network.php";
-            </script>';
     }
+
+    if (empty($_POST['txtCpfMissed']) && empty($_POST['txtDateBirthMissed']) && empty($_POST['txtPhoneMissed'])
+    && empty($_POST['txtCepMissed']) && empty($_POST['txtStreetMissed']) && empty($_POST['txtStreetNumberMissed'])
+    && empty($missed->getReasons()) && empty($missed->getFeatures())){
+
+        echo ('
+        <script>
+            alert("Nenhum campo foi preechido!");
+            window.location = "../../view/feed/feed-network.php";
+        </script>
+        ');
+
+    }
+
+
 
     $missed->setId($missedItem['idMissed']);
     MissedDao::registerMissedSession($missed);
