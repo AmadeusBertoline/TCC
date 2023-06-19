@@ -137,7 +137,7 @@ if (!isset($_SESSION)) {
                 </div>
 
 
-                <!--Modal de editar dados-->
+                <!--Modal de editar dadoss-->
                 <div id="fadeUpdateData" class="fadeUpdateData"></div>
                 <div id="modalUpdateData" class="modalUpdateData">
                     <div class="modal-header-update-data">

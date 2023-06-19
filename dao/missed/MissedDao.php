@@ -315,7 +315,7 @@
 
         try {
         
-            // adicionar as características do desaparecimento
+            // adicionar as características do desaparecimentos
             if (!empty($missed->getFeatures())) {
                 $queryInsertFeatures = "INSERT INTO tbFeatureMissed(idMissed, idFeature, descFeatureMissed) VALUES (?, ?, ?)";
         

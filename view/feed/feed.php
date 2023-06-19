@@ -61,7 +61,7 @@ if (!isset($_SESSION)) {
                     }
 
                     ?>
-                    <span>Anjos Perdidos</span><!-- nome -->
+                    <span>Anjos Perdidos</span><!-- nomes -->
 
                 </div>
             </a>
