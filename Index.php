@@ -149,7 +149,7 @@
                                             // Pegar o segundo nome
                                             $segundoNome = $partesNome[1];
                                         } else {
-                                            // Definir o segundo nome como vazio se não existirs
+                                            // Definir o segundo nome como vazio se não existir
                                             $segundoNome = '';
                                         }
 

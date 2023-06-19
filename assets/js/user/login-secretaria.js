@@ -25,7 +25,7 @@ function hidePassword(){
 /*Ocultar senha no modal de edição */
 // const passwordInputEdit = document.getElementById("password-edit")
 // const passwordInputEditConfirm = document.getElementById("password-edit-confirm")
-// const eyeSvgEdit = document.getElementById("eyeSvgEdit")
+// const eyeSvgEdit = document.getElementById("eyeSvgEdit");
 
 // function eyeClick(){
 //     let inputTypeIsPasswordConfirm = passwordInputEditConfirm.type =="password"

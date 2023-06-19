@@ -27,7 +27,7 @@ var swiper = new Swiper(".slide-content", {
   },
 });
 
-// Definir o tempo de transição entre os slides (em milissegundos)
+// Definir o tempo de transição entre os slides (em milissegundos)s
 var tempoTransicao = 3000; // 3 segundos
 
 // Função para avançar para o próximo slide
