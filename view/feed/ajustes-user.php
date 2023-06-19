@@ -90,6 +90,21 @@ if (!isset($_SESSION)) {
             echo '</pre>';
             echo $e->getMessage();
         }
+
+        $usuario = new Person();
+
+        $usuario->setCpf($_SESSION['login']);
+        $usuario->setPassword($_SESSION['password']);
+
+        // try {
+        //     $listCount = PistaDao::countPista($usuario);
+        // } catch (Exception $e) {
+        //     echo '<pre>';
+        //     echo $e;
+        //     echo '</pre>';
+        //     echo $e->getMessage();
+        // }
+        
     }
 
     ?>
@@ -99,7 +114,9 @@ if (!isset($_SESSION)) {
                 <?php foreach ($listUser as $hello) { ?>
                     <h1>Olá, <?php echo $hello['nomeUsuarioComum'] ?> </h1>
                 <?php } ?>
-                <span>Você deu 10 pistas</span>
+                <?php // foreach($listCount as $count){ ?>
+                <span><?php //$count['idPista'] ?></span>
+                <?php // }?>
 
                 <span class="span-agradecimento">Obrigado por ajudar a salvar vidas <svg class="heart" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                         <style>

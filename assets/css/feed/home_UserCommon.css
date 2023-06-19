@@ -5,6 +5,7 @@
 	box-sizing: border-box;
 	font-family: Nexa, 'Segoe UI', Arial;
 	font-size: 12.5px;
+	/* transition: 0.1s; */
 }
 
 html {
@@ -29,7 +30,7 @@ header {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	
+
 }
 
 
@@ -86,7 +87,7 @@ header {
 	padding: 1%;
 }
 
-.inputSearchClass:focus{
+.inputSearchClass:focus {
 	background-color: #eeeaea;
 }
 
@@ -442,7 +443,7 @@ nav>ul>li>a>span {
 	row-gap: 2.5px;
 }
 
-.card-content h2{
+.card-content h2 {
 	white-space: nowrap;
 	padding: 1px;
 }
@@ -576,7 +577,7 @@ nav>ul>li>a>span {
 	transition: .5s;
 	z-index: 15;
 	height: 55%;
-	
+
 }
 
 .list-log .pageAccess {
@@ -1100,7 +1101,7 @@ textarea {
 	margin-left: 1%;
 }
 
-#close-modal-comment {
+#viewcomment {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -1164,24 +1165,25 @@ textarea {
 
 }
 
-.form-pista .idMissed{
+.form-pista .idMissed {
 	display: none;
 }
 
 /*Fim do modal de pistas*/
 
 
-#open-modal-comment{
+#open-modal-comment {
 	margin-left: 0;
 }
 
 /*Modal que exiber os comentários*/
-.pistas{
+.pistas {
 	display: flex;
 	justify-content: flex-start;
 	width: 100%;
 	gap: 2%;
 }
+
 .fadeCommentView {
 	position: fixed;
 	top: 0;
@@ -1213,7 +1215,7 @@ textarea {
 
 }
 
-.modal-body-comment-view{
+.modal-body-comment-view {
 	border: 1px solid rgba(0, 0, 0, 0.215);
 	min-height: auto;
 	max-height: 400px;
@@ -1222,37 +1224,37 @@ textarea {
 	gap: 1%;
 }
 
-.modal-body-comment-view h1{
+.modal-body-comment-view h1 {
 	font-size: 1.1rem;
 }
 
-.user-identify{
+.user-identify {
 	width: 100%;
 	display: flex;
 	align-items: center;
-	
+
 }
 
-.img-comment{
+.img-comment {
 	width: 8%;
 	height: 8%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	
+
 }
 
-.modal-header-comment h2{
+.modal-header-comment h2 {
 	font-size: 1.5rem;
 }
 
 
 
-.icon-comment{
+.icon-comment {
 	width: 100%;
 }
 
-.name-comment{
+.name-comment {
 	margin-left: 0%;
 	width: 100%;
 	border: none;
@@ -1262,12 +1264,14 @@ textarea {
 	margin-bottom: 5%;
 }
 
-.name-comment h1{
+.name-comment h1 {
 	white-space: normal;
 }
-.name-comment p{
+
+.name-comment p {
 	white-space: normal;
 }
+
 .modalCommentView.hide {
 	display: block;
 }
@@ -1287,7 +1291,8 @@ textarea {
 	text-decoration: none;
 
 }
-#open-modal-comment-view{
+
+#open-modal-comment-view {
 	width: 18%;
 	margin-left: 1%;
 	background-color: #fff;
@@ -1300,11 +1305,12 @@ textarea {
 	align-items: center;
 	justify-content: center;
 }
+
 #close-modal-comment-view {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 1.4rem;
+	font-size: 1.6rem;
 	font-weight: 500;
 	width: 26%;
 	border: none;
@@ -1313,25 +1319,27 @@ textarea {
 	border-radius: 5px;
 }
 
-.title-modal{
+.title-modal {
 	display: flex;
 	width: 50%;
 	gap: 2%;
 }
-.title-modal img{
+
+.title-modal img {
 	width: 10%;
 }
 
-.name-comment{
+.name-comment {
 	display: flex;
 	justify-content: space-between;
 }
-.comment-content{
+
+.comment-content {
 	width: 100%;
 	padding-right: 1%;
 }
 
-.update-delete-pista{
+.update-delete-pista {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -1339,18 +1347,7 @@ textarea {
 	gap: 1rem;
 }
 
-.update-delete-pista .open-modal-comment-edit{
-	border: 0;
-	cursor: pointer;
-	transition: 0.5s;
-	width: 100%;
-	height: 100%;
-}
-.update-delete-pista .open-modal-comment-edit:hover{
-	opacity: 0.7;
-}
-
-.update-delete-pista .open-modal-comment-delete{
+.update-delete-pista .open-modal-comment-edit {
 	border: 0;
 	cursor: pointer;
 	transition: 0.5s;
@@ -1358,18 +1355,30 @@ textarea {
 	height: 100%;
 }
 
-.update-delete-pista .open-modal-comment-delete:hover{
+.update-delete-pista .open-modal-comment-edit:hover {
 	opacity: 0.7;
 }
 
-.buttons{
+.update-delete-pista .open-modal-comment-delete {
+	border: 0;
+	cursor: pointer;
+	transition: 0.5s;
+	width: 100%;
+	height: 100%;
+}
+
+.update-delete-pista .open-modal-comment-delete:hover {
+	opacity: 0.7;
+}
+
+.buttons {
 	width: 30%;
 	display: flex;
 	justify-content: space-between;
 	gap: 6%;
 }
 
-.minhas-pistas{
+.minhas-pistas {
 	width: 100%;
 	background-color: #fff;
 	border: 1px solid #38BDF8;
@@ -1379,21 +1388,23 @@ textarea {
 
 }
 
-.minhas-pistas:hover{
+.minhas-pistas:hover {
 	border: 2px solid #38BDF8;
 
 
 }
+
 /*Fim do modal que exibe os comentários*/
 
 /*Modal de ver minhas pistas*/
 
-.pistas{
+.pistas {
 	display: flex;
 	justify-content: flex-start;
 	width: 100%;
 	gap: 2%;
 }
+
 .fadeCommentViewEdit {
 	position: fixed;
 	top: 0;
@@ -1425,7 +1436,7 @@ textarea {
 
 }
 
-.modal-body-comment-view-edit{
+.modal-body-comment-view-edit {
 	border: 1px solid rgba(0, 0, 0, 0.215);
 	min-height: auto;
 	max-height: 400px;
@@ -1434,37 +1445,37 @@ textarea {
 	gap: 1%;
 }
 
-.modal-body-comment-view-edit h1{
+.modal-body-comment-view-edit h1 {
 	font-size: 1.1rem;
 }
 
-.user-identify{
+.user-identify {
 	width: 100%;
 	display: flex;
 	align-items: center;
-	
+
 }
 
-.img-comment{
+.img-comment {
 	width: 8%;
 	height: 8%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	
+
 }
 
-.modal-header-comment h2{
+.modal-header-comment h2 {
 	font-size: 1.5rem;
 }
 
 
 
-.icon-comment{
+.icon-comment {
 	width: 100%;
 }
 
-.name-comment{
+.name-comment {
 	margin-left: 0%;
 	width: 100%;
 	border: none;
@@ -1474,12 +1485,14 @@ textarea {
 	margin-bottom: 5%;
 }
 
-.name-comment h1{
+.name-comment h1 {
 	white-space: normal;
 }
-.name-comment p{
+
+.name-comment p {
 	white-space: normal;
 }
+
 .modalCommentViewEdit.hide {
 	display: block;
 }
@@ -1499,7 +1512,8 @@ textarea {
 	text-decoration: none;
 
 }
-#open-modal-comment-view-edit{
+
+#open-modal-comment-view-edit {
 	width: 100%;
 	margin-left: 1%;
 	background-color: #fff;
@@ -1514,37 +1528,56 @@ textarea {
 	font-weight: bold;
 }
 
-#open-modal-comment-view-edit:hover{
+#open-modal-comment-view-edit:hover {
 	border: 2px solid #38BDF8;
 }
+
 #close-modal-comment-view-edit {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 1.4rem;
+	font-size: 1.6rem;
 	font-weight: 500;
 	width: 26%;
+	/* height:8%; */
+	border: none;
+	background-image: linear-gradient(to right, #38BDF8, #2b96c4);
+	cursor: pointer;
+	border-radius: 5px;
+	text-align: center;
+}
+
+#close-modal-comment {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.6rem;
+	font-weight: 500;
+	width: 5%;
+	height: 8%;
 	border: none;
 	background-image: linear-gradient(to right, #38BDF8, #2b96c4);
 	cursor: pointer;
 	border-radius: 5px;
 }
 
-.title-modal{
+.title-modal {
 	display: flex;
 	width: 50%;
 	gap: 2%;
 }
-.title-modal img{
+
+.title-modal img {
 	width: 10%;
 }
 
-.name-comment-edit{
+.name-comment-edit {
 	display: flex;
 	width: 100%;
 	flex-direction: column;
 }
-.comment-content-edit{
+
+.comment-content-edit {
 	width: 100%;
 	padding-right: 1%;
 	display: flex;
@@ -1555,10 +1588,10 @@ textarea {
 	background-color: #00000015;
 	border-radius: 5px;
 	padding: 3%;
-	
+
 }
 
-.update-delete-pista{
+.update-delete-pista {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -1567,23 +1600,24 @@ textarea {
 
 }
 
-.update-delete-pista button{
+.update-delete-pista button {
 	border: 0;
 	cursor: pointer;
 	transition: 0.5s;
 }
-.update-delete-pista button:hover{
+
+.update-delete-pista button:hover {
 	opacity: 0.7;
 }
 
-.buttons{
+.buttons {
 	width: 30%;
 	display: flex;
 	justify-content: space-between;
 	gap: 6%;
 }
 
-.minhas-pistas{
+.minhas-pistas {
 	width: 100%;
 	background-color: #fff;
 	border: 1px solid #38BDF8;
@@ -1593,13 +1627,13 @@ textarea {
 
 }
 
-.minhas-pistas:hover{
+.minhas-pistas:hover {
 	border: 2px solid #38BDF8;
 
 
 }
 
-.open-minhas-pistas{
+.open-minhas-pistas {
 	width: 100%;
 	background-color: #fff;
 	border: 1px solid #38BDF8;
@@ -1608,13 +1642,14 @@ textarea {
 	font-weight: bold;
 }
 
-.descricao-pista{
+.descricao-pista {
 	width: 100%;
 }
 
-.descricao-pista p{
+.descricao-pista p {
 	white-space: normal;
 }
+
 /*Fim do modal de ver minhas pistas*/
 
 /*Modal de editar pistas*/
@@ -1669,7 +1704,7 @@ textarea {
 
 }
 
-#close-modal-comment-edit{
+#close-modal-comment-edit {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -1683,7 +1718,7 @@ textarea {
 }
 
 
-#submit-pista-edit{
+#submit-pista-edit {
 	width: 18%;
 	height: 16%;
 	margin-left: 1%;
@@ -1696,21 +1731,22 @@ textarea {
 	align-items: center;
 	justify-content: center;
 }
+
 /*Fim do modal de editar pistas*/
 
 
 /*Modal de deletar pistas*/
-.form-pista-delete{
+.form-pista-delete {
 	width: 100%;
 	display: flex;
 	flex-direction: row;
 	height: 10%;
 	padding-top: 2%;
-	
+
 }
 
 
-#close-pista-delete{
+#close-pista-delete {
 	width: 18%;
 	height: 16%;
 	margin-left: 2%;
@@ -1725,7 +1761,7 @@ textarea {
 	transition: 0.5s;
 }
 
-#submit-pista-delete{
+#submit-pista-delete {
 	width: 18%;
 	height: 16%;
 	margin-left: 1%;
@@ -1740,13 +1776,14 @@ textarea {
 	transition: 0.5s;
 }
 
-#submit-pita-delete:hover{
+#submit-pita-delete:hover {
 	opacity: 0.8;
 }
 
-.modal-body-comment-delete{
+.modal-body-comment-delete {
 	width: 100%;
 }
+
 .modal-body-comment-delete p {
 	margin-left: 1%;
 }
@@ -1802,21 +1839,23 @@ textarea {
 
 }
 
-#close-modal-comment-delete{
+#close-modal-comment-delete {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 1.4rem;
+	font-size: 1.6rem;
 	font-weight: 500;
-	width: 8%;
+	width: 5%;
+	/* height:8%; */
 	border: none;
 	background-image: linear-gradient(to right, #38BDF8, #2b96c4);
 	cursor: pointer;
 	border-radius: 5px;
+	text-align: center;
 }
 
 
-#submit-pista-delete{
+#submit-pista-delete {
 	width: 18%;
 	height: 16%;
 	margin-left: 1%;
@@ -1834,17 +1873,17 @@ textarea {
 /*Fim do modal de deletar pistas*/
 
 /*Modal alert deletar pistas*/
-.form-pista-delete{
+.form-pista-delete {
 	width: 100%;
 	display: flex;
 	flex-direction: row;
 	height: 10%;
 	padding-top: 2%;
-	
+
 }
 
 
-#close-pista-delete-alert{
+#close-pista-delete-alert {
 	width: 18%;
 	height: 16%;
 	margin-left: 2%;
@@ -1862,19 +1901,20 @@ textarea {
 
 }
 
-#close-pista-delete-alert a{
+#close-pista-delete-alert a {
 	color: black;
 	text-decoration: none;
 }
 
-.close-pista-delete-alert a{
+.close-pista-delete-alert a {
 	color: black;
 	text-decoration: none;
 }
 
-.modal-body-comment-delete-alert{
+.modal-body-comment-delete-alert {
 	width: 100%;
 }
+
 .modal-body-comment-delete-alert p {
 	margin-left: 1%;
 }
@@ -1887,7 +1927,7 @@ textarea {
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.6);
 	z-index: 20;
-	
+
 }
 
 .fadeCommentDeleteAlert.hide {
@@ -1929,7 +1969,7 @@ textarea {
 
 }
 
-#close-modal-comment-delete-alert{
+#close-modal-comment-delete-alert {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -1944,7 +1984,7 @@ textarea {
 	text-decoration: none;
 }
 
-#close-modal-comment-delete-alert a{
+#close-modal-comment-delete-alert a {
 	color: black;
 	text-decoration: none;
 }
@@ -1956,24 +1996,25 @@ textarea {
 	padding-bottom: 1%;
 	width: 100%;
 }
-.modal-body-comment-delete h2{
-	font-size: 1.3rem;	
+
+.modal-body-comment-delete h2 {
+	font-size: 1.3rem;
 }
 
-.modal-header-comment-delete a{
+.modal-header-comment-delete a {
 	width: 100%;
 }
 
-.modal-header-comment-delete div{
+.modal-header-comment-delete div {
 	width: 100%;
 }
 
-.title-delete-alert{
+.title-delete-alert {
 	width: 100%;
 
 }
 
-.close-button-delete-alert{
+.close-button-delete-alert {
 	display: flex;
 	justify-content: flex-end;
 }
@@ -1981,28 +2022,28 @@ textarea {
 /*Fim modal alert deletar pistas*/
 
 
-.search-form{
+.search-form {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
-.list-search{
+.list-search {
 	width: 100%;
 	border: 1px solid black;
 }
 
-.button-busca{
+.button-busca {
 	border-radius: 5px;
 	width: 5%;
 	cursor: pointer;
 	border: none;
-	background-color:#eeeaea;
+	background-color: #eeeaea;
 }
 
 
-.list-guest{
+.list-guest {
 	margin: 0;
 	height: 60%
 }
@@ -2011,15 +2052,28 @@ textarea {
 /*Responsividade pro computador do Amadeus*/
 
 
-@media screen and (max-width: 1920px){
-	.bottom-post{
+@media screen and (max-width: 1921px) {
+	.bottom-post {
 		padding: 1%;
 	}
 
-	/* #carousel-space{
-		padding-top: 10%;
-	} */
+
+	#close-pista-delete {
+		width: 18%;
+		height: 26px;
+		margin-left: 1%;
+		background-color: #fff;
+		border: 2px solid #38BDF8;
+		border-radius: 5px;
+		cursor: pointer;
+		padding: 1%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: 0.5s;
+	}
 }
+
 @media screen and (max-width: 1536px) {
 
 	.family-post {
@@ -2088,139 +2142,145 @@ textarea {
 
 }
 
-@media screen and (max-width: 1336px){
-.contact{
-	margin-top: 0%;
-}
+@media screen and (max-width: 1336px) {
+	.contact {
+		margin-top: 0%;
+	}
 }
 
-@media screen and (max-width: 1228px){
-	.family-post{
+@media screen and (max-width: 1228px) {
+	.family-post {
 		width: 100%;
 	}
 }
 
-@media screen and (max-width: 1169px){
-	#post-container{
+@media screen and (max-width: 1169px) {
+	#post-container {
 		width: 60%;
+	}
+
+	#carousel-space {
+		padding-top: 8%;
 	}
 }
 
-@media screen and (max-width: 1120px){
-	#post-container{
+
+
+@media screen and (max-width: 1120px) {
+	#post-container {
 		width: 70%;
 	}
 }
 
-@media screen and (max-width: 954px){
-	#post-container{
+@media screen and (max-width: 954px) {
+	#post-container {
 		width: 75%;
 	}
+
 	.img-logo span {
 		font-size: 1.8rem;
 	}
-	.img-logo img{
+
+	.img-logo img {
 		width: 15%;
 	}
 
-	.flexbox_container-search{
+	.flexbox_container-search {
 		margin-right: 21%;
 	}
-	
+
+	#carousel-space {
+		padding-top: 10%;
+	}
 }
 
-@media screen and (max-width: 896px){
-	#post-container{
+@media screen and (max-width: 896px) {
+	#post-container {
 		width: 80%;
 	}
 }
 
-@media screen and (max-width: 830px){
-	#post-container{
+@media screen and (max-width: 830px) {
+	#post-container {
 		width: 90%;
 	}
 }
 
-@media screen and (max-width: 753px){
-	#post-container{
+@media screen and (max-width: 753px) {
+	#post-container {
 		width: 95%;
 	}
 }
 
-@media screen and (max-width: 712px){
-	#post-container{
+@media screen and (max-width: 712px) {
+	#post-container {
 		width: 98%;
 	}
+
 	.img-logo span {
 		font-size: 1.5rem;
 	}
-	.img-logo img{
+
+	.img-logo img {
 		width: 15%;
 	}
 
-	.flexbox_container-search{
+	.flexbox_container-search {
 		margin-right: 21%;
+	}
+
+	#carousel-space {
+		padding-top: 12%;
 	}
 }
 
-@media screen and (max-width: 690px){
-	#carousel-space{
+@media screen and (max-width: 690px) {
+	#carousel-space {
 		padding-top: 12%;
 	}
+
 	.img-logo span {
 		font-size: 1.8rem;
 	}
+
 	.img-logo span {
 		font-size: 1.2rem;
 	}
-	.img-logo img{
+
+	.img-logo img {
 		width: 15%;
 	}
 
-	.flexbox_container-search{
+	.flexbox_container-search {
 		margin-right: 21%;
+	}
+
+	#carousel-space {
+		padding-top: 14%;
 	}
 
 
 }
 
-/* @media screen and (max-width: 1212px){
-.post{
-	flex-direction: column;
-	align-items: center;
-	width: auto;
-	
+@media screen and (max-width: 523px) {
+	#carousel-space {
+		padding-top: 16%;
+	}
 }
 
-.family-post{
-	width: auto;
+@media screen and (max-width: 460px) {
+	#carousel-space {
+		padding-top: 18%;
+	}
 }
 
-.img-post{
-	width: 100%;
-	
-}
-
-.img-desaparecido{
-	width: 100%;
-}
-
-.content-post{
-	width: 100%;
-	display: flex;
-	max-width: 100%;
-	margin: 1%;
-}
-
-.img-nome{
-	width: 80%;
+@media screen and (max-width: 395px) {
+	#carousel-space {
+		padding-top: 24%;
+	}
 }
 
 
-
-
-
-} */
 
 @media screen and (max-width: 1181px) {
 	.flex-container_header {
@@ -2355,6 +2415,7 @@ textarea {
 	.grid-posts {
 		grid-column: 1/2;
 	}
+
 	#carousel-space {
 		width: 100%;
 
@@ -2368,9 +2429,5 @@ textarea {
 
 		margin-left: 10%;
 	}
-	
+
 }
-
-
-
-

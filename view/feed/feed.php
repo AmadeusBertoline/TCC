@@ -314,7 +314,7 @@ if (!isset($_SESSION)) {
                             </div>
                             <div class="buttons">
                                 <button class="minhas-pistas">Todas as pistas</button>
-                                <button id="close-modal-comment-view-edit" class="close-modal-comment-view-edit">x</button>
+                                <button id="close-modal-comment-view-edit" class="close-modal-comment-view-edit"><b>x</b></button>
                             </div>
                         </div>
                         <?php
@@ -392,7 +392,7 @@ if (!isset($_SESSION)) {
                                                 <div id="modalCommentDelete" class="modalCommentDelete">
                                                     <div class="modal-header-comment">
                                                         <h2>Deseja excluir sua pista ?</h2>
-                                                        <button id="close-modal-comment-delete" class="close-modal-comment-delete">x</button>
+                                                        <button id="close-modal-comment-delete" class="close-modal-comment-delete"><b>x</b></button>
                                                     </div>
 
                                                     <div class="modal-body-comment-delete">
@@ -459,7 +459,7 @@ if (!isset($_SESSION)) {
                             </div>
                             <div class="buttons">
                                 <button id="open-modal-comment-view-edit" class="open-modal-comment-view-edit">Minhas pistas</button>
-                                <button id="close-modal-comment-view" class="close-modal-comment-view">x</button>
+                                <button id="close-modal-comment-view" class="close-modal-comment-view"><b>x</b></button>
                             </div>
                         </div>
                         <?php
@@ -504,14 +504,14 @@ if (!isset($_SESSION)) {
                     <div id="modalComment" class="modalComment">
                         <div class="modal-header-comment">
                             <h2>Escreva a sua pista</h2>
-                            <button id="close-modal-comment" class="close-modal-comment">x</button>
+                            <button id="close-modal-comment" class="close-modal-comment"><b>x</b></button>
                         </div>
 
                         <div class="modal-body-comment">
                             <form required class="form-pista" method="post" action="../../controller/pista/cadastra-pista.php">
 
 
-                                <textarea maxlength="100" wrap="hard" name="comment" id="comment" cols="30" rows="2" required></textarea>
+                                <textarea maxlength="200" wrap="hard" name="comment" id="comment" cols="30" rows="2" required></textarea>
                                 <textarea class="idMissed" name="idMissed" id="idMissed" cols="30" rows="10"><?php echo $missed['idMissed'] ?></textarea>
 
                                 <button id="submit-pista" class="close-modal-submit" type="submit"><svg class="lupa" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
