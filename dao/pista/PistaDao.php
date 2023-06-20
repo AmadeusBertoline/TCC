@@ -149,13 +149,15 @@ class PistaDao
                                                 ');
     }
 
-    public static function countPista($usuario)
+    public static function countPista()
     {
         $connection = Connection::connect();
 
         $querySelect = "SELECT COUNT(idPista) FROM tbPista
-                        WHERE cpfUsuarioComum = '" . $usuario->getCpf() . "' 
-                        AND senhaUsuarioComum = '" . $usuario->getPassword() . "'
+                        INNER JOIN tbUsuarioComum ON
+                        tbPista.codUsuarioComum = tbUsuarioComum.codUsuarioComum
+                        WHERE cpfUsuarioComum = '" . $_SESSION['login'] . "' 
+                        AND senhaUsuarioComum = '" . $_SESSION['password'] . "'
                          ";
 
         $result = $connection->query($querySelect);

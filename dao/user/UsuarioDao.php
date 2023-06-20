@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION)){
+if (!isset($_SESSION)) {
     session_start();
 }
 
@@ -65,8 +65,8 @@ class UsuarioDao
 
         $querySelect = "SELECT codUsuarioComum, nomeUsuarioComum, emailUsuarioComum, senhaUsuarioComum
                         FROM tbUsuarioComum
-                        WHERE cpfUsuarioComum LIKE '".$_SESSION['login']."' AND senhaUsuarioComum 
-                        LIKE '".$_SESSION['password']."'";
+                        WHERE cpfUsuarioComum LIKE '" . $_SESSION['login'] . "' AND senhaUsuarioComum 
+                        LIKE '" . $_SESSION['password'] . "'";
 
         $result = $conexao->query($querySelect);
 
@@ -75,7 +75,8 @@ class UsuarioDao
         return $list;
     }
 
-    public static function updateUser($user){
+    public static function updateUser($user)
+    {
 
         $conexao = Connection::connect();
 
@@ -90,15 +91,15 @@ class UsuarioDao
         $statement->bindValue(2, $user->getPassword());
         $statement->bindValue(3, $user->getId());
 
-        try{
+        try {
             $statement->execute();
-        }catch(Exception $e){
+        } catch (Exception $e) {
             echo '<pre>';
             echo $e;
             echo '</pre>';
             echo $e->getMessage();
         }
-        header("Location: ../../view/feed/ajustes-user.php");
+        // header("Location: ../../view/feed/ajustes-user.php");
 
         // aaa
 

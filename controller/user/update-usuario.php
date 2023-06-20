@@ -1,4 +1,7 @@
 <?php
+if(!isset($_SESSION)){
+    session_start();
+}
 require_once '../../Global.php';
 
 
@@ -26,6 +29,7 @@ if (
             echo $e->getMessage();
         }
         
+        header("Location: ../../view/feed/ajustes-user.php");
 
     }
 }

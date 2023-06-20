@@ -128,15 +128,20 @@
                                     <div class="card swiper-slide">
                                         <div class="image-content">
                                             <span class="overlay"></span>
-
+                                            <?php
+                                            $diretorio = './resource/missed/img/' ;
+                                            $caminhoCompleto = $diretorio . basename($menor['picturePathMissed']);
+                                            ;
+                                            
+                                            ?>
                                             <div class="card-image">
-                                                <img src="./resource/missed/img/<?php echo $menor['picturePathMissed'] ?>" alt="desaparecido" class="card-img">
+                                                <img src="<?php echo $caminhoCompleto ?>" alt="desaparecido" class="card-img">
                                             </div>
                                         </div>
 
                                         <?php
                                         // Supondo que o nome completo do usuário está armazenado na coluna 'nome'
-                                        $nomeCompleto = $menor['nameMissed'] ;
+                                        $nomeCompleto = $menor['nameMissed'];
 
                                         // Separar o nome completo em partes usando o espaço como delimitador
                                         $partesNome = explode(' ', $nomeCompleto);
@@ -153,7 +158,7 @@
                                             $segundoNome = '';
                                         }
 
-                                        
+
                                         ?>
 
                                         <div class="card-content">
