@@ -49,7 +49,7 @@ class UsuarioDao
         $conexao = Connection::connect();
 
         $querySelect = "SELECT codusuariocomum FROM tbusuariocomum
-                            WHERE cpfUsuarioComum = '" . $usuario->getCpf() . "' AND senhaUsuarioComum = '" . $usuario->getPassword() . "'";
+                        WHERE cpfUsuarioComum = '" . $usuario->getCpf() . "' AND senhaUsuarioComum = '" . $usuario->getPassword() . "'";
 
 
         $resultado = $conexao->query($querySelect);
@@ -65,8 +65,7 @@ class UsuarioDao
 
         $querySelect = "SELECT codUsuarioComum, nomeUsuarioComum, emailUsuarioComum, senhaUsuarioComum
                         FROM tbUsuarioComum
-                        WHERE cpfUsuarioComum LIKE '" . $_SESSION['login'] . "' AND senhaUsuarioComum 
-                        LIKE '" . $_SESSION['password'] . "'";
+                        WHERE codUsuarioComum = '".$_SESSION['id-user']."'";
 
         $result = $conexao->query($querySelect);
 

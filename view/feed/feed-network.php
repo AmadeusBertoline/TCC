@@ -14,12 +14,12 @@ if (!isset($_SESSION)) {
     <link rel="stylesheet" href="../../assets/css/feed/global.style.css">
     <?php
 
-    if (isset($_SESSION['login-familiar']) && isset($_SESSION['password-familiar'])) {
+    if (isset($_SESSION['id-familiar'])) {
         //familiar
         echo '<link rel="stylesheet" href="../../assets/css/feed/network-family.style.css">';
         echo ' <script src="../../assets/js/feed/network-family.script.js" defer></script><!-- Caminho, arquivo JS-->';
         echo '<link rel="stylesheet" href="../../assets/css/feed/network-family.style copy.css">';
-    } else if (isset($_SESSION['login']) && isset($_SESSION['password'])) {
+    } else if (isset($_SESSION['id-user'])) {
         //usuário comum 
         echo '<link rel="stylesheet" href="../../assets/css/feed/network-userCommon.style.css">';
     } else {
@@ -46,10 +46,10 @@ if (!isset($_SESSION)) {
 
                 <?php
 
-                if (isset($_SESSION['login-familiar']) && isset($_SESSION['password-familiar'])) {
+                if (isset($_SESSION['id-familiar'])) {
                     //familiar
                     echo '<img src= "../../assets/ico/feed/logo-family.svg" alt="img_logo" >';
-                } else if (isset($_SESSION['login']) && isset($_SESSION['password'])) {
+                } else if (isset($_SESSION['id-user'])) {
                     //usuário comum
                     echo "<img src= '../../assets/ico/feed/logo.svg' alt='img_logo'><!-- logo -->";
                 }
@@ -74,11 +74,11 @@ if (!isset($_SESSION)) {
                 <ul><!-- <ul> - Lista não ordenada, lista dos itens da navbar -->
                     <?php
 
-                    if (isset($_SESSION['login-familiar']) && isset($_SESSION['password-familiar'])) {
+                    if (isset($_SESSION['id-familiar'])) {
                         //familiar
                         include '../../assets/components/familiar/nav-family.php';
 
-                    } else if (isset($_SESSION['login']) && isset($_SESSION['password'])) {
+                    } else if (isset($_SESSION['id-user'])) {
                         //usuário comum
                         include '../../assets/components/userCommon/nav-user.php';
                     }

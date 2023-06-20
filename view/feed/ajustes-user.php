@@ -30,7 +30,7 @@ if (!isset($_SESSION)) {
             <div class="img-logo">
                 <?php
 
-                if (!isset($_SESSION['login']) || isset($_SESSION['password'])) {
+                if (isset($_SESSION['id-user'])) {
                     echo "<img src= '../../assets/ico/feed/logo.svg' alt='img_logo'><!-- logo -->";
                 }
                 ?>
@@ -59,7 +59,7 @@ if (!isset($_SESSION)) {
             <ul><!-- <ul> - Lista não ordenada, lista dos itens da navbar -->
                 <?php
 
-                if (isset($_SESSION['login']) || isset($_SESSION['password'])) {
+                if (isset($_SESSION['id-user'])) {
                     include '../../assets/components/navBar-user.php';
                 } else if (isset($_SESSION['login-familiar']) || isset($_SESSION['password-familiar'])) {
                     include '../../assets/components/familiar/nav-family.php';
@@ -80,7 +80,7 @@ if (!isset($_SESSION)) {
     <?php
     require_once '../../Global.php';
 
-    if (isset($_SESSION['login']) || isset($_SESSION['password'])) {
+    if (isset($_SESSION['id-user'])) {
 
 
         try {

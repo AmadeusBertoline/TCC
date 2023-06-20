@@ -23,11 +23,11 @@ if (!isset($_SESSION)) {
     <?php
 
 
-    if (isset($_SESSION['login-familiar']) && isset($_SESSION['password-familiar'])) {
+    if (isset($_SESSION['id-familiar'])) {
         //familiar
         echo '<link rel="stylesheet" href="../../assets/css/feed/home-family.style.css">';
         echo '<link rel="stylesheet" href="../../assets/css/feed/home_UserCommon.css">';
-    } else if (isset($_SESSION['login']) && isset($_SESSION['password'])) {
+    } else if (isset($_SESSION['id-user'])) {
         //usuário comum e guest
         echo '<link rel="stylesheet" href="../../assets/css/feed/home_UserCommon.css">';
     } else {
@@ -52,12 +52,10 @@ if (!isset($_SESSION)) {
                 <div class="img-logo">
                     <?php
 
-                    if (!isset($_SESSION['login']) || isset($_SESSION['password'])) {
-                        // Incluí componente sem a sessão
-                        //include '../assets/components/access-buttons.php';
+                    if (isset($_SESSION['id-user'])) {
                         echo "<img src= '../../assets/ico/feed/logo.svg' alt='img_logo'><!-- logo -->";
                     } else {
-                        include '../../assets/components/private/family/family-logo.php';
+                        echo "<img src= '../../assets/ico/feed/logo-family.svg' alt='img_logo'>";
                     }
 
                     ?>
@@ -119,10 +117,10 @@ if (!isset($_SESSION)) {
                 <ul><!-- <ul> - Lista não ordenada, lista dos itens da navbar -->
                     <?php
 
-                    if (isset($_SESSION['login']) || isset($_SESSION['password'])) {
+                    if (isset($_SESSION['id-user'])) {
                         // Incluí componente sem a sessão
                         include '../../assets/components/navList-home.php';
-                    } else if (isset($_SESSION['login-familiar']) || isset($_SESSION['password-familiar'])) {
+                    } else if (isset($_SESSION['id-familiar'])) {
                         include '../../assets/components/familiar/nav-family.php';
                     } else {
 
@@ -320,7 +318,7 @@ if (!isset($_SESSION)) {
                         <?php
                         require_once '../../Global.php';
 
-                        if (isset($_SESSION['login']) || isset($_SESSION['password'])) {
+                        if (isset($_SESSION['id-user'])) {
                             if (!isset($_SESSION)) {
                                 session_start();
                             }
@@ -348,7 +346,7 @@ if (!isset($_SESSION)) {
                             <div class="user-identify">
                                 <div class="name-comment-edit">
                                     <?php
-                                    if (isset($_SESSION['login']) || isset($_SESSION['password'])) {
+                                    if (isset($_SESSION['id-user'])) {
 
 
                                         foreach ($listaPistaUser as $listaUser) { ?>

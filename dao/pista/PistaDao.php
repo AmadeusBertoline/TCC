@@ -154,10 +154,8 @@ class PistaDao
         $connection = Connection::connect();
 
         $querySelect = "SELECT COUNT(idPista) FROM tbPista
-                        INNER JOIN tbUsuarioComum ON
-                        tbPista.codUsuarioComum = tbUsuarioComum.codUsuarioComum
-                        WHERE cpfUsuarioComum = '" . $_SESSION['login'] . "' 
-                        AND senhaUsuarioComum = '" . $_SESSION['password'] . "'
+                
+                        WHERE codUsuarioComum = '".$_SESSION['id-user']."'
                          ";
 
         $result = $connection->query($querySelect);

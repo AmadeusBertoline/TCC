@@ -188,6 +188,8 @@
         padding-top: 85px;
         width: 1128px;
         display: flex;
+        flex-direction: column;
+        gap: 20px;
     }
 
     .container-missed {

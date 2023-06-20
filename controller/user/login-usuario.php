@@ -15,9 +15,12 @@ if (isset($_POST['familiar'])) {
         }
 
         if (!empty(CompanionDao::verificar($familiar))) {
-
+            $idFamiliar = CompanionDao::verificar($familiar);
             $_SESSION['login-familiar'] = $familiar->getCpf();
             $_SESSION['password-familiar'] = $familiar->getPassword();
+            $id = ($idFamiliar[0]['idCompanion']);
+            $_SESSION['id-familiar'] = $id;
+
 
             header("Location: ../../view/feed/feed-network.php");
         } else {
@@ -60,9 +63,13 @@ if (isset($_POST['familiar'])) {
 
         if (!empty(UsuarioDao::verificar($usuario))) {
 
+            $idUser = UsuarioDao::verificar($usuario);
             $_SESSION['login'] = $usuario->getCpf();
             $_SESSION['password'] = $usuario->getPassword();
-            $_SESSION['id-user'] = UsuarioDao::verificar($usuario);
+            $id = ($idUser[0]['codusuariocomum']);
+            $_SESSION['id-user'] = $id;
+
+            // echo $_SESSION['id-user'];
 
             header("Location: ../../view/feed/feed.php");
         } else {
