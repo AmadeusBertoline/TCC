@@ -39,7 +39,7 @@ class PistaDao
     {
         $connection = Connection::connect();
 
-        $querySelect = "SELECT idPista, descricaoPista, nomeUsuarioComum 
+        $querySelect = "SELECT idPista, descricaoPista, nomeUsuarioComum, idMissed 
                         FROM tbpista
                         INNER JOIN tbUsuarioComum ON 
                         tbpista.codUsuarioComum = tbusuarioComum.codUsuarioComum

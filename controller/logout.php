@@ -5,8 +5,10 @@ if(!isset($_SESSION)){
 }
 
 
-unset($_SESSION['login']);
-unset($_SESSION['password']);
+unset($_SESSION['id-user']);
+// unset($_SESSION['password']);
+unset($_SESSION['id-familiar']);
+
 
 session_destroy();
 

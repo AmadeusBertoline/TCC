@@ -31,7 +31,7 @@ if (!isset($_SESSION)) {
         //usuário comum e guest
         echo '<link rel="stylesheet" href="../../assets/css/feed/home_UserCommon.css">';
     } else {
-        echo '<link rel="stylesheet" href="../../assets/css/feed/home-UserCommon.style.css">';
+        echo '<link rel="stylesheet" href="../../assets/css/feed/home_UserCommon.css">';
     }
 
 
@@ -469,6 +469,8 @@ if (!isset($_SESSION)) {
 
                             $pista->setIdMissed($missed['idMissed']);
 
+
+
                             $listaPista = PistaDao::listarPista($pista);
                         } catch (Exception $e) {
                             echo '<pre>';
@@ -509,10 +511,32 @@ if (!isset($_SESSION)) {
                             <form required class="form-pista" method="post" action="../../controller/pista/cadastra-pista.php">
 
 
-                                <textarea maxlength="200" wrap="hard" name="comment" id="comment" cols="30" rows="2" required></textarea>
+                                <textarea <?php
+                                            if (!isset($_SESSION['id-user']) && !isset($_SESSION['id-familiar'])) {
+                                                echo 'disabled';
+                                            }else{
+                                                echo '';
+                                            }
+
+                                            ?> maxlength="200" wrap="hard" name="comment" id="comment" cols="30" rows="2" required>
+                                        <?php
+                                        if (!isset($_SESSION['id-user']) && !isset($_SESSION['id-familiar'])) {
+                                            echo 'Você não pode dar pistas pois não está logado.';
+                                        }else{
+                                            echo '';
+                                        }
+                                        ?>    
+                                        </textarea>
                                 <textarea class="idMissed" name="idMissed" id="idMissed" cols="30" rows="10"><?php echo $missed['idMissed'] ?></textarea>
 
-                                <button id="submit-pista" class="close-modal-submit" type="submit"><svg class="lupa" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <button <?php
+                                        if (!isset($_SESSION['id-user']) && !isset($_SESSION['id-familiar'])) {
+                                            echo 'disabled';
+                                        }else{
+                                            echo '';
+                                        }
+
+                                        ?> id="submit-pista" class="close-modal-submit" type="submit"><svg class="lupa" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                         <style>
                                             .lupa {
                                                 fill: #38bdf8

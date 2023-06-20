@@ -12,15 +12,13 @@ if (!empty($_POST['comment'])) {
         session_start();
     }
 
-    $idUser = print_r($_SESSION['id-user'][0][0]);
+    $idUser = ($_SESSION['id-user']);
 
     $pista = new Pista();
 
     $pista->setDescricaoPista($_POST['comment']);
     $pista->setIdMissed($_POST['idMissed']);
     $pista->setIdUsuarioComum($idUser);
-
-    
 
     
 
