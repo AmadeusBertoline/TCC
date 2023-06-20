@@ -5,7 +5,6 @@ class ReasonDao
     public static function listReasonSession()
     {
         require_once '../../Global.php';
-        require_once '../../Global.php';
         try {
             $missedList = MissedDao::listMissedSession();
         } catch (Exception $e) {

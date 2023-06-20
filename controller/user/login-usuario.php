@@ -19,7 +19,7 @@ if (isset($_POST['familiar'])) {
             $_SESSION['login-familiar'] = $familiar->getCpf();
             $_SESSION['password-familiar'] = $familiar->getPassword();
 
-            header("Location: ../../view/feed/feed.php");
+            header("Location: ../../view/feed/feed-network.php");
         } else {
             echo '<head><script type="text/javascript" src="../../assets/js/user/error-login.js" defer></script>
             <link rel="stylesheet" href="../../assets/css/user/login-usuario.css">

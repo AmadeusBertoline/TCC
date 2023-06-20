@@ -43,7 +43,7 @@ class PistaDao
                         FROM tbpista
                         INNER JOIN tbUsuarioComum ON 
                         tbpista.codUsuarioComum = tbusuarioComum.codUsuarioComum
-                        WHERE idMissed = '".$pista->getIdMissed()."'
+                        WHERE idMissed = '" . $pista->getIdMissed() . "'
                         ORDER BY idPista DESC";
 
         $result = $connection->query($querySelect);
@@ -56,15 +56,16 @@ class PistaDao
 
 
 
-    public static function listarPistaSession($usuario){
+    public static function listarPistaSession($usuario)
+    {
         $connection = Connection::connect();
 
         $querySelect = "SELECT idPista, descricaoPista
                         FROM tbpista
                         INNER JOIN tbUsuarioComum ON
                         tbpista.codUsuarioComum = tbUsuarioComum.codUsuarioComum
-                        WHERE cpfUsuarioComum = '".$usuario->getCpf()."' AND senhaUsuarioComum = '".$usuario->getPassword()."'
-                        AND idMissed = '".$usuario->getIdMissed()."'
+                        WHERE cpfUsuarioComum = '" . $usuario->getCpf() . "' AND senhaUsuarioComum = '" . $usuario->getPassword() . "'
+                        AND idMissed = '" . $usuario->getIdMissed() . "'
                         ORDER BY idPista DESC
                         ";
 
@@ -74,7 +75,7 @@ class PistaDao
 
         return $pistaSession;
     }
-    
+
 
 
     public static function editarPista($pista)
@@ -102,21 +103,20 @@ class PistaDao
     }
 
 
-    public static function deletePista($pista){
+    public static function deletePista($pista)
+    {
         $connection = Connection::connect();
 
         $queryDelete = "DELETE FROM tbPista
                         WHERE idPista = ?";
-        
+
         $statement = $connection->prepare($queryDelete);
 
         $statement->bindValue(1, $pista->getIdPista());
 
-        try{
+        try {
             $statement->execute();
-        
-
-        }catch(Exception $e){
+        } catch (Exception $e) {
             echo '<pre>';
             echo $e;
             echo '</pre>';
@@ -147,9 +147,21 @@ class PistaDao
         </div>
         <!--Fim do modal de alert deletar pistas-->
                                                 ');
-        
-        
+    }
 
-        
+    public static function countPista($usuario)
+    {
+        $connection = Connection::connect();
+
+        $querySelect = "SELECT COUNT(idPista) FROM tbPista
+                        WHERE cpfUsuarioComum = '" . $usuario->getCpf() . "' 
+                        AND senhaUsuarioComum = '" . $usuario->getPassword() . "'
+                         ";
+
+        $result = $connection->query($querySelect);
+
+        $list = $result->fetchAll();
+
+        return $list;
     }
 }

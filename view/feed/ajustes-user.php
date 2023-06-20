@@ -90,6 +90,21 @@ if (!isset($_SESSION)) {
             echo '</pre>';
             echo $e->getMessage();
         }
+
+        $usuario = new Person();
+
+        $usuario->setCpf($_SESSION['login']);
+        $usuario->setPassword($_SESSION['password']);
+
+        // try {
+        //     $listCount = PistaDao::countPista($usuario);
+        // } catch (Exception $e) {
+        //     echo '<pre>';
+        //     echo $e;
+        //     echo '</pre>';
+        //     echo $e->getMessage();
+        // }
+        
     }
 
     ?>
