@@ -22,7 +22,7 @@
             
             foreach ($missedList as $missedItem) {
             $connection = Connection::connect();
-            $querySelect = "SELECT tbfeature.idFeature, tbfeature.typeFeature, tbfeaturemissed.descFeatureMissed, tbfeaturemissed.idFeature, tbfeaturemissed.idMissed
+            $querySelect = "SELECT tbfeature.idFeature, tbfeature.typeFeature, tbfeaturemissed.descFeatureMissed, tbfeaturemissed.idFeature, tbfeaturemissed.idMissed,tbfeaturemissed.idfeatureMissed
                             FROM tbfeature
                             INNER JOIN tbfeaturemissed ON tbfeature.idfeature = tbfeaturemissed.idfeature
                             WHERE idMissed = '".$missedItem['idMissed']."'";

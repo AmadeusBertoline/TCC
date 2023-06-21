@@ -58,6 +58,16 @@ input[type=number]::-webkit-outer-spin-button {
     align-items: center;
 }
 
+.image{
+    width: 75%;
+    height: 75%;
+    background: url('../../img/user/SVG\ -\ Familiar.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* border: 1px solid blue; */
+
+}
+
 
 .right-side {
     width: 100%;

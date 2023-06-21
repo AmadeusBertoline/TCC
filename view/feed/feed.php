@@ -52,10 +52,11 @@ if (!isset($_SESSION)) {
                 <div class="img-logo">
                     <?php
 
-                    if (isset($_SESSION['id-user'])) {
-                        echo "<img src= '../../assets/ico/feed/logo.svg' alt='img_logo'><!-- logo -->";
-                    } else {
+                    if (isset($_SESSION['id-familiar'])) {
                         echo "<img src= '../../assets/ico/feed/logo-family.svg' alt='img_logo'>";
+                    } else {
+                        echo "<img src= '../../assets/ico/feed/logo.svg' alt='img_logo'><!-- logo -->";
+                        
                     }
 
                     ?>
@@ -129,7 +130,7 @@ if (!isset($_SESSION)) {
 
                     ?>
                 </ul>
-            </nav>
+             </nav>
             <div class="burguerBar"><!-- Container BurguerBar-->
                 <span></span><!-- linhas-->
                 <span></span><!-- Linhas-->

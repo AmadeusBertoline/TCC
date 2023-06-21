@@ -6,6 +6,12 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
+if(isset($_SESSION['id-user'])){
+    $id = $_SESSION['id-user'];
+}else if(isset($_SESSION['id-familiar'])){
+    $id = $_SESSION['id-familiar'];
+}
+
 class PistaDao
 {
 
@@ -33,6 +39,8 @@ class PistaDao
             echo $e->getMessage();
         }
     }
+
+    
 
 
     public static function listarPista($pista)
@@ -151,11 +159,16 @@ class PistaDao
 
     public static function countPista()
     {
+        if(isset($_SESSION['id-user'])){
+            $id = $_SESSION['id-user'];
+        }else{
+            $id = $_SESSION['id-familiar'];
+        }
         $connection = Connection::connect();
 
         $querySelect = "SELECT COUNT(idPista) FROM tbPista
                 
-                        WHERE codUsuarioComum = '".$_SESSION['id-user']."'
+                        WHERE codUsuarioComum = '".$id."'
                          ";
 
         $result = $connection->query($querySelect);

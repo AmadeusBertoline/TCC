@@ -74,7 +74,7 @@
         </div>
 
         <div class="right-side">
-            <h1>Aqui ficará uma imagem.</h1>
+            <div class="image"></div>
         </div>
     </div>
 </body>
